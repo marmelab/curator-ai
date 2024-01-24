@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "./node_modules/.bin/tsc-watch --noClear -p ./tsconfig.json --onSuccess \"yarn start\"",
     "build": "tsc",
-    "start": "node ./dist/index.js"
+    "run": "node ./dist/index.js"
   },
   "devDependencies": {
     "tsc": "^2.0.4",

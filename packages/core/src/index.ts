@@ -15,21 +15,12 @@ interface Summary {
 const maxTokens = 4097;
 
 config({
-    path: path.resolve('../../.env.local'),
+    path: path.resolve('./.env.local'),
 });
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
-
-const links = [
-    'https://marmelab.com/blog/2024/01/05/crystal-clear-reviews-with-conventional-comments.html',
-    'https://marmelab.com/blog/2023/11/28/using-react-admin-with-your-favorite-ui-library.html',
-    // 'https://marmelab.com/blog/2024/01/10/open-source-documentation.html',
-    // 'https://marmelab.com/blog/2023/12/21/view-transitions.html',
-    // 'https://marmelab.com/blog/2023/12/11/how-we-tackled-ocr-on-handwritten-historical-documents.html',
-    // 'https://marmelab.com/blog/2023/12/08/open-source-profit-4.html',
-];
 
 const parsePage = async (url: string) => {
     const page = await fetch(url);
@@ -59,7 +50,7 @@ const sumUpAI = async (text: string, prompt: string) => {
 
 const generateTmpFileName = (ext: 'json' | 'txt') => {
     const timestamp = new Date().getTime();
-    return path.resolve(`../../tmp/tmp${timestamp}.tmp.${ext}`);
+    return path.resolve(`./tmp/tmp${timestamp}.tmp.${ext}`);
 };
 
 const bulkSumUp = async (links: string[]) => {
@@ -92,7 +83,7 @@ const getMostRelevant = (data: Summary[], max = 5) => {
 
 export const sumUp = async (links: string[], maxRelevant = 5) => {
     const tmpArticlesFileName = await bulkSumUp(links);
-    if (!tmpArticlesFileName) return;
+    if (!tmpArticlesFileName) return null;
 
     const data = fs.readFileSync(tmpArticlesFileName, {
         encoding: 'utf8',
