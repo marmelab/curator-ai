@@ -61,7 +61,7 @@ const bulkSumUp = async (links: string[], interests: string[]) => {
             await parsePage(links[i]),
             `You will be provided with a technical article, and your task is to summarize the article as follows:\n\n- summarize the article knowing I'm a developper\n- rate it by relevance from 1 to 10: the more the article talks about ${interests.join(
                 ' or '
-            )} the more it is relevant\n- shape your answer in JSON format as follows:\n    - summary: the summary of the article \n    - relevance_score: the relevance score\n    - author: the article's author`
+            )} the more it is relevant\n- shape your answer in JSON format as follows:\n    - summary: the summary of the article \n    - relevance_score: the relevance score\n    - author: the article's author \n    - title: the article title`
         );
         if (!sumUp.message.content) return;
         const payload = {
