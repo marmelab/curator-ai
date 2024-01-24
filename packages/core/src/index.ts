@@ -90,7 +90,7 @@ const getMostRelevant = (data: Summary[], max = 5) => {
         .slice(0, max);
 };
 
-const main = async () => {
+export const sumUp = async (links: string[], maxRelevant = 5) => {
     const tmpArticlesFileName = await bulkSumUp(links);
     if (!tmpArticlesFileName) return;
 
@@ -98,8 +98,6 @@ const main = async () => {
         encoding: 'utf8',
         flag: 'r',
     });
-    const mostRelevantArticles = getMostRelevant(JSON.parse(data));
-    console.log(mostRelevantArticles);
+    const mostRelevantArticles = getMostRelevant(JSON.parse(data), maxRelevant);
+    return mostRelevantArticles;
 };
-
-main();
