@@ -1,0 +1,20 @@
+{
+  "name": "@ai-powered-reader/core",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "./node_modules/.bin/tsc-watch --noClear -p ./tsconfig.json --onSuccess \"yarn start\"",
+    "start": "node ./dist/index.js"
+  },
+  "devDependencies": {
+    "tsc": "^2.0.4",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
+    "openai": "^4.24.3"
+  }
+}

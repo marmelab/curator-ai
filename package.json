@@ -1,0 +1,13 @@
+{
+  "name": "ai-powered-reader",
+  "author": "adrien guernier <adrien@marmelab.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev-core": "yarn workspace @ai-powered-reader/core dev",
+    "start": "yarn workspace @ai-powered-reader/cli start"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
