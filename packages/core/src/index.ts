@@ -53,13 +53,15 @@ const generateTmpFileName = (ext: 'json' | 'txt') => {
     return path.resolve(`./tmp/tmp${timestamp}.tmp.${ext}`);
 };
 
-const bulkSumUp = async (links: string[]) => {
+const bulkSumUp = async (links: string[], interests: string[]) => {
     const fileName = path.resolve(generateTmpFileName('json'));
     const content = [];
     for (let i = 0; i < links.length; i++) {
         const sumUp = await sumUpAI(
             await parsePage(links[i]),
-            "You will be provided with a technical article, and your task is to summarize the article as follows:\n\n- summarize the article knowing I'm a developper\n- rate it by relevance from 1 to 10: the more the article talks about React the more it is relevant\n- shape your answer in JSON format as follows:\n    - summary: the summary of the article \n    - relevance_score: the relevance score\n    - author: the article's author"
+            `You will be provided with a technical article, and your task is to summarize the article as follows:\n\n- summarize the article knowing I'm a developper\n- rate it by relevance from 1 to 10: the more the article talks about ${interests.join(
+                ' or '
+            )} the more it is relevant\n- shape your answer in JSON format as follows:\n    - summary: the summary of the article \n    - relevance_score: the relevance score\n    - author: the article's author`
         );
         if (!sumUp.message.content) return;
         const payload = {
@@ -81,8 +83,12 @@ const getMostRelevant = (data: Summary[], max = 5) => {
         .slice(0, max);
 };
 
-export const sumUp = async (links: string[], maxRelevant = 5) => {
-    const tmpArticlesFileName = await bulkSumUp(links);
+export const sumUp = async (
+    links: string[],
+    interests: string[],
+    maxRelevant = 5
+) => {
+    const tmpArticlesFileName = await bulkSumUp(links, interests);
     if (!tmpArticlesFileName) return null;
 
     const data = fs.readFileSync(tmpArticlesFileName, {
