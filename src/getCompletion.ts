@@ -3,7 +3,6 @@ import { config } from 'dotenv';
 
 config();
 
-
 export const getCompletion = async (text: string, prompt: string) => {
     if (!process.env.OPENAI_API_KEY) {
         throw new Error('OPENAI_API_KEY not set');

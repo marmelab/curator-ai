@@ -26,7 +26,10 @@ program
         if (!finalLinks.length) {
             program.help();
         }
-        const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+        const progressBar = new cliProgress.SingleBar(
+            {},
+            cliProgress.Presets.shades_classic
+        );
         progressBar.start(finalLinks.length, 0);
         const summaries = await curate({
             links: finalLinks,

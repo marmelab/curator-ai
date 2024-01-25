@@ -4,7 +4,7 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 
 ## Requirements
 
-- Node.js > 18
+- Node.js >= 18
 - an [OpenAI API](https://platform.openai.com/) key
 
 ## Usage
