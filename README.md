@@ -2,10 +2,10 @@
 
 An AI-powered news curator. It reads a list of articles, selects the best ones depending on a list of interests, and summarizes them into an easy-to-read news feed. Powered by the OpenAI API.
 
-## Prerequisites
+## Requirements
 
 - Node.js > 18
-- an OpenAI API key
+- an [OpenAI API](https://platform.openai.com/) key
 
 ## Usage
 
