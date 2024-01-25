@@ -14,21 +14,20 @@ export const summarizeArticle = async ({
 }: SummarizeArticleOptions): Promise<Summary | undefined> => {
     const interestsTip = interests.length
         ? `The more the article talks about ${interests.join(
-              ' or '
+              ' / '
           )}, the more it is relevant.`
         : '';
     const prompt = `
 You will be provided with a technical article, and your task is to summarize the article as follows:
 
-- summarize the main takeaways knowing I'm a developer. The summary should start with the most important information, not with an introduction like "The article discusses...".
-- rate it by relevancy from 1 to 10. ${interestsTip}
+- summarize the main takeaways. The summary should start with the most important information, not with an introduction like "The article discusses...".
+- rate it by relevancy from 0 (not relevant) to 100 (very relevant). ${interestsTip}
 - Shape your answer in JSON format, not in markdown or HTML. Do not include a JSON header. Include the following fields:
   - title: the article title
   - author: the article's author
-  - summary: the summary of the article.
+  - summary: the summary of the article. The summary should be short: at most 3 sentences and 80 words.
   - relevancy_score: the relevancy score
 
-The summary should be at most 3 sentences long.
 `;
 
     const completion = await getCompletion({ messages: [
