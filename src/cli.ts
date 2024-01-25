@@ -1,6 +1,6 @@
 import { program } from 'commander';
 import fs from 'node:fs';
-import { sumUp } from '@ai-powered-reader/core';
+import { sumUp } from '.';
 
 program
     .command('sumup-list')

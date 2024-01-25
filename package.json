@@ -1,9 +1,24 @@
 {
   "name": "ai-powered-reader",
   "author": "adrien guernier <adrien@marmelab.com>",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "bin": {
+    "summarize": "./dist/cli.js"
+  },
   "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "openai": "^4.24.3"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "start": "ts-node ./src/cli.ts"
+  }
 }

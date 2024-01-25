@@ -1,9 +1,10 @@
 import OpenAI from 'openai';
 import 'dotenv/config';
-import { config } from 'dotenv';
 import path from 'node:path';
 import fs from 'node:fs';
 import * as cheerio from 'cheerio';
+import { config } from 'dotenv';
+config();
 
 interface Summary {
     summary: string;
@@ -14,9 +15,6 @@ interface Summary {
 
 const maxTokens = 4097;
 
-config({
-    path: path.resolve('./.env.local'),
-});
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
