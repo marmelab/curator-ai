@@ -6,10 +6,16 @@
     "url": "https://github.com/marmelab/curator-ai"
   },
   "version": "0.0.2",
+  "main": "./dist/index.js",
   "bin": {
     "curate": "./dist/cli.js"
   },
   "license": "MIT",
+  "files": [
+    "*.md",
+    "dist",
+    "src"
+],
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
