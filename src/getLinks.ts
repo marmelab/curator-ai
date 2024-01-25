@@ -2,14 +2,23 @@ import * as cheerio from 'cheerio';
 
 import { getCompletion } from './getCompletion';
 
-export const getLinks = async (pageUrl: string) => {
-    const response = await fetch(pageUrl);
+export interface GetLinksOptions {
+    url: string;
+    maxContentSize?: number;
+}
+
+export const getLinks = async ({
+    url,
+    maxContentSize = 12000,
+}: GetLinksOptions) => {
+    const response = await fetch(url);
     if (!response) return [];
     const $ = await cheerio.load(await response.text());
     const content = $('a')
         .map((_, el) => $(el).prop('outerHTML'))
         .toArray()
-        .join('\n');
+        .join('\n')
+        .substring(0, maxContentSize);
     const prompt = `
 You will be provided with the HTML code of a list of links found in a web page.
 Extract the external links from the page.

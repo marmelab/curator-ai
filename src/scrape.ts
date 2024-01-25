@@ -1,9 +1,15 @@
 import * as cheerio from 'cheerio';
 
-const maxSize = 12000;
+export interface ScrapeOptions {
+    url: string;
+    maxContentSize?: number;
+}
 
-export const scrape = async (url: string) => {
-    const page = await fetch(url);
-    const $ = await cheerio.load(await page.text());
-    return $('body').text().substring(0, maxSize);
+export const scrape = async ({
+    url,
+    maxContentSize = 12000,
+}: ScrapeOptions) => {
+    const response = await fetch(url);
+    const $ = await cheerio.load(await response.text());
+    return $('body').text().substring(0, maxContentSize);
 };
