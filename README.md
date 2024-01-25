@@ -20,13 +20,13 @@ npm install
 Summarize a list of articles based on URLs passed as parameters:
 
 ```sh
-OPENAI_API_KEY=XXX npm start https://example.com/article1 https://example.com/article2 --max 10
+OPENAI_API_KEY=XXX npm start curate https://example.com/article1 https://example.com/article2 --max 10
 ```
 
 Summarize a list of articles based on a file:
 
 ```sh
-OPENAI_API_KEY=XXX npm start myFile.json --max 10
+OPENAI_API_KEY=XXX npm start curate-file myFile.json --max 10
 ```
 
 The file should be an array of URLs:
