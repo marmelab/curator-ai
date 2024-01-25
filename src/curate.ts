@@ -5,17 +5,24 @@ import type { Summary } from './types';
 interface ScrapeAndSummarizeArticlesOptions {
     links: string[];
     interests?: string[];
+    onProgress?: (progress: number) => void;
 }
 
 const scrapeAndSummarizeArticles = async ({
     links,
     interests = [],
+    onProgress = () => {},
 }: ScrapeAndSummarizeArticlesOptions) => {
     const content: Summary[] = [];
-    for (const link of links) {
-        const text = await scrape(link);
-        const summary = await summarizeArticle({ text, link, interests });
+    for (let i = 0; i < links.length; i++) {
+        const text = await scrape(links[i]);
+        const summary = await summarizeArticle({
+            text,
+            link: links[i],
+            interests,
+        });
         if (summary) content.push(summary);
+        onProgress(i + 1);
     }
     return content;
 };
@@ -25,12 +32,24 @@ const getMostRelevant = (summaries: Summary[], max = 5) =>
         .sort((a, b) => b.relevance_score - a.relevance_score)
         .slice(0, max);
 
-export const curate = async (
-    links: string[],
-    interests: string[] = [],
-    maxRelevant = 5
-) => {
-    const summaries = await scrapeAndSummarizeArticles({ links, interests });
-    const mostRelevantArticles = getMostRelevant(summaries, maxRelevant);
+export interface CurateOptions {
+    links: string[];
+    interests?: string[];
+    max?: number;
+    onProgress?: (progress: number) => void;
+}
+
+export const curate = async ({
+    links,
+    interests = [],
+    max = 5,
+    onProgress,
+}: CurateOptions) => {
+    const summaries = await scrapeAndSummarizeArticles({
+        links,
+        interests,
+        onProgress,
+    });
+    const mostRelevantArticles = getMostRelevant(summaries, max);
     return mostRelevantArticles;
 };
