@@ -3,13 +3,12 @@ import { config } from 'dotenv';
 
 config();
 
-if (!process.env.OPENAI_API_KEY) {
-    throw new Error('OPENAI_API_KEY not set');
-}
-
-const openAI = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export const getCompletion = async (text: string, prompt: string) => {
+    if (!process.env.OPENAI_API_KEY) {
+        throw new Error('OPENAI_API_KEY not set');
+    }
+    const openAI = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const completion = await openAI.chat.completions.create({
         messages: [
             { role: 'system', content: prompt },

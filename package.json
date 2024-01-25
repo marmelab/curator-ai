@@ -5,9 +5,9 @@
     "type": "git",
     "url": "https://github.com/marmelab/curator-ai"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "bin": {
-    "summarize": "./dist/cli.js"
+    "curate": "./dist/cli.js"
   },
   "license": "MIT",
   "devDependencies": {
