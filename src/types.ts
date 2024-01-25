@@ -1,7 +1,7 @@
 export interface Summary {
     title: string;
     summary: string;
-    relevance_score: number;
+    relevancy_score: number;
     author: string;
     link: string;
 }

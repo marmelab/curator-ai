@@ -7,7 +7,7 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 - Node.js >= 18
 - an [OpenAI API](https://platform.openai.com/) key
 
-## Usage
+## CLI Usage
 
 ```sh
 # Install the package globally
@@ -47,6 +47,53 @@ Then you don't need to pass it as a parameter.
 
 ```sh
 curate -f myFile.txt
+```
+
+## Programmatic Usage
+
+```sh
+# Install the package locally
+npm install curator-ai
+```
+
+Put the API key in a `.env` file:
+
+```txt
+OPENAI_API_KEY=XXX
+```
+
+Use the `curate` function:
+
+```js
+const { curate } = require("curator-ai");
+
+const links = [
+  "https://stability.ai/news/stable-code-2024-llm-code-completion-release",
+  "https://www.fromjason.xyz/p/notebook/where-have-all-the-websites-gone/",
+  "https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/",
+  "https://biomejs.dev/blog/biome-v1-5/",
+  "https://birtles.blog/2024/01/06/weird-things-engineers-believe-about-development/",
+  "https://julesblom.com/writing/flushsync",
+];
+
+curate({
+  links,
+  interests: ["react", "ai"],
+  max: 5,
+}).then((curatedLinks) => {
+  console.log(curatedLinks);
+});
+
+// [
+//  {
+//    title: 'More Than You Need to Know About ReactDOM.flushSync',
+//    author: 'Jules Blom',
+//    summary: 'This article dives into the rarely used ReactDOM.flushSync function in React and explains what it does and when it is useful. It discusses how flushSync flushes state updates synchronously to the DOM, and why this is important. The article also explains the concept of batching in React updates and how flushSync can bypass the update queue.',
+//    relevancy_score: 8,
+//    link: 'https://julesblom.com/writing/flushsync'
+//  },
+//  ...
+// ]
 ```
 
 ## Development

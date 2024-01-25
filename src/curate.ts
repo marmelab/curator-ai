@@ -16,6 +16,7 @@ const scrapeAndSummarizeArticles = async ({
     const content: Summary[] = [];
     for (let i = 0; i < links.length; i++) {
         const text = await scrape(links[i]);
+        onProgress(i + 0.5);
         const summary = await summarizeArticle({
             text,
             link: links[i],
@@ -29,7 +30,7 @@ const scrapeAndSummarizeArticles = async ({
 
 const getMostRelevant = (summaries: Summary[], max = 5) =>
     summaries
-        .sort((a, b) => b.relevance_score - a.relevance_score)
+        .sort((a, b) => b.relevancy_score - a.relevancy_score)
         .slice(0, max);
 
 export interface CurateOptions {

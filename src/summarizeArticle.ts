@@ -21,12 +21,12 @@ export const summarizeArticle = async ({
 You will be provided with a technical article, and your task is to summarize the article as follows:
 
 - summarize the article knowing I'm a developer
-- rate it by relevance from 1 to 10. ${interestsTip}
+- rate it by relevancy from 1 to 10. ${interestsTip}
 - shape your answer in JSON format as follows:
-- title: the article title
-- author: the article's author
-- summary: the summary of the article. Don't start with "This article discusses..."; instead, the summary should start with the most important information.
-- relevance_score: the relevance score
+  - title: the article title
+  - author: the article's author
+  - summary: the summary of the article. Don't start with "This article discusses..."; instead, the summary should start with the most important information.
+  - relevancy_score: the relevancy score
 
 The summary should be at most 3 sentences long.
 `;
