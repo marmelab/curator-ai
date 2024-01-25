@@ -1,33 +1,33 @@
 import { program } from 'commander';
 import fs from 'node:fs';
-import { sumUp } from '.';
+import { curate } from './curate';
+import { consoleFormat } from './consoleFormat';
 
 program
-    .command('sumup-list')
+    .command('curate')
     .description('Sum up a list of articles from the web with AI power')
     .argument('<links...>', 'List of article links')
     .option('-i', '--interests <interests...>', 'List of interests')
     .option('-m, --max <number>', 'Max number of articles to return', '5')
-    .action((links, options) => {
-        sumUp(links, options.interests, options.max).then(res =>
-            console.log(res)
-        );
+    .action(async (links, options) => {
+        const summaries = await curate(links, options.interests, options.max)
+        console.log(consoleFormat(summaries))
     });
 
 program
-    .command('sumup-list-in-file')
+    .command('curate-file')
     .description('Sum up a list of articles from the web with AI power')
     .argument(
         '<file>',
         'The file containing the list of article links to sum up'
     )
-    .requiredOption('-i, --interests <string...>', 'List of interests')
+    .option('-i, --interests <string...>', 'List of interests')
     .option('-m, --max <number...>', 'Max number of articles to return', '5')
-    .action((file, options) => {
-        const links = fs.readFileSync(file, 'utf8');
-        sumUp(JSON.parse(links), options.interests, options.max).then(res =>
-            console.log(res)
-        );
+    .action(async (file, options) => {
+        const linksJSON = fs.readFileSync(file, 'utf8');
+        const links = JSON.parse(linksJSON)
+        const summaries = await curate(links, options.interests, options.max)
+        console.log(consoleFormat(summaries));
     });
 
 program.parse();
