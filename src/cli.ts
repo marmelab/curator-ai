@@ -1,33 +1,31 @@
+#!/usr/bin/env node
 import { program } from 'commander';
 import fs from 'node:fs';
 import { curate } from './curate';
 import { consoleFormat } from './consoleFormat';
 
 program
-    .command('curate')
-    .description('Sum up a list of articles from the web with AI power')
-    .argument('<links...>', 'List of article links')
-    .option('-i', '--interests <interests...>', 'List of interests')
-    .option('-m, --max <number>', 'Max number of articles to return', '5')
-    .action(async (links, options) => {
-        const summaries = await curate(links, options.interests, options.max)
-        console.log(consoleFormat(summaries))
-    });
-
-program
-    .command('curate-file')
-    .description('Sum up a list of articles from the web with AI power')
-    .argument(
-        '<file>',
-        'The file containing the list of article links to sum up'
+    .name('curate')
+    .description('Read, select and summarize a list of articles')
+    .option('-l, --links [links...]', 'List of article links')
+    .option(
+        '-f, --file <filename>',
+        'File containing an array of URLs to curate, one per line'
     )
-    .option('-i, --interests <string...>', 'List of interests')
-    .option('-m, --max <number...>', 'Max number of articles to return', '5')
-    .action(async (file, options) => {
-        const linksJSON = fs.readFileSync(file, 'utf8');
-        const links = JSON.parse(linksJSON)
-        const summaries = await curate(links, options.interests, options.max)
-        console.log(consoleFormat(summaries));
+    .option('-i, --interests [interests...]', 'List of interests')
+    .option('-m, --max <number>', 'Max number of articles to return', '5')
+    .showHelpAfterError()
+    .action(async (options) => {
+        let finalLinks: string[] = options.links || [];
+        if (options.file) {
+            const linkFile = fs.readFileSync(options.file, 'utf8');
+            finalLinks = linkFile.split('\n');
+        }
+        if (!finalLinks.length) {
+            program.help(); 
+        }
+        const summaries = await curate(finalLinks, options.interests, options.max)
+        console.log(consoleFormat(summaries))
     });
 
 program.parse();

@@ -1,8 +1,11 @@
 {
-  "name": "ai-powered-reader",
+  "name": "curator-ai",
   "author": "adrien guernier <adrien@marmelab.com>",
-  "version": "1.0.0",
-  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marmelab/curator-ai"
+  },
+  "version": "0.0.1",
   "bin": {
     "summarize": "./dist/cli.js"
   },

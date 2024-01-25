@@ -2,17 +2,12 @@ import chalk from 'chalk';
 
 import type { Summary } from './types';
 
-export const consoleFormat = (summaries: Summary[]) => {
-    const formatted = summaries
-        .map(
-            summary =>
-                `${chalk.bold(summary.title)}
+const formatSummary = (summary: Summary) => `
+${chalk.bold(summary.title)}
 ${chalk.grey(`by ${summary.author}`)}
 ${summary.summary}
 ${chalk.underline(chalk.blue(summary.link))}
+`.trim();
 
-`
-        )
-        .join('');
-    return formatted;
-};
+export const consoleFormat = (summaries: Summary[]) =>
+    summaries.map(formatSummary).join("\n\n");

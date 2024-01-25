@@ -7,35 +7,51 @@ An AI-powered curator. It reads a list of articles, selects the best ones depend
 - Node.js > 18
 - an OpenAI API key
 
-## Install
+## Usage
 
-Run the following:
+```sh
+# Install the package globally
+npm install -g curator-ai
+
+# Get usage information
+curate
+
+# Summarize a list of articles based on URLs passed as parameters:
+OPENAI_API_KEY=XXX curate -- -l https://example.com/article1 https://example.com/article2
+```
+
+You can also put the API key in a `.env` file:
+
+```
+OPENAI_API_KEY=XXX
+```
+
+## Development
 
 ```sh
 npm install
+
+# Get usage information
+npm start
+
+# Summarize a list of articles based on URLs passed as parameters:
+npm start -- -l https://example.com/article1 https://example.com/article2
+
+#Summarize a list of articles based on a file:
+npm start -- -f myFile.json
+
+#Return at most 5 articles:
+npm start -- -f myFile.json -m 5
+
+#Return the articles about AI and React:
+npm start -- -f myFile.json -i AI React
 ```
 
-## Usage
+Don't forget to pass a valid ApoenAI key, either as an environment variable or in a `.env` file.
 
-Summarize a list of articles based on URLs passed as parameters:
+## Build
 
 ```sh
-OPENAI_API_KEY=XXX npm start curate https://example.com/article1 https://example.com/article2 --max 10
+npm run build
+npm publish
 ```
-
-Summarize a list of articles based on a file:
-
-```sh
-OPENAI_API_KEY=XXX npm start curate-file myFile.json --max 10
-```
-
-The file should be an array of URLs:
-
-```json
-[
-  "https://example.com/article1",
-  "https://example.com/article2"
-]
-```
-
-Instead of passing the API key as an environment variable, you can also put it in a `.env` file.
