@@ -4,8 +4,8 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 
 ## Requirements
 
-- Node.js >= 18
-- an [OpenAI API](https://platform.openai.com/) key
+-   Node.js >= 18
+-   an [OpenAI API](https://platform.openai.com/) key
 
 ## CLI Usage
 
@@ -13,8 +13,8 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 # Install the package globally
 npm install -g curator-ai
 
-# Summarize a list of articles based on a file containing URLs
-OPENAI_API_KEY=XXX curate -f myFile.txt
+# Summarize a list of articles based on aggregator URLs
+OPENAI_API_KEY=XXX curate -a https://news.ycombinator.com/ https://lobste.rs/
 ```
 
 Example output:
@@ -27,14 +27,17 @@ More options:
 # Get usage information
 curate
 
-# Summarize a list of articles based on URLs passed as parameters
-OPENAI_API_KEY=XXX curate -l https://example.com/article1 https://example.com/article2
+# Summarize a list of articles based on URLs passed directly as parameters
+OPENAI_API_KEY=XXX curate -u https://example.com/article1 https://example.com/article2
+
+# Summarize a list of articles based on a file containing URLs
+OPENAI_API_KEY=XXX curate -uf myFile.txt
 
 # Return at most 5 articles
-OPENAI_API_KEY=XXX curate -f myFile.txt -m 5
+OPENAI_API_KEY=XXX curate -a https://news.ycombinator.com/ -m 5
 
 # Return the articles about AI and React
-OPENAI_API_KEY=XXX curate -f myFile.txt -i AI React
+OPENAI_API_KEY=XXX curate -a https://news.ycombinator.com/ -i AI React
 ```
 
 You can also put the API key in a `.env` file:
@@ -65,23 +68,23 @@ OPENAI_API_KEY=XXX
 Use the `curate` function:
 
 ```js
-const { curate } = require("curator-ai");
+const { curate } = require('curator-ai');
 
 const links = [
-  "https://stability.ai/news/stable-code-2024-llm-code-completion-release",
-  "https://www.fromjason.xyz/p/notebook/where-have-all-the-websites-gone/",
-  "https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/",
-  "https://biomejs.dev/blog/biome-v1-5/",
-  "https://birtles.blog/2024/01/06/weird-things-engineers-believe-about-development/",
-  "https://julesblom.com/writing/flushsync",
+    'https://stability.ai/news/stable-code-2024-llm-code-completion-release',
+    'https://www.fromjason.xyz/p/notebook/where-have-all-the-websites-gone/',
+    'https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/',
+    'https://biomejs.dev/blog/biome-v1-5/',
+    'https://birtles.blog/2024/01/06/weird-things-engineers-believe-about-development/',
+    'https://julesblom.com/writing/flushsync',
 ];
 
 curate({
-  links,
-  interests: ["react", "ai"],
-  max: 5,
-}).then((curatedLinks) => {
-  console.log(curatedLinks);
+    links,
+    interests: ['react', 'ai'],
+    max: 5,
+}).then(curatedLinks => {
+    console.log(curatedLinks);
 });
 
 // [
@@ -104,8 +107,8 @@ npm install
 # Get usage information
 npm start
 
-# Summarize a list of articles based on URLs passed as parameters (notice the --):
-npm start -- -l https://example.com/article1 https://example.com/article2
+# Summarize a list of articles based on aggregator URLs (notice the --):
+npm start -- -a https://news.ycombinator.com/
 ```
 
 Don't forget to pass a valid OpenAI key, either as an environment variable or in a `.env` file.

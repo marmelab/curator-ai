@@ -1,1 +1,2 @@
-export { curate } from "./curate";
+export { curate } from './curate';
+export { getLinks } from './getLinks';
