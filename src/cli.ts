@@ -15,12 +15,12 @@ program
     .description('Read, select and summarize a list of articles')
     .option('-u, --urls [urls...]', 'Wep pages to curate')
     .option(
-        '-uf, --url-file <filename>',
+        '-f, --url-file <filename>',
         'Text file containing a list of URLs to curate, one per line'
     )
     .option('-a, --aggregators [urls...]', 'Aggregator web pages to curate')
     .option(
-        '-af, --aggregator-file <filename>',
+        '-F, --aggregator-file <filename>',
         'Text file containing a list of aggregator URLs to curate, one per line'
     )
     .option('-i, --interests [interests...]', 'List of interests')
@@ -28,7 +28,14 @@ program
     .addHelpText('after', helpText)
     .showHelpAfterError()
     .action(async options => {
+        // get links from urls
         let urls: string[] = options.urls || [];
+        if (options.urlFile) {
+            const linkFile = fs.readFileSync(options.urlFile, 'utf8');
+            urls = [...urls, ...linkFile.split('\n')];
+        }
+
+        // get links from aggregators
         let aggregatorUrls: string[] = options.aggregators || [];
         if (options.aggregatorFile) {
             const aggregatorFile = fs.readFileSync(
@@ -37,11 +44,6 @@ program
             );
             aggregatorUrls = [...aggregatorUrls, ...aggregatorFile.split('\n')];
         }
-        if (!urls.length && !aggregatorUrls.length) {
-            program.help();
-        }
-
-        // get links from curators
         if (aggregatorUrls.length) {
             const progressBar = new cliProgress.SingleBar(
                 {},
@@ -57,13 +59,13 @@ program
             }
             progressBar.stop();
         }
-        if (options.urlFile) {
-            const linkFile = fs.readFileSync(options.urlFile, 'utf8');
-            urls = [...urls, ...linkFile.split('\n')];
-        }
 
         // deduplicate urls
         urls = [...new Set(urls)];
+
+        if (!urls.length) {
+            program.help();
+        }
 
         // curate
         const progressBar = new cliProgress.SingleBar(
