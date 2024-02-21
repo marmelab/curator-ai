@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.6 - 2024-02-21
+
+### Added
+
+- add RSS support
+
+### Fixed
+
+- sanitize links wihtout calling ApenAI API
+- removing elements unrelated to the article before calling OpenAI API
+
 ## 0.0.5 - 2024-01-26
 
 ### Fixed
