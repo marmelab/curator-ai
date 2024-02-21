@@ -1,4 +1,6 @@
+import { Readability } from '@mozilla/readability';
 import * as cheerio from 'cheerio';
+import { JSDOM } from 'jsdom';
 
 export interface ScrapeOptions {
     url: string;
@@ -10,6 +12,8 @@ export const scrape = async ({
     maxContentSize = 12000,
 }: ScrapeOptions) => {
     const response = await fetch(url);
-    const $ = await cheerio.load(await response.text());
-    return $('body').text().substring(0, maxContentSize);
+    const $ = cheerio.load(await response.text());
+    const dom = new JSDOM($.html());
+    const article = new Readability(dom.window.document).parse();
+    return article?.textContent.substring(0, maxContentSize);
 };

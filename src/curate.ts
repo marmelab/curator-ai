@@ -44,6 +44,10 @@ const scrapeAndSummarizeArticles = async ({
     for (let i = 0; i < links.length; i++) {
         const text = await scrape({ url: links[i], maxContentSize });
         onProgress(i + 0.5);
+        if (text === undefined) {
+            onProgress(i + 1);
+            continue;
+        }
         const summary = await summarizeArticle({
             text,
             link: links[i],

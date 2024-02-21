@@ -3,7 +3,7 @@ import { program } from 'commander';
 import fs from 'node:fs';
 import cliProgress from 'cli-progress';
 
-import { getLinks } from './getLinks';
+import { extractLinks } from './extractLinks';
 import { curate } from './curate';
 import { consoleFormat } from './consoleFormat';
 
@@ -51,7 +51,7 @@ program
             );
             progressBar.start(aggregatorUrls.length, 0);
             for (let i = 0; i < aggregatorUrls.length; i++) {
-                const newUrls = await getLinks({
+                const newUrls = await extractLinks({
                     url: aggregatorUrls[i],
                 });
                 urls = [...urls, ...newUrls];
@@ -82,7 +82,6 @@ program
         progressBar.stop();
 
         // print summaries
-        console.log();
         console.log(consoleFormat(summaries));
     });
 
