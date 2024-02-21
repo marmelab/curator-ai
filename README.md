@@ -1,5 +1,7 @@
 # Curator AI
 
+[![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
+
 An AI-powered news curator. It reads a list of articles, selects the best ones depending on a list of interests, and summarizes them into an easy-to-read news feed. Powered by the OpenAI API.
 
 ## Requirements
