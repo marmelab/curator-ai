@@ -30,7 +30,8 @@
     "commander": "^11.1.0",
     "dotenv": "^16.3.1",
     "jsdom": "^24.0.0",
-    "openai": "^4.24.3"
+    "openai": "^4.24.3",
+    "rss-parser": "^3.13.0"
   },
   "scripts": {
     "build": "npx tsc",

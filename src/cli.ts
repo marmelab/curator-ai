@@ -6,6 +6,7 @@ import cliProgress from 'cli-progress';
 import { extractLinks } from './extractLinks';
 import { curate } from './curate';
 import { consoleFormat } from './consoleFormat';
+import { extractRssLink } from './extractRssLink';
 
 const helpText = `Examples:
   $ curate -a https://news.ycombinator.com/ -i science space research -m 3
@@ -23,6 +24,7 @@ program
         '-F, --aggregator-file <filename>',
         'Text file containing a list of aggregator URLs to curate, one per line'
     )
+    .option('-r, --rss [urls...]', 'RSS feed to curate')
     .option('-i, --interests [interests...]', 'List of interests')
     .option('-m, --max <number>', 'Max number of articles to return', '5')
     .addHelpText('after', helpText)
@@ -44,6 +46,21 @@ program
             );
             aggregatorUrls = [...aggregatorUrls, ...aggregatorFile.split('\n')];
         }
+
+        if (options.rss) {
+            const progressBar = new cliProgress.SingleBar(
+                {},
+                cliProgress.Presets.shades_classic
+            );
+            progressBar.start(options.rss.length, 0);
+            for (let i = 0; i < options.rss.length; i++) {
+                const feedUrls = await extractRssLink(options.rss[i]);
+                urls = [...urls, ...feedUrls];
+                progressBar.update(i + 1);
+            }
+            progressBar.stop();
+        }
+
         if (aggregatorUrls.length) {
             const progressBar = new cliProgress.SingleBar(
                 {},
