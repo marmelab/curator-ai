@@ -40,6 +40,9 @@ OPENAI_API_KEY=XXX curate -a https://news.ycombinator.com/ -m 5
 
 # Return the articles about AI and React
 OPENAI_API_KEY=XXX curate -a https://news.ycombinator.com/ -i AI React
+
+# Summarize a list of articles based on RSS feed
+OPENAI_API_KEY=XXX curate -r https://afup.org/rss.xml -i event
 ```
 
 You can also put the API key in a `.env` file:
