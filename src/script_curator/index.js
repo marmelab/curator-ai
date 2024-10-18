@@ -13,7 +13,7 @@ curate({
     links,
     interests: ['react', 'ai'],
     max: 5,
-}).then(curatedLinks => {
+}).then((curatedLinks) => {
     console.log(curatedLinks);
 });
 
