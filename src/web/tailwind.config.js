@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+/* npx tailwindcss -i input.css -o output.css --watch */
+
 module.exports = {
   content: ["./**/*.{html,js,css}"],
   theme: {
@@ -9,6 +12,9 @@ module.exports = {
         'mid_blue' : '#2F509F',
         'black' : '#1A1A1A'
       }
+    },
+    fontFamily: {
+      magnolia: ['Magnolia', 'sans-serif'],
     },
   },
   plugins: [],

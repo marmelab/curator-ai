@@ -600,13 +600,53 @@ video {
   position: relative;
 }
 
+.float-left {
+  float: left;
+}
+
+.m-4 {
+  margin: 1rem;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.m-0 {
+  margin: 0px;
+}
+
+.m-10 {
+  margin: 2.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mt-0 {
+  margin-top: 0px;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .block {
   display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
 }
 
 .table {
@@ -633,13 +673,12 @@ video {
   resize: both;
 }
 
-.border {
-  border-width: 1px;
+.justify-center {
+  justify-content: center;
 }
 
-.bg-mid_blue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(47 80 159 / var(--tw-bg-opacity));
+.border {
+  border-width: 1px;
 }
 
 .bg-grey {
@@ -647,9 +686,69 @@ video {
   background-color: rgb(230 230 230 / var(--tw-bg-opacity));
 }
 
+.bg-mid_blue {
+  --tw-bg-opacity: 1;
+  background-color: rgb(47 80 159 / var(--tw-bg-opacity));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(26 26 26 / var(--tw-bg-opacity));
+}
+
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
+.bg-slate-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.p-10 {
+  padding: 2.5rem;
+}
+
+.p-0 {
+  padding: 0px;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-magnolia {
+  font-family: Magnolia, sans-serif;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
 }
 
 .font-bold {
@@ -661,10 +760,26 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
+.text-light_blue {
+  --tw-text-opacity: 1;
+  color: rgb(60 103 173 / var(--tw-text-opacity));
+}
+
+.text-mid_blue {
+  --tw-text-opacity: 1;
+  color: rgb(47 80 159 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
 
 .outline {
   outline-style: solid;
+}
+
+@font-face {
+  font-family: "magnolia";
+
+  src: url("MagnoliaScript.otf") format("opentype");
 }
