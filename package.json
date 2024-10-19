@@ -24,6 +24,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.1.0",
     "@mozilla/readability": "^0.5.0",
     "@supabase/supabase-js": "^2.45.4",
     "body-parser": "^1.20.3",

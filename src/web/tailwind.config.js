@@ -15,6 +15,7 @@ module.exports = {
     },
     fontFamily: {
       magnolia: ['Magnolia', 'sans-serif'],
+      sans : ['Roboto','sans-serif']
     },
   },
   plugins: [],

@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Submission</title>
+    <title>Curator AI</title>
     <link href="./output.css" rel="stylesheet">
+    <script src="/src/web/adapt.js"></script>
 </head>
-<body class="mx-auto" >
-    <nav class="bg-grey mb-4 p-2">
-        <div class="font-magnolia text-6xl text-center flex justify-center">
+<body class="font-sans text-lg mx-auto" >
+    <nav class="bg-grey relative bg-grey mb-4 p-2 flex justify-center">
+        <div class="font-magnolia text-6xl text-center flex-grow">
             <h1>
                 <span class="text-light_blue">Curator</span>
                 <span class="text-mid_blue">AI</span>
             </h1>
         </div>
+        <div class="absolute right-4">
+            <ul class="flex mr-10 space-x-4">
+                <li class="hover:underline" data-lang="en"><a href="index.html" onclick="changeLanguage('en')">EN</a></li>
+                <li>|</li>
+                <li class="hover:underline" data-lang="fr"><a href="index.html" onclick="changeLanguage('fr')">FR</a></li>
+            </ul>
+        </div>
     </nav>
     <div class="container mx-auto text-center">
-        <h1> Enter your email address:</h1>
+        <h1 data-i18n="enter_email_msg"></h1>
         <form action="/submit-email" method="POST">
             <label for="email">Email: </label>
             <input type="email" id="email" name="email" required>
-            <button class="bg-mid_blue" type="submit">Submit</button>
+            <button class="" type="submit" data-i18n="submit_msg"></button>
         </form>
     </div>
 </body>
