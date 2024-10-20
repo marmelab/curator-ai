@@ -35,3 +35,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     const langData = await fetchLanguageData(userPreferredLanguage);
     updateContent(langData);
 });
+
+//page managment
+function signUp() {
+    window.location.assign("signUp.html");
+}
+
+function goToMain() {
+    window.location.assign("index.html");
+}
