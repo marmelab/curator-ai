@@ -2,5 +2,19 @@
     "enter_email_msg":"Enter your e-mail address :",
     "submit_msg":"Submit",
     "join_button":"Sign up",
-    "what_is_curator_ai":"to complete"
+    "what_is_curator_ai_title":"What is Curator AI ?",
+    "what_is_curator_ai_para":"Curator AI is a tool to always be up to date with you newsletters.",
+    "why_use_curator_ai_title":"Why should I use Curator AI ?",
+    "why_use_curator_ai_para":"It will greatly improve you time.",
+    "how_curator_ai_works_title":"How does Curator AI works ?",
+    "how_curator_ai_works_para":"Curator AI is powered mainly by the OpenAI API. All the configuration can be made through mails.",
+    "some_comments_title":"Here are some reviews of our users :",
+    "comment1":"Such wow, much amaze",
+    "comment1_author":"- Doge",
+    "comment2":"Much surprise, very impress",
+    "comment2_author":"- An impressed Doge",
+    "comment3":"Such speed, very fast, wow",
+    "comment3_author":"- Shareholder Doge",
+    "comment4":"Such coding, much smart, wow",
+    "comment4_author":"- An expert Doge"
 }

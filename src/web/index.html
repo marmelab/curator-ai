@@ -7,8 +7,8 @@
     <link href="./output.css" rel="stylesheet">
     <script src="/src/web/adapt.js"></script>
 </head>
-<body class="font-sans text-lg mx-auto" >
-    <nav class="bg-grey relative bg-grey mb-4 p-2 flex justify-center">
+<body class="font-sans text-lg mx-auto flex flex-col min-h-screen" >
+    <nav class="bg-grey relative bg-grey mb-14 p-2 flex justify-center">
         <div class="absolute left-4">
             <ul class="flex ml-10 space-x-4">
                 <li class="hover:underline" data-lang="en"><a href="index.html" onclick="changeLanguage('en')">EN</a></li>
@@ -27,8 +27,34 @@
         <button class="bg-light_blue text-white font-bold rounded-full p-2 absolute right-10 top-1/2 -translate-y-1/2 text-center" data-i18n="join_button"
                 onclick="signUp()"></button>
     </nav>
-    <div class="container mx-auto text-center">
-        <h1 data-i18n="what_is_curator_ai"></h1>
+    <div class="container mx-auto text-center flex-grow">
+        <h1 class="text-3xl font-bold mb-2" data-i18n="what_is_curator_ai_title"></h1>
+        <p class="mb-10" data-i18n="what_is_curator_ai_para"></p>
+        <h1 class="text-3xl font-bold mb-2" data-i18n="why_use_curator_ai_title"></h1>
+        <p class="mb-10" data-i18n="why_use_curator_ai_para"></p>
+        <h1 class="text-3xl font-bold mb-2" data-i18n="how_curator_ai_works_title"></h1>
+        <p class="mb-10" data-i18n="how_curator_ai_works_para"></p>
+        <h1 class="text-3xl font-bold mb-2" data-i18n="some_comments_title"></h1>
+        <div class="flex justify-center">
+            <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
+                <p data-i18n="comment1"></p>
+                <p class="font-light text-right" data-i18n="comment1_author"></p>
+            </div>
+            <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
+                <p data-i18n="comment2"></p>
+                <p class="font-light text-right" data-i18n="comment2_author"></p>
+            </div>
+            <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
+                <p data-i18n="comment3"></p>
+                <p class="font-light text-right" data-i18n="comment3_author"></p>
+            </div>
+            <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
+                <p data-i18n="comment4"></p>
+                <p class="font-light text-right" data-i18n="comment4_author"></p>
+            </div>
+        </div>
     </div>
+    <footer class="bg-grey p-4 text-center">
+    </footer>
 </body>
 </html>

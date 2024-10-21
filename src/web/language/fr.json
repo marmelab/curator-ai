@@ -1,5 +1,20 @@
 {
     "enter_email_msg":"Saisissez votre adresse email :",
     "submit_msg":"Valider",
-    "join_button":"S'incrire"
+    "join_button":"S'incrire",
+    "what_is_curator_ai_title":"Qu'est ce que Curator AI ?",
+    "what_is_curator_ai_para":"Curator AI est un outil pour toujours être à jour dans ses newletters.",
+    "why_use_curator_ai_title":"Pourquoi devrais-je utiliser Curator AI ?",
+    "why_use_curator_ai_para":"Ça vous aidera à grandement économiser votre temps.",
+    "how_curator_ai_works_title":"Comment Curator AI fonctionne ?",
+    "how_curator_ai_works_para":"Curator AI fonctionne principalement avec l'API d'OpenAI. Toute sa configuration est faite par mail.",
+    "some_comments_title":"Voici quelques commentaires de nos utlisateurs :",
+    "comment1":"Très incroyable, très abasourdi",
+    "comment1_author":"- Doge",
+    "comment2":"Énorme surprise, très content",
+    "comment2_author":"- Un Doge content",
+    "comment3":"Super rapide, très rapide, génial",
+    "comment3_author":"- Actionnaire Doge",
+    "comment4":"Tant de code, plein de puissance",
+    "comment4_author":"- Un Doge expert"
 }

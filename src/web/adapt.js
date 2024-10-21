@@ -1,10 +1,11 @@
+/** Replace every tag with the according text in @param {json} langData */
 function updateContent(langData) {
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         element.innerHTML = langData[key];
     });
 }
-
+/** Change the language tag element in bold */
 function setLanguagePreference(old_lang,lang) {
     localStorage.setItem('language', lang);
     let nLink = document.querySelector('[data-lang="' + lang + '"]');
@@ -28,6 +29,7 @@ async function changeLanguage(lang) {
     }
 }
 
+/** Set the language when loaded */
 window.addEventListener('DOMContentLoaded', async () => {
     const userPreferredLanguage = localStorage.getItem('language') || 'en';
     let nLink = document.querySelector('[data-lang="' + userPreferredLanguage + '"]');
@@ -38,7 +40,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 //page managment
 function signUp() {
-    window.location.assign("signUp.html");
+    window.location.assign("signUp.html"); //assign is better as we can go back
 }
 
 function goToMain() {
