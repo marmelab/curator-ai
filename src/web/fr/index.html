@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,20 @@
     <link href="../output.css" rel="stylesheet">
     <script src="../adapt.js"></script>
 </head>
-<body class="font-sans text-lg mx-auto flex flex-col min-h-screen" >
+
+<body class="font-sans text-lg mx-auto flex flex-col min-h-screen">
+    <!-- Navigation Bar -->
     <nav class="bg-grey relative bg-grey mb-14 p-2 flex justify-center">
         <div class="absolute left-4">
+            <!-- Buttons for choosing the language -->
             <ul class="flex ml-10 space-x-4">
                 <li class="hover:underline" data-lang="en" aria-label="Change language to english"><a href="/en/index.html" lang="en" onclick="changeLanguage('en')">EN</a></li>
                 <li>|</li>
                 <li class="hover:underline" data-lang="fr" aria-label="Changer la langue en français"><a href="/fr/index.html" lang="fr" onclick="changeLanguage('fr')">FR</a></li>
             </ul>
         </div>
+        <!-- Title of the webpage -->
+        <!-- Links to Home page -->
         <div class="font-magnolia text-6xl text-center flex-grow">
             <button aria-label="Page principale" onclick="goToMain()">
                 <h1>
@@ -24,37 +30,74 @@
                 </h1>
             </button>
         </div>
-        <button class="bg-light_blue text-white font-bold rounded-full p-2 absolute right-10 top-1/2 -translate-y-1/2 text-center" 
-                onclick="signUp()" aria-label="S'incrire">S'incrire</button>
+        <!-- Button for sign up -->
+        <button
+            class="bg-light_blue text-white font-bold rounded-full p-2 absolute right-10 top-1/2 -translate-y-1/2 text-center hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+            onclick="signUp()" aria-label="S'incrire">S'incrire</button>
     </nav>
+
     <div class="container mx-auto text-center flex-grow">
-        <h2 class="text-3xl font-bold mb-2" >Qu'est ce que Curator AI ?</h2>
-        <p class="mb-10" >Curator AI est un outil pour toujours être à jour dans ses newletters.</p>
-        <h2 class="text-3xl font-bold mb-2" >Pourquoi devrais-je utiliser Curator AI ?</h2>
-        <p class="mb-10" >Ça vous aidera à grandement économiser votre temps.</p>
-        <h2 class="text-3xl font-bold mb-2" >Comment Curator AI fonctionne ?</h2>
-        <p class="mb-10" >Curator AI fonctionne principalement avec l'API d'OpenAI. Toute sa configuration est faite par mail.</p>
-        <h2 class="text-3xl font-bold mb-2" >Voici quelques commentaires de nos utlisateurs :</h2>
+        <!-- Begin Hero Unit -->
+        <h2 class="text-3xl font-bold mb-2">Envie de vous tenir à jour sur vos sujets préférés ?</h2>
+        <h2 class="text-3xl font-bold mb-2">Pas assez de temps pour lire toutes vos newsletters ?</h2>
+        <h2 class="text-3xl font-bold mb-2">Envie de gagner du temps sur votre veille ?</h2>
+        <h class="text-3xl font-bold mb-2">CURATOR AI est fait pour vous !</h>
+        <!-- Button for sign up -->
+        <div><button
+                class="text-3xl bg-light_blue text-white font-bold rounded-full p-2 m-10 text-center hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                onclick="signUp()" aria-label="S'incrire">Essayez maintenant !</button></div>
+        <!-- End Hero Unit -->
+
+        <!-- Separator -->
+        <hr class="my-4 border-gray-300">
+        <h2 class="text-3xl font-bold mb-2">Votre curateur de news personnalisé</h2>
+        <h2 class="">Définissez vos préférences par emails, recevez une newsletter qui vous convient !</h2>
+        <!-- Add an image of a received email here when it works. -->
+
+        <!-- Separator -->
+        <hr class="my-4 border-gray-300">
+        <h2 class="text-3xl font-bold mb-2">Qu'est ce que Curator AI ?</h2>
+        <p class="mb-10">Curator AI est un outil pour toujours être à jour dans ses newletters.</p>
+
+        <!-- Separator -->
+        <hr class="my-4 border-gray-300">
+        <h2 class="text-3xl font-bold mb-2">Pourquoi devrais-je utiliser Curator AI ?</h2>
+        <p class="mb-10">Ça vous aidera à grandement économiser votre temps.</p>
+
+        <!-- Separator -->
+        <hr class="my-4 border-gray-300">
+        <h2 class="text-3xl font-bold mb-2">Comment Curator AI fonctionne ?</h2>
+        <p class="mb-10">Curator AI fonctionne principalement avec l'API d'OpenAI. Toute sa configuration est faite par
+            mail.</p>
+
+        <!-- Separator -->
+        <hr class="my-4 border-gray-300">
+        <!-- Begin List of comments -->
+        <h2 class="text-3xl font-bold mb-2">Voici quelques commentaires de nos utlisateurs :</h2>
         <div class="flex justify-center">
             <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
-                <p >Très incroyable, très abasourdi</p>
-                <p class="font-light text-right" >- Doge</p>
+                <p>Très incroyable, très abasourdi</p>
+                <p class="font-light text-right">- Doge</p>
             </div>
             <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
-                <p >Énorme surprise, très content</p>
-                <p class="font-light text-right" >- Un Doge content</p>
+                <p>Énorme surprise, très content</p>
+                <p class="font-light text-right">- Un Doge content</p>
             </div>
             <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
-                <p >Super rapide, très rapide, génial</p>
-                <p class="font-light text-right" >- Actionnaire Doge</p>
+                <p>Super rapide, très rapide, génial</p>
+                <p class="font-light text-right">- Actionnaire Doge</p>
             </div>
             <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
-                <p >Tant de code, plein de puissance</p>
-                <p class="font-light text-right" >- Un Doge expert</p>
+                <p>Tant de code, plein de puissance</p>
+                <p class="font-light text-right">- Un Doge expert</p>
             </div>
         </div>
+        <!-- End List of comments -->
     </div>
+
+    <!-- Footer (empty for now) -->
     <footer class="bg-grey p-4 text-center">
     </footer>
 </body>
+
 </html>
