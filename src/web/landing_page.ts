@@ -1,29 +1,29 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const postmark = require('postmark');
-const { createClient } = require('@supabase/supabase-js');
+// const express = require('express');
+// const path = require('path');
+// const bodyParser = require('body-parser');
+// const postmark = require('postmark');
+// const { createClient } = require('@supabase/supabase-js');
 
-// Load environment variables
-//require('dotenv').config();
+// // Load environment variables
+// //require('dotenv').config();
 
-const app = express();
-const port = 3000;
+// const app = express();
+// const port = 3000;
 
-// Initialize Postmark and Supabase with environment variables
+// // Initialize Postmark and Supabase with environment variables
 // const client = new postmark.ServerClient(process.env.POSTMARK_API_KEY);
 // const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
-// Configure body-parser to parse form data
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname)));
+// // Configure body-parser to parse form data
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.static(path.join(__dirname)));
 
-// Route to serve the HTML file
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// // Route to serve the HTML file
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
-// Route to handle email submission, add the email to Supabase, and send a welcome email
+// // Route to handle email submission, add the email to Supabase, and send a welcome email
 // app.post('/submit-email', async (req, res) => {
 //   const email = req.body.email; // Retrieve the email sent via the form
 
@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
 //   }
 // });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// // Start the server
+// app.listen(port, () => {
+//   console.log(`Server is running at http://localhost:${port}`);
+// });
