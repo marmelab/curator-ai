@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,16 @@
     <link href="/src/web/output.css" rel="stylesheet">
     <script src="/src/web/adapt.js"></script>
 </head>
-<body class="font-sans text-lg mx-auto flex flex-col min-h-screen" >
+
+<body class="font-sans text-lg mx-auto flex flex-col min-h-screen">
     <nav class="bg-grey relative bg-grey mb-14 p-2 flex justify-center">
         <div class="absolute left-4">
             <ul class="flex ml-10 space-x-4">
-                <li class="hover:underline" data-lang="en" aria-label="Change language to english"><a href="/src/web/en/index.html" lang="en" onclick="changeLanguage('en')">EN</a></li>
+                <li class="hover:underline" data-lang="en" aria-label="Change language to english"><a
+                        href="/src/web/en/index.html" lang="en" onclick="changeLanguage('en')">EN</a></li>
                 <li>|</li>
-                <li class="hover:underline" data-lang="fr" aria-label="Changer la langue en français"><a href="/src/web/fr/index.html" lang="fr" onclick="changeLanguage('fr')">FR</a></li>
+                <li class="hover:underline" data-lang="fr" aria-label="Changer la langue en français"><a
+                        href="/src/web/fr/index.html" lang="fr" onclick="changeLanguage('fr')">FR</a></li>
             </ul>
         </div>
         <div class="font-magnolia text-6xl text-center flex-grow">
@@ -24,37 +28,53 @@
                 </h1>
             </button>
         </div>
-        <button class="bg-light_blue text-white font-bold rounded-full p-2 absolute right-10 top-1/2 -translate-y-1/2 text-center" 
-                onclick="signUp()" aria-label="Sign up">S'incrire</button>
+        <button
+            class="bg-light_blue text-white font-bold rounded-full p-2 absolute right-10 top-1/2 -translate-y-1/2 text-center hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+            onclick="signUp()" aria-label="Sign up">Sign up</button>
     </nav>
     <div class="container mx-auto text-center flex-grow">
-        <h2 class="text-3xl font-bold mb-2" >What is Curator AI ?</h2>
-        <p class="mb-10" >Curator AI is a tool to always be up to date with you newsletters.</p>
-        <h2 class="text-3xl font-bold mb-2" >Why should I use Curator AI ?</h2>
-        <p class="mb-10" >It will greatly improve you time.</p>
-        <h2 class="text-3xl font-bold mb-2" >How does Curator AI works ?</h2>
-        <p class="mb-10" >Curator AI is powered mainly by the OpenAI API. All the configuration can be made through mails.</p>
-        <h2 class="text-3xl font-bold mb-2" >Here are some reviews of our users :</h2>
+        <h2 class="text-3xl font-bold mb-2">Want to stay updated on your favorite topics?</h2>
+        <h2 class="text-3xl font-bold mb-2">Not enough time to read all your newsletters?</h2>
+        <h2 class="text-3xl font-bold mb-2">Want to save time on your research?</h2>
+        <h class="text-6xl font-bold mb-2">CURATOR AI is made for you!</h>
+        <div>
+            <button
+                class="bg-light_blue text-white font-bold rounded-full p-2 m-10 text-center hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                onclick="signUp()" aria-label="Sign Up">Try it now!</button>
+        </div>
+        <hr class="my-4 border-gray-300">
+        <h2 class="text-3xl font-bold mb-2">What is Curator AI ?</h2>
+        <p class="mb-10">Curator AI is a tool to always be up to date with you newsletters.</p>
+        <hr class="my-4 border-gray-300">
+        <h2 class="text-3xl font-bold mb-2">Why should I use Curator AI ?</h2>
+        <p class="mb-10">It will greatly improve you time.</p>
+        <hr class="my-4 border-gray-300">
+        <h2 class="text-3xl font-bold mb-2">How does Curator AI works ?</h2>
+        <p class="mb-10">Curator AI is powered mainly by the OpenAI API. All the configuration can be made through
+            mails.</p>
+        <hr class="my-4 border-gray-300">
+        <h2 class="text-3xl font-bold mb-2">Here are some reviews of our users :</h2>
         <div class="flex justify-center">
             <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
-                <p >Such wow, much amaze</p>
-                <p class="font-light text-right" >- Doge</p>
+                <p>Such wow, much amaze</p>
+                <p class="font-light text-right">- Doge</p>
             </div>
             <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
-                <p >Much surprise, very impress</p>
-                <p class="font-light text-right" >- An impressed Doge</p>
+                <p>Much surprise, very impress</p>
+                <p class="font-light text-right">- An impressed Doge</p>
             </div>
             <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
-                <p >Such speed, very fast, wow</p>
-                <p class="font-light text-right" >- Shareholder Doge</p>
+                <p>Such speed, very fast, wow</p>
+                <p class="font-light text-right">- Shareholder Doge</p>
             </div>
             <div class="bg-slate-200 text-left font-semibold m-10 p-3 rounded-lg">
-                <p >Such coding, much smart, wow</p>
-                <p class="font-light text-right" >- An expert Doge</p>
+                <p>Such coding, much smart, wow</p>
+                <p class="font-light text-right">- An expert Doge</p>
             </div>
         </div>
     </div>
     <footer class="bg-grey p-4 text-center">
     </footer>
 </body>
+
 </html>
