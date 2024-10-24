@@ -13,7 +13,7 @@ const links = [
 
 // Function to dynamically format the newsletter
 function formatNewsletterMarkdown(articles : Summary[]) {
-    let newsletter = 'Newsletter\n\n';
+    let newsletter = 'Newsletter MARKDOWN\n\n';
     newsletter += "Hello everyone! Here are the latest news!\n\n";
 
     articles.forEach(article => {
@@ -35,7 +35,7 @@ function formatNewsletterMarkdown(articles : Summary[]) {
 
 export function formatNewsletterHtml(articles: Summary[]) {
     let htmlNewsletter = '<div style="font-family: Arial, sans-serif;">';
-    htmlNewsletter += '<h1>Newsletter</h1>';
+    htmlNewsletter += '<h1>Newsletter HTML</h1>';
     htmlNewsletter += '<p>Hello everyone! Here are the latest news!</p>';
 
     articles.forEach(article => {
@@ -53,7 +53,7 @@ export function formatNewsletterHtml(articles: Summary[]) {
     return htmlNewsletter;
 }
 
-export function curateAndGenerateNewsletter(): Promise<string> {
+export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: string, html: string }> {
     return curate({
         links,
         interests: ['react', 'ai'],
