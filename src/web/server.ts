@@ -42,24 +42,21 @@ app.post('/submit-email', async (req, res) => {
             } else {
                 res.status(500).json({ message: 'Error during registration. Please try again later.' });
             }
+        } else {
+
+            // console.log('Email added to Supabase:', data);
+
+            // //Send the welcome email via Postmark (uncomment to enable email sending)
+            // await client.sendEmail({
+            //   From: 'aurelien.gindre@telecomnancy.net', // Use a verified email address in Postmark
+            //   To: email,
+            //   Subject: 'Welcome Email',
+            //   TextBody: 'Thank you for signing up for our application!',
+            //   HtmlBody: '<strong>Thank you for signing up for our application!</strong>',
+            // });
+
+            res.status(200).json({ message: `A welcome email has been sent to ${email} and the address has been added to the database!` });
         }
-
-        // In case of error, two res.status().json are send, that made the sever crash. To be fixed.
-
-        // In case of error, two res.status().json are send, that made the sever crash. To be fixed.
-
-        // console.log('Email added to Supabase:', data);
-
-        // //Send the welcome email via Postmark (uncomment to enable email sending)
-        // await client.sendEmail({
-        //   From: 'aurelien.gindre@telecomnancy.net', // Use a verified email address in Postmark
-        //   To: email,
-        //   Subject: 'Welcome Email',
-        //   TextBody: 'Thank you for signing up for our application!',
-        //   HtmlBody: '<strong>Thank you for signing up for our application!</strong>',
-        // });
-
-        res.status(200).json({ message: `A welcome email has been sent to ${email} and the address has been added to the database!` });
 
     } catch (error) {
         console.error('Error processing the request:', error);
@@ -87,22 +84,21 @@ app.post('/delete-email', async (req, res) => {
             } else {
                 res.status(500).json({ message: 'Error during deletion. Please try again later.' });
             }
+        } else {
+
+            console.log('Email removed :', data);
+
+            //     // Send the welcome email via Postmark (uncomment to enable email sending)
+            //     // await client.sendEmail({
+            //     //   From: 'your_verified_email@example.com', // Use a verified email address in Postmark
+            //     //   To: email,
+            //     //   Subject: 'Welcome Email',
+            //     //   TextBody: 'Thank you for signing up for our application!',
+            //     //   HtmlBody: '<strong>Thank you for signing up for our application!</strong>',
+            //     // });
+
+            res.status(200).json({ message: `The email ${email} and all the preferences associated have been removed from the database !` });
         }
-
-        // In case of error, two res.status().json are send, that made the sever crash. To be fixed.
-
-        console.log('Email removed :', data);
-
-        //     // Send the welcome email via Postmark (uncomment to enable email sending)
-        //     // await client.sendEmail({
-        //     //   From: 'your_verified_email@example.com', // Use a verified email address in Postmark
-        //     //   To: email,
-        //     //   Subject: 'Welcome Email',
-        //     //   TextBody: 'Thank you for signing up for our application!',
-        //     //   HtmlBody: '<strong>Thank you for signing up for our application!</strong>',
-        //     // });
-
-        res.status(200).json({ message: `The email ${email} and all the preferences associated have been removed from the database !` });
 
     } catch (error) {
         console.error('Error processing the request:', error);
