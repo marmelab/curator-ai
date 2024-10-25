@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import postmark from 'postmark';
+import * as postmark from 'postmark';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Initialize Postmark and Supabase with environment variables
-// const client = new postmark.ServerClient(process.env.POSTMARK_API_KEY as string);
+const client = new postmark.ServerClient(process.env.POSTMARK_API_KEY as string);
 const supabase = createClient(process.env.SUPABASE_URL as string, process.env.SUPABASE_ANON_KEY as string);
 
 app.use(express.static(path.join(__dirname)));
@@ -34,7 +34,7 @@ app.post('/submit-email', async (req, res) => {
         // Add the email to the Supabase database
         const { data, error } = await supabase
             .from('subscribers')
-            .insert([{ email }]);  // Utilisation de la syntaxe ES6 pour simplifier l'insertion
+            .insert([{ email }]);
 
         if (error) {
             if (error.code === '23505') {
@@ -46,16 +46,18 @@ app.post('/submit-email', async (req, res) => {
 
         // In case of error, two res.status().json are send, that made the sever crash. To be fixed.
 
-        console.log('Email added to Supabase:', data);
+        // In case of error, two res.status().json are send, that made the sever crash. To be fixed.
 
-        //     // Send the welcome email via Postmark (uncomment to enable email sending)
-        //     // await client.sendEmail({
-        //     //   From: 'your_verified_email@example.com', // Use a verified email address in Postmark
-        //     //   To: email,
-        //     //   Subject: 'Welcome Email',
-        //     //   TextBody: 'Thank you for signing up for our application!',
-        //     //   HtmlBody: '<strong>Thank you for signing up for our application!</strong>',
-        //     // });
+        // console.log('Email added to Supabase:', data);
+
+        // //Send the welcome email via Postmark (uncomment to enable email sending)
+        // await client.sendEmail({
+        //   From: 'aurelien.gindre@telecomnancy.net', // Use a verified email address in Postmark
+        //   To: email,
+        //   Subject: 'Welcome Email',
+        //   TextBody: 'Thank you for signing up for our application!',
+        //   HtmlBody: '<strong>Thank you for signing up for our application!</strong>',
+        // });
 
         res.status(200).json({ message: `A welcome email has been sent to ${email} and the address has been added to the database!` });
 
