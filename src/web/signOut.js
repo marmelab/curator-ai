@@ -25,4 +25,4 @@ async function deleteEmail(event) {
     }
 }
 
-window.submitEmail = submitEmail;
+window.deleteEmail = deleteEmail;

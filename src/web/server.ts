@@ -67,13 +67,13 @@ app.post('/submit-email', async (req, res) => {
 // Route to handle email deletion
 app.post('/delete-email', async (req, res) => {
     const email: string = req.body.email;
-
+    console.log(email);
     try {
         // Remove the email to the Supabase database
         const { data, error } = await supabase
             .from('subscribers')
             .delete()
-            .eq('email', { email })
+            .eq('email', email )
 
         if (error) {
             if (error.code === '23503') {

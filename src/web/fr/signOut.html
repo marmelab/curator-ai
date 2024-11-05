@@ -7,6 +7,7 @@
     <title>Curator AI</title>
     <link href="../output.css" rel="stylesheet">
     <script src="../adapt.js"></script>
+    <script src="../signOut.js" defer></script>
 </head>
 
 <body class="font-sans text-lg mx-auto">
@@ -39,7 +40,7 @@
     <!-- Form for unsubscribe -->
     <div class="container mx-auto text-center">
         <h2 class="font-bold m-10">Saisissez l'adresse email que vous voulez désinscrire:</h2>
-        <form action="/delete-email" method="POST">
+        <form onsubmit="deleteEmail(event)" method="POST">
             <!-- Enter Email -->
             <label for="email">Email: </label>
             <input type="email" id="email" name="email" required
