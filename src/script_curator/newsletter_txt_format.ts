@@ -2,6 +2,8 @@ import { Summary } from "../types";
 
 const { curate } = require('curator-ai');
 
+// links to curate from (TODO : make it based on user preference)
+
 const links = [
     'https://stability.ai/news/stable-code-2024-llm-code-completion-release',
     'https://www.fromjason.xyz/p/notebook/where-have-all-the-websites-gone/',
@@ -11,10 +13,19 @@ const links = [
     'https://julesblom.com/writing/flushsync',
 ];
 
-// Function to dynamically format the newsletter
+// Formats the newsletter in markdown 
+// articles : Summary[]
+// 
+// return newsletter : String
+
 function formatNewsletterMarkdown(articles : Summary[]) {
+
+    // Newletter's header
+
     let newsletter = 'Newsletter MARKDOWN\n\n';
     newsletter += "Hello everyone! Here are the latest news!\n\n";
+
+    // Formatting for each article
 
     articles.forEach(article => {
         const title = article.title || "Title not available";
@@ -22,21 +33,34 @@ function formatNewsletterMarkdown(articles : Summary[]) {
         const summary = article.summary || "Summary not available.";
         const link = article.link || "#";
 
-        // Dynamic formatting for each article
+        
         newsletter += `### ${title}\n`;
         newsletter += `*by ${author}*\n`;
         newsletter += `🔗 [Read the full article](${link})\n\n`;
         newsletter += `> ${summary}\n\n`;
     });
 
+    // Footer
+
     newsletter += "\nThat's all for now! See you soon for more news!\n";
+
     return newsletter;
 }
 
-export function formatNewsletterHtml(articles: Summary[]) {
+// Formats the newsletter in html (no style) 
+// articles : Summary[]
+// 
+// return newsletter : String
+
+function formatNewsletterHtml(articles: Summary[]) {
+
+    // Header
+
     let htmlNewsletter = '<div style="font-family: Arial, sans-serif;">';
     htmlNewsletter += '<h1>Newsletter HTML</h1>';
     htmlNewsletter += '<p>Hello everyone! Here are the latest news!</p>';
+
+    // Dynamic formatting for each article
 
     articles.forEach(article => {
         const title = article.title || "Title not available";
@@ -44,21 +68,32 @@ export function formatNewsletterHtml(articles: Summary[]) {
         const summary = article.summary || "Summary not available.";
         const link = article.link || "#";
 
-        // Dynamic formatting for each article in HTML
+        
         htmlNewsletter += '<h3>' + title + '</h3>' +
             '<p><strong>by ' + author + '</strong></p>' +  
             '<p><a href="' + link + '">Read the full article</a></p>' +
             '<blockquote>' + summary + '</blockquote>';
     });
+
     return htmlNewsletter;
 }
 
-export function formatNewsletterHtmlWithCSS(articles: Summary[]) {
+// Formats the newsletter in html with style
+// articles : Summary[]
+// 
+// return newsletter : String
+
+function formatNewsletterHtmlWithCSS(articles: Summary[]) {
+
+    // Header
+
     let htmlNewsletter = `
     <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
         <h1 style="color: #4CAF50; text-align: center; font-size: 32px;">Newsletter HTML</h1>
         <p style="font-size: 18px; text-align: center;">Hello everyone! Here are the latest news!</p>
     `;
+
+    // Formatting each article
 
     articles.forEach(article => {
         const title = article.title || "Title not available";
@@ -80,20 +115,30 @@ export function formatNewsletterHtmlWithCSS(articles: Summary[]) {
     return htmlNewsletter;
 }
 
+// Uses the curate function to generate newsletter data and formats output to be used in mail
+// TODO : add parameters based on user (links,interests?,maxArticles?,maxContentSize?)
 
 export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: string, html: string }> {
+    
     return curate({
         links,
         interests: ['react', 'ai'],
         max: 5,
     }).then((curatedLinks: Summary[]) => {
-        // Generate the formatted string
+
+        // Generate the formatted string when promise completed
+
         const markdown = formatNewsletterMarkdown(curatedLinks);
         const html = formatNewsletterHtmlWithCSS(curatedLinks);
 
-        // Return both formats as an object
-        return { curatedLinks, markdown, html };
+        // Returns raw json and formatted newletters
+
+        return { curatedLinks, markdown, html};
+
     }).catch((err: unknown) => {
+
+        // Will most likely be instance of Error TODO : check if there are different error cases
+
         if (err instanceof Error) {
             console.error("Error during link curation: ", err.message);
         } else {
