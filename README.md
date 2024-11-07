@@ -9,21 +9,38 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 -   Node.js >= 18
 -   an [OpenAI API](https://platform.openai.com/) key
 
-## Start the Server
+## Initialize the project
+
+After cloning the repository, run the following command : 
+```sh
+make init
+```
+It will install every dependencies and create a .env file with all the required fields.
+
+### Required .env fields
+```sh
+OPENAI_API_KEY= #Your OpenAI API key
+SUPABASE_URL= #The URL to your supabase project (Connect > App Framework)
+SUPABASE_ANON_KEY= #Key to your supabase project (Connect > App Framework)
+POSTMARK_API_KEY= #Key to your postmark project
+DEFAULT_POSTMARK_MAIL= #Default postmark mail to send from
+```
+
+## Start the webpage
 
 For the first time :
 ```sh
-# Install the packages
-npm install
+make webpage
 ```
-Don't forget to add in your `.env` the environemment variables from Supabase (Connect -> App Framework) and do the following changes :
- - change `NEXT_PUBLIC_SUPABASE_URL=<your_url>` to `SUPABASE_URL=<your_url>`
- - change `NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_key>` to `SUPABASE_ANON_KEY=<your_key>`
+For further information check [src/web/README.md]{src/web}.
 
-Start the server :
+## Test the mail
+
+To test a sample formatted mail with some defined options on the curator, run :
 ```sh
-npx ts-node src/web/server.ts
+make testMail
 ```
+For further information check [src/script_curator/README.md]{src/script_curator}.
 
 ## CLI Usage
 
