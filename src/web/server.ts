@@ -67,38 +67,37 @@ app.post('/submit-email', async (req, res) => {
 // Route to handle email deletion
 app.post('/delete-email', async (req, res) => {
     const email: string = req.body.email;
-    console.log(email);
     try {
-        // Remove the email to the Supabase database
+        // Check if email exists in the database
         const { data, error } = await supabase
-            .from('subscribers')
-            .delete()
-            .eq('email', email )
-
-        if (error) {
-            if (error.code === '23503') {
-                res.status(400).json({ message: 'Cannot delete the record because it is referenced by another table.' });
-                /*} else if (data && data.length === 0) {
-                    // No rows were deleted
-                    res.status(404).json({ message: `No user found with email ${email}.` });*/
-            } else {
+            .from('subscribers')  // Table name
+            .select('email') // Only select the email column
+            .eq('email', email) // Match the email field
+            .single();  // .single() returns the first matching row or null
+        console.log('Email to be removed :', data);
+        if (!data) {
+            // If no data is returned, the email doesn't exist
+            res.status(500).json({ message: 'Email address not found.' });
+        } else
+            if (error) {
                 res.status(500).json({ message: 'Error during deletion. Please try again later.' });
+            } else {
+                // Remove the email to the Supabase database
+                const { data, error } = await supabase
+                    .from('subscribers')
+                    .delete()
+                    .eq('email', email)
+
+                if (error) {
+                    if (error.code === '23503') {
+                        res.status(400).json({ message: 'Cannot delete the record because it is referenced by another table.' });
+                    } else {
+                        res.status(500).json({ message: 'Error during deletion. Please try again later.' });
+                    }
+                } else {
+                    res.status(200).json({ message: `The email ${email} and all the preferences associated have been removed from the database !` });
+                }
             }
-        } else {
-
-            console.log('Email removed :', data);
-
-            //     // Send the welcome email via Postmark (uncomment to enable email sending)
-            //     // await client.sendEmail({
-            //     //   From: 'your_verified_email@example.com', // Use a verified email address in Postmark
-            //     //   To: email,
-            //     //   Subject: 'Welcome Email',
-            //     //   TextBody: 'Thank you for signing up for our application!',
-            //     //   HtmlBody: '<strong>Thank you for signing up for our application!</strong>',
-            //     // });
-
-            res.status(200).json({ message: `The email ${email} and all the preferences associated have been removed from the database !` });
-        }
 
     } catch (error) {
         console.error('Error processing the request:', error);
