@@ -44,6 +44,7 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "start": "ts-node ./src/cli.ts"
+    "start": "ts-node ./src/cli.ts",
+    "startFormatter": "ts-node ./src/script_curator/newsletter_script.ts"
   }
 }

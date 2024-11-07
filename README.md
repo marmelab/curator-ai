@@ -120,6 +120,11 @@ curate({
 // ]
 ```
 
+To execute the script for the curator
+```sh
+node src/script_curator/index.js
+```
+
 ## Development
 
 ```sh
