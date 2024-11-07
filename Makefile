@@ -10,7 +10,7 @@ init: ## Initialize the project
 	make install
 	cp -i .env.production .env
 
-webpage: ## Run the webpage locally
+webpage: ## Run the webpage localy
 	npx ts-node src/web/server.ts
 
 testMail: ## Test a sample mail

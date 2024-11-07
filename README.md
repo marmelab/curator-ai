@@ -28,11 +28,11 @@ DEFAULT_POSTMARK_MAIL= #Default postmark mail to send from
 
 ## Start the webpage
 
-For the first time :
+To run the webpage localy:
 ```sh
 make webpage
 ```
-For further information check [src/web/README.md]{src/web}.
+For further information check [src/web/README.md](src/web).
 
 ## Test the mail
 
@@ -40,7 +40,7 @@ To test a sample formatted mail with some defined options on the curator, run :
 ```sh
 make testMail
 ```
-For further information check [src/script_curator/README.md]{src/script_curator}.
+For further information check [src/script_curator/README.md](src/script_curator).
 
 ## CLI Usage
 
