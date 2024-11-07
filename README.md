@@ -9,6 +9,22 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 -   Node.js >= 18
 -   an [OpenAI API](https://platform.openai.com/) key
 
+## Start the Server
+
+For the first time :
+```sh
+# Install the packages
+npm install
+```
+Don't forget to add in your `.env` the environemment variables from Supabase (Connect -> App Framework) and do the following changes :
+ - change `NEXT_PUBLIC_SUPABASE_URL=<your_url>` to `SUPABASE_URL=<your_url>`
+ - change `NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_key>` to `SUPABASE_ANON_KEY=<your_key>`
+
+Start the server :
+```sh
+npx ts-node src/web/server.ts
+```
+
 ## CLI Usage
 
 ```sh

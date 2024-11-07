@@ -7,7 +7,7 @@
     <title>Curator AI</title>
     <link href="../output.css" rel="stylesheet">
     <script src="../adapt.js"></script>
-    <script src="../signUp.js" defer></script>
+    <script src="../signOut.js" defer></script>
 </head>
 
 <body class="font-sans text-lg mx-auto">
@@ -18,11 +18,11 @@
             <ul class="flex ml-10 space-x-4">
                 <!-- Button for switching language to English -->
                 <li class="hover:underline" data-lang="en" aria-label="Change language to english"><a
-                        href="/en/signUp.html" lang="en" onclick="changeLanguage('en')">EN</a></li>
+                        href="/en/signOut.html" lang="en" onclick="changeLanguage('en')">EN</a></li>
                 <li>|</li>
                 <!-- Button for switching language to French -->
                 <li class="hover:underline" data-lang="fr" aria-label="Changer la langue en français"><a
-                        href="/fr/signUp.html" lang="fr" onclick="changeLanguage('fr')">FR</a></li>
+                        href="/fr/signOut.html" lang="fr" onclick="changeLanguage('fr')">FR</a></li>
             </ul>
         </div>
         <!-- Title of the webpage -->
@@ -35,25 +35,21 @@
                 </h1>
             </button>
         </div>
-        <!-- Button for sign up -->
-        <button
-            class="bg-light_blue text-white font-bold rounded-full p-2 absolute right-10 top-1/2 -translate-y-1/2 text-center hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
-            onclick="signUp()" aria-label="S'incrire">S'incrire</button>
     </nav>
 
-    <!-- Form for subscription -->
+    <!-- Form for unsubscribe -->
     <div class="container mx-auto text-center">
-        <h2 class="font-bold m-10">Saisissez votre adresse email :</h2>
-        <form onsubmit="submitEmail(event)" method="POST">
+        <h2 class="font-bold m-10">Saisissez l'adresse email que vous voulez désinscrire:</h2>
+        <form onsubmit="deleteEmail(event)" method="POST">
             <!-- Enter Email -->
             <label for="email">Email: </label>
             <input type="email" id="email" name="email" required
                 class="border border-gray-300 bg-white p-2 rounded-md text-lg text-gray-700 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200">
             <div>
-                <!-- Button to submit -->
+                <!-- Button to delete -->
                 <button
                     class="bg-light_blue text-white font-bold rounded-full p-2 m-10 text-center hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
-                    type="submit">Valider</button>
+                    type="submit">Retirer</button>
             </div>
         </form>
     </div>
