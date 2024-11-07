@@ -53,6 +53,34 @@ export function formatNewsletterHtml(articles: Summary[]) {
     return htmlNewsletter;
 }
 
+export function formatNewsletterHtmlWithCSS(articles: Summary[]) {
+    let htmlNewsletter = `
+    <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
+        <h1 style="color: #4CAF50; text-align: center; font-size: 32px;">Newsletter HTML</h1>
+        <p style="font-size: 18px; text-align: center;">Hello everyone! Here are the latest news!</p>
+    `;
+
+    articles.forEach(article => {
+        const title = article.title || "Title not available";
+        const author = article.author || "Unknown author";
+        const summary = article.summary || "Summary not available.";
+        const link = article.link || "#";
+
+        htmlNewsletter += `
+        <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h3 style="color: #FF5722; font-size: 24px;">${title}</h3>
+            <p style="font-size: 16px; font-weight: bold; color: #555;">by ${author}</p>
+            <p style="font-size: 16px;"><a href="${link}" style="color: #1E88E5; text-decoration: none; font-weight: bold;">Read the full article</a></p>
+            <blockquote style="font-size: 16px; color: #777; border-left: 4px solid #ddd; padding-left: 15px;">${summary}</blockquote>
+        </div>
+        `;
+    });
+
+    htmlNewsletter += '</div>';
+    return htmlNewsletter;
+}
+
+
 export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: string, html: string }> {
     return curate({
         links,
@@ -61,7 +89,7 @@ export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: s
     }).then((curatedLinks: Summary[]) => {
         // Generate the formatted string
         const markdown = formatNewsletterMarkdown(curatedLinks);
-        const html = formatNewsletterHtml(curatedLinks);
+        const html = formatNewsletterHtmlWithCSS(curatedLinks);
 
         // Return both formats as an object
         return { curatedLinks, markdown, html };
