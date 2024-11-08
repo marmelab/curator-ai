@@ -27,10 +27,10 @@ async function changeLanguage(lang) {
 
 /** Set the language when loaded */
 window.addEventListener('DOMContentLoaded', async () => {
-    const userPreferredLanguage = localStorage.getItem('language') || 'en';
+    const userPreferredLanguage = localStorage.getItem('language') || 'en'; //retrieves the current language
     console.log(userPreferredLanguage);
     let nLink = document.querySelector('[data-lang="' + userPreferredLanguage + '"]');
-    nLink.classList.add("font-bold")
+    nLink.classList.add("font-bold") //sets the new language to bold
     localStorage.setItem('language', userPreferredLanguage);
 
     // const langData = await fetchLanguageData(userPreferredLanguage);
