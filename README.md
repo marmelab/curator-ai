@@ -26,6 +26,8 @@ POSTMARK_API_KEY= #Key to your postmark project
 DEFAULT_POSTMARK_MAIL= #Default postmark mail to send from
 ```
 
+The supabase project at the moment only requires one table 'subscribers' with one value 'email'.
+
 ## Start the webpage
 
 To run the webpage localy:
