@@ -1,28 +1,12 @@
 # Curator AI - Landing Web Page
 
-[![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
-
 Landing Page of the project. It provide some explaination of it and it's functionment. Allows peoples to register an unregister from the DataBase.
 
-## Requirements
+## Start the webpage
 
--   Node.js >= 18
--   A [SupaBase](https://supabase.com/) url and key
-
-## Start the Server
-
-For the first time :
+Start the webpage from root :
 ```sh
-# Install the packages
-npm install
-```
-Don't forget to add in your `.env` the environemment variables from Supabase (Connect -> App Framework) and do the following changes :
- - change `NEXT_PUBLIC_SUPABASE_URL=<your_url>` to `SUPABASE_URL=<your_url>`
- - change `NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_key>` to `SUPABASE_ANON_KEY=<your_key>`
-
-Start the server :
-```sh
-npx ts-node src/web/server.ts
+make webpage
 ```
 
 This should start the server at http://localhost:3000.
