@@ -14,6 +14,9 @@ const app = express();
 // Set up a specific port for the server to listen to
 const port = process.env.PORT || 3000;
 
+// The mail we use to send email to the user
+const senderEmail = process.env.DEFAULT_POSTMARK_EMAIL;
+
 // Initialize Supabase with environment variables
 const client = new postmark.ServerClient(process.env.POSTMARK_API_KEY as string);
 // Initialize Postmark with environment variables
@@ -56,7 +59,7 @@ app.post('/submit-email', async (req, res) => {
             //Send the welcome email via Postmark (uncomment to enable email sending)
 
             // await client.sendEmail({
-            //   From: 'aurelien.gindre@telecomnancy.net', // Use a verified email address in Postmark
+            //   From: senderEmail, // Use a verified email address in Postmark
             //   To: email,
             //   Subject: 'Welcome Email',
             //   TextBody: 'Thank you for signing up for our application!',
