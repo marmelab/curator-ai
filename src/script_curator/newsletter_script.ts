@@ -14,9 +14,11 @@ async function runNewsletter() {
 
     // Sending email :
     var client = new postmark.ServerClient(process.env.POSTMARK_API_KEY as string);
+    var mail = process.env.DEFAULT_POSTMARK_MAIL as string;
+
     client.sendEmail({
-    "From": "theo.slimani2@etu.univ-lorraine.fr",
-    "To": "theo.slimani2@etu.univ-lorraine.fr",
+    "From": mail,
+    "To": mail,
     "Subject": "Your weekly newsletter",
     "HtmlBody": html,
     "TextBody": markdown,
