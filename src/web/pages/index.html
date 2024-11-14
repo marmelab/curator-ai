@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curator AI</title>
+    <link href="../output.css" rel="stylesheet">
+    <script src="../adapt.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.0/dist/umd/i18next.min.js"></script> -->
+</head>
+
+<body class="font-sans text-lg mx-auto flex flex-col min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="mt-1 mb-14 p-2 flex justify-center items-center relative">
+        <div class="absolute left-12 flex items-center">
+            <!-- Buttons for choosing the language -->
+            <ul class="flex space-x-4">
+                <!-- Button for switching language to English -->
+                <li class="hover:underline" data-lang="en" aria-label="Change language to english"><a lang="en"
+                        onclick="changeLanguage('en')">EN</a></li>
+                <li>|</li>
+                <!-- Button for switching language to Fernch -->
+                <li class="hover:underline" data-lang="fr" aria-label="Changer la langue en français"><a lang="fr"
+                        onclick="">FR</a></li>
+            </ul>
+        </div>
+        <!-- Title of the webpage -->
+        <!-- Links to Home page -->
+        <div class="font-magnolia text-6xl text-center flex-grow">
+            <button class="transition duration-100 hover:brightness-95 bg-white rounded-full p-3 pr-7 pl-7"
+                aria-label="Homepage" onclick="goToMain()">
+                <h1>
+                    <span class="text-light_blue">Curator</span>
+                    <span class="text-mid_blue">AI</span>
+                </h1>
+            </button>
+        </div>
+        <!-- Button for sign up -->
+        <button
+            class="transition duration-200 bg-light_blue text-white font-bold rounded-full p-3 pr-7 pl-7 absolute right-16 top-1/2 -translate-y-1/2 text-center hover:scale-105 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+            onclick="" aria-label="Sign up" data-i18n="SignUp" aria-live="polite"></button>
+    </nav>
+
+    <div class="container mx-auto text-center flex-grow">
+        <!-- Begin Hero Unit -->
+        <h2 class="text-6xl font-bold mb-2" data-i18n="HeroUnit1" aria-live="polite"></h2>
+        <h2 class="text-6xl font-bold mb-4" data-i18n="HeroUnit2" aria-live="polite"></h2>
+        <h2 class="text-lg text-gray-500 mb-2" data-i18n="HeroUnit3" aria-live="polite"></h2>
+        <h2 class="text-lg text-gray-500 mb-2" data-i18n="HeroUnit4" aria-live="polite"></h2>
+        <h2 class="text-lg text-gray-500 mb-2" data-i18n="HeroUnit5" aria-live="polite"></h2>
+        <h2 class="text-lg text-gray-500 font-bold mb-2" data-i18n="HeroUnit6" aria-live="polite"></h2>
+        <!-- Button for sign up -->
+        <div>
+            <button
+                class="transition duration-100 text-3xl bg-light_blue text-white font-bold rounded-full p-3 pr-7 pl-7 m-10 text-center hover:scale-110 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                onclick="" aria-label="Sign Up" data-i18n="TryIt" aria-live="polite"></button>
+        </div>
+        <!-- End Hero Unit -->
+    </div>
+    <div class="h-fit ">
+        <!-- Separator -->
+        <div class="bg-gray-50 w-screen p-10 text-left mt-20 relative flex items-center">
+            <div class="flex-1 w-1/2 ml-4">
+                <h3 class="text-base font-semibold text-mid_blue ml-4 mb-2" data-i18n="Custom0" aria-live="polite"></h3>
+                <h2 class="text-4xl font-bold mb-5" data-i18n="Custom1" aria-live="polite"></h2>
+                <h2 class=" mb-4" data-i18n="Custom2" aria-live="polite"></h2>
+                <div class="flex flex-wrap">
+                    <div class="group ml-12 bg-gray-200 transition hover:brightness-95 rounded-lg px-10 p-6">
+                        <div class="-ml-16 flex align-middle items-center h-20 w-80">
+                            <div class="transition-all duration-700 bg-gradient-to-br from-cyan-400 from-10% via-light_blue via-55% to-pink-600 bg-size-200 bg-pos-0 group-hover:bg-pos-100 rounded-lg p-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="white" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                                  </svg>
+                            </div>
+                            <div class="transition ml-5">
+                                <h3 data-i18n="Custom-box1" aria-live="polite"></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group ml-20 bg-gray-200 transition hover:brightness-95 rounded-lg px-10 p-6">
+                        <div class="-ml-16 flex align-middle items-center h-20 w-80">
+                            <div class="transition-all duration-700 bg-gradient-to-br from-cyan-400 from-10% via-light_blue via-55% to-pink-600 bg-size-200 bg-pos-0 group-hover:bg-pos-100 rounded-lg p-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="white" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>                                  
+                            </div>
+                            <div class="transition ml-5">
+                                <h3 data-i18n="Custom-box2" aria-live="polite"></h3> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 w-1/3">
+                <img data-i18n="ImgSampleAlt" aria-live="polite" class="mx-auto w-1/2 mt-2"
+                src="../locales/img/Sample_image.png"
+                alt="Picture of a sample email. Each news has a title and a brief descritpion maid by the AI">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer (empty for now) -->
+    <footer class="bg-grey p-4 text-center">
+    </footer>
+</body>
+
+</html>
