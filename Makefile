@@ -8,9 +8,6 @@ help:
 
 init: ## Initialize the project
 	make install
-	npm install -g curator-ai
-	npm i --save-dev @types/express
-	cp -i .env.production .env
 
 install: ## Install the dependencies
 	npm install
