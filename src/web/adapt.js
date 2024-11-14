@@ -14,15 +14,13 @@ async function loadTranslations(lang) {
 }
 
 // Function to apply translations to elements with data-i18n and data-i18n-placeholder
-async function setLanguage(lang, old_lang) {
+async function setLanguage(lang) {
 
     const translations = await loadTranslations(lang);
     // Change the language tag element in bold
     localStorage.setItem('language', lang);
     let nLink = document.querySelector('[data-lang="' + lang + '"]');
     nLink.classList.add("font-bold");
-    let oldLink = document.querySelector('[data-lang="' + old_lang + '"]');
-    oldLink.classList.remove("font-bold");
 
 
     // Update elements with data-i18n attribute
@@ -61,11 +59,7 @@ async function changeLanguage(lang) {
 window.addEventListener('DOMContentLoaded', async () => {
     // Set the default language on page load
     const userPreferredLanguage = localStorage.getItem('language'); //retrieves the current language
-    if (userPreferredLanguage == "fr") {
-        setLanguage('fr', 'en');
-    } else {
-        setLanguage('en', 'fr');
-    }
+    setLanguage('en');
     let nLink = document.querySelector('[data-lang="' + userPreferredLanguage + '"]');
     nLink.classList.add("font-bold") //sets the new language to bold
     localStorage.setItem('language', userPreferredLanguage);
