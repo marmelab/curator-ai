@@ -10,13 +10,14 @@ init: ## Initialize the project
 	make install
 
 install: ## Install the dependencies
-	npm install
+	cd curator && npm install
+	cd website && npm install
 
 webpage: ## Run the webpage localy
-	npx ts-node ./src/web/server.ts
+	npx ts-node ./website/src/server.ts
 
 build: ## Compile the project
-	npm build
+	cd curator && npm build
 
 run: ## Summarize a list of articles
-	npm start
+	cd curator && npm start
