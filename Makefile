@@ -8,6 +8,7 @@ help:
 
 init: ## Initialize the project
 	make install
+	make build
 
 install: ## Install the dependencies
 	cd curator && npm install
