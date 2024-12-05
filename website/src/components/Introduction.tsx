@@ -1,5 +1,4 @@
 import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
 
 export function Introduction() {
   return (
