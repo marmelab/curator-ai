@@ -14,10 +14,14 @@ install: ## Install the dependencies
 	cd website && npm install
 
 webpage: ## Run the webpage localy
-	npx ts-node ./website/src/server.ts
+	cd website && npm run start
 
 build: ## Compile the project
-	cd curator && npm build
+	cd curator && npm run build
+	cd website && npm run build
 
 run: ## Summarize a list of articles
 	cd curator && npm start
+
+dev: ## Run the CLI in development mode
+	cd website && npm run dev

@@ -1,31 +1,32 @@
 {
-  "name": "curator-ai",
-  "author": "adrien guernier <adrien@marmelab.com>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/marmelab/curator-ai"
+  "name": "tailwindui-primer",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "version": "0.0.6",
-  "main": "./dist/index.js",
-  "bin": {
-    "curate": "./dist/cli.js"
-  },
-  "license": "MIT",
-  "files": [
-    "*.md",
-    "dist",
-    "src"
-  ],
-  "devDependencies": {
-    "@types/body-parser": "^1.19.5",
-    "@types/express": "^5.0.0",
-    "ts-node": "^10.9.2",
+  "browserslist": "defaults, not ie <= 11",
+  "dependencies": {
+    "@headlessui/react": "^2.1.0",
+    "@types/node": "^20.10.8",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.12",
+    "clsx": "^2.1.0",
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   },
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "http-server": "^14.1.1"
-  },
-  "scripts": {}
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "sharp": "0.33.1"
+  }
 }
