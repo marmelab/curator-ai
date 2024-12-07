@@ -47,7 +47,7 @@ export function PersonalizedSection() {
             <Image
               className="max-w-md w-full h-auto object-cover"
               src={SampleImage}
-              alt="Picture of a sample email. Each news has a title and a brief descritpion made by the AI"
+              alt={t('personImg')}
             />
           </div>
         </Container>

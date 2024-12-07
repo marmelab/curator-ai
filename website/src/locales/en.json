@@ -1,4 +1,8 @@
 {
+    "english": "English",
+    "french": "Français",
+    "frenchFlag": "French flag.",
+    "englishFlag": "English flag.",
     "pageNotFound": "Page not found",
     "404text": "Sorry, we couldn’t find the page you’re looking for.",
     "backHome": "Go back home",
@@ -13,5 +17,6 @@
     "person1": "Your personalized news curator",
     "person2": "Set your email preferences and receive a newsletter that <strong>suits you!</strong>",
     "person3": "Choose the piece of news you want to follow",
-    "person4": "Set when you want to reveive your news : daily, weekly, on fridays..."
+    "person4": "Set when you want to reveive your news : daily, weekly, on fridays...",
+    "personImg": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI"
 }
