@@ -5,6 +5,7 @@ import { Container } from '@/components/Container'
 import SampleImage from '@/images/SampleImage.png'
 // import the i18n configuration
 import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next'
 
 export function PersonalizedSection() {
   const { t } = useTranslation();  // `t` is the function to access translations
@@ -21,13 +22,13 @@ export function PersonalizedSection() {
         >
           <div className="flex flex-col justify-center">
             <h3 className="font-display text-base font-extrabold tracking-tight text-mid_blue sm:w-3/4 md:w-2/3 lg:w-auto">
-              {t('person0')}
+              <Trans i18nKey="person0" />
             </h3>
             <h2 className="font-display text-4xl font-extrabold tracking-tight text-black sm:w-3/4 md:w-2/3 lg:w-auto">
-              {t('person1')}
+              <Trans i18nKey="person1" />
             </h2>
             <p className="mt-4 text-lg tracking-tight text-black">
-              {t('person2')}
+              <Trans i18nKey="person2" />
             </p>
             <ul role="list" className="mt-8 space-y-3">
               {[

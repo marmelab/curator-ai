@@ -1,5 +1,5 @@
 {
-    "PageNotFound": "Page not found",
+    "pageNotFound": "Page not found",
     "404text": "Sorry, we couldn’t find the page you’re looking for.",
     "backHome": "Go back home",
     "copyright": "Copyright &copy; {{date}} Marmelab",
@@ -11,7 +11,7 @@
     "intro4": "CURATOR AI is made for you",
     "person0": "Customizable",
     "person1": "Your personalized news curator",
-    "person2": "Set your email preferences and receive a newsletter that <b>suits you!</b>",
+    "person2": "Set your email preferences and receive a newsletter that <strong>suits you!</strong>",
     "person3": "Choose the piece of news you want to follow",
     "person4": "Set when you want to reveive your news : daily, weekly, on fridays..."
 }
