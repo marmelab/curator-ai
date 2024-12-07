@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "i18next": "^24.0.5",
+    "i18next-http-backend": "^3.0.1",
+    "react-i18next": "^15.1.3"
+  },
+  "devDependencies": {
+    "@types/i18next": "^13.0.0"
+  }
+}

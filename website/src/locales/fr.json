@@ -1,0 +1,17 @@
+{
+    "PageNotFound": "Page non trouvée",
+    "404text": "Désolé, nous n’avons pas pu trouver la page que vous cherchez.",
+    "backHome": "Retour à l’accueil",
+    "copyright": "Copyright &copy; {{date}} Marmelab",
+    "allRightsReserved": "Tous droits réservés.",
+    "intro0": "Un outil alimenté par l'IA pour être le mieux informé",
+    "intro1": "Vous voulez rester informé sur vos sujets préférés ?",
+    "intro2": "Pas assez de temps pour lire toutes vos newsletters ?",
+    "intro3": "Vous voulez gagner du temps dans vos recherches ?",
+    "intro4": "CURATOR AI est fait pour vous",
+    "person0": "Personnalisable",
+    "person1": "Votre curateur de nouvelles personnalisé",
+    "person2": "Définissez vos préférences d'email et recevez une newsletter qui <b>vous correspond !</b>",
+    "person3": "Choisissez l'actualité que vous souhaitez suivre",
+    "person4": "Définissez quand vous souhaitez recevoir vos actualités : quotidiennement, hebdomadairement, le vendredi..."
+}
