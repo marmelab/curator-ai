@@ -1,6 +1,7 @@
 import { Container } from '@/components/Container'
 // import the i18n configuration
 import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next'
 
 export function Introduction() {
   const { t } = useTranslation();  // `t` is the function to access translations
@@ -12,19 +13,19 @@ export function Introduction() {
     >
       <Container className="text-lg text-center tracking-tight text-slate-700">
         <p className="font-display text-5xl font-bold tracking-tight text-slate-900">
-          {t('intro0')}
+          <Trans i18nKey="intro0" />
         </p>
         <p className="mt-4">
-          {t('intro1')}
+          <Trans i18nKey="intro1" />
         </p>
         <p className="mt-2">
-          {t('intro2')}
+          <Trans i18nKey="intro2" />
         </p>
         <p className="mt-2">
-          {t('intro3')}
+          <Trans i18nKey="intro3" />
         </p>
         <p className="mt-2 font-semibold">
-          {t('intro4')}
+          <Trans i18nKey="intro4" />
         </p>
       </Container>
     </section>
