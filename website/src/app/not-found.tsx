@@ -3,17 +3,15 @@ import Link from 'next/link'
 
 // import the i18n configuration
 import { useTranslation } from 'react-i18next';
-import { Trans } from 'react-i18next'
 import '@/i18n';  // Import the i18n configuration
-import { Header } from '@/components/Header'
 import { Container } from '@/components/Container'
 import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
 
 export default function NotFound() {
   const { t } = useTranslation();  // `t` is the function to access translations
+
   return (
     <>
-      <Header />
       <div className="relative flex flex-auto items-center">
         <div className="absolute inset-0 -z-10 text-slate-900/10 [mask-image:linear-gradient(transparent,white,transparent)]">
           <BackgroundGridPattern x="50%" y="50%" patternTransform="translate(0 60)" />
@@ -23,16 +21,16 @@ export default function NotFound() {
             404
           </p>
           <h1 className="mt-6 font-display text-5xl font-extrabold text-slate-900 sm:text-6xl">
-            <Trans i18nKey="pageNotFound" />
+            {t("PageNotFound")}
           </h1>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            <Trans i18nKey="404text" />
+            {t('404text')}
           </p>
           <Link
             href="/"
             className="mt-6 text-base font-medium text-blue-600 hover:text-blue-800"
           >
-            <Trans i18nKey="backHome" /> <span aria-hidden="true">&rarr;</span>
+            {t('backHome')} <span aria-hidden="true">&rarr;</span>
           </Link>
         </Container>
       </div>
