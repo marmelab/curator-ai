@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 // import the i18n configuration
 import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next'
 import '@/i18n';  // Import the i18n configuration
 import { Container } from '@/components/Container'
 import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
@@ -24,13 +25,13 @@ export default function NotFound() {
             {t('pageNotFound')}
           </h1>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            {t('404text')}
+            <Trans i18nKey="404text" />
           </p>
           <Link
             href="/"
             className="mt-6 text-base font-medium text-blue-600 hover:text-blue-800"
           >
-            {t('backHome')} <span aria-hidden="true">&rarr;</span>
+            <Trans i18nKey="backHome" /> <span aria-hidden="true">&rarr;</span>
           </Link>
         </Container>
       </div>
