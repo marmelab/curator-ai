@@ -1,4 +1,8 @@
 {
+    "english": "English",
+    "french": "Français",
+    "frenchFlag": "Drapeau français.",
+    "englishFlag": "Drapeau anglais.",
     "pageNotFound": "Page non trouvée",
     "404text": "Désolé, nous n’avons pas pu trouver la page que vous cherchez.",
     "backHome": "Retour à l’accueil",
@@ -13,5 +17,6 @@
     "person1": "Votre curateur de nouvelles personnalisé",
     "person2": "Définissez vos préférences d'email et recevez une newsletter qui <strong>vous correspond !</strong>",
     "person3": "Choisissez l'actualité que vous souhaitez suivre",
-    "person4": "Définissez quand vous souhaitez recevoir vos actualités : quotidiennement, hebdomadairement, le vendredi..."
+    "person4": "Définissez quand vous souhaitez recevoir vos actualités : quotidiennement, hebdomadairement, le vendredi...",
+    "personImg": "Image d'un exemple d'email. Chaque nouvelle a un titre et une brève description rédigée par l'IA."
 }
