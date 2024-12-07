@@ -1,3 +1,5 @@
+import i18next from '@/i18n';
+// import the i18n configuration
 import { useTranslation } from 'react-i18next';
 import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
 

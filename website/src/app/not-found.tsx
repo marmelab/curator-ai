@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 // import the i18n configuration
 import { useTranslation } from 'react-i18next';
-import { Trans } from 'react-i18next'
 import '@/i18n';  // Import the i18n configuration
 import { Container } from '@/components/Container'
 import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
