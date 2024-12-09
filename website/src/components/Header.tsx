@@ -18,16 +18,16 @@ export function Header() {
 
   return (
     <header className="overflow-hidden bg-slate-100 lg:bg-transparent lg:px-5">
-      <Container
-        size="lg"
-        className="relative grid grid-cols-1 items-center gap-y-12 py-20 lg:static lg:grid-cols-3 lg:py-28 xl:py-12"
-      >
-        <div></div>
+      <div className="relative grid grid-cols-3 items-center gap-y-12 py-20 lg:static lg:py-28 xl:py-12">
+        <div/>
+
         <h1 className="text-center text-5xl font-bold">
           <span className="text-light_blue">Curator</span> <span className="text-mid_blue">AI</span>
         </h1>
+
         <div className="flex flex-col justify-center">
-          <button onClick={() => changeLanguage('en')} className="flex justify-center lg:justify-end lg\:max-w-7xl mx-2 p-2">
+          <button onClick={() => changeLanguage('en')} className="flex justify-center lg:justify-end lg:max-w-7xl mx-2 p-2 hover:underline transform transition-transform hover:scale-105 duration-200"
+            style={{ transformOrigin: 'right' }}>
             <div className="pr-4"><Trans i18nKey="english" /></div>
             <Image
               className="max-w-md h-auto object-cover"
@@ -35,7 +35,8 @@ export function Header() {
               alt={t('englishFlag')}
             />
           </button>
-          <button onClick={() => changeLanguage('fr')} className="flex justify-center lg:justify-end lg\:max-w-7xl mx-2 p-2">
+          <button onClick={() => changeLanguage('fr')} className="flex justify-center lg:justify-end lg:max-w-7xl mx-2 p-2 hover:underline transform transition-transform hover:scale-105 duration-200"
+            style={{ transformOrigin: 'right' }}>
             <div className="pr-4"><Trans i18nKey="french" /></div>
             <Image
               className="max-w-md h-auto object-cover"
@@ -44,7 +45,8 @@ export function Header() {
             />
           </button>
         </div>
-      </Container>
+
+      </div>
     </header>
   )
 }
