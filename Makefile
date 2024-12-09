@@ -13,10 +13,14 @@ init: ## Initialize the project
 install: ## Install the dependencies
 	cd curator && npm install
 	cd website && npm install
+	cd mail_agent && npm install
 
 webpage: ## Run the webpage localy
 	cd website && npm run start
-
+	
+send_mail: ## Send newsletter mail
+	cd curator && npx ts-node ./src/mail_agent/newsletter_script.ts
+	
 build: ## Compile the project
 	cd curator && npm run build
 	cd website && npm run build
