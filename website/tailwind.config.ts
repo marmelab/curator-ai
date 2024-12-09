@@ -38,6 +38,17 @@ export default {
       colors : {
         'light_blue' : '#3C67AD',
         'mid_blue' : '#2F509F'
+      },
+      keyframes: {
+        grow : {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.3) rotate(10deg)' },
+        }
+      },
+      animation: {
+        'grow' : 'grow .75s ease-in-out',
+        'grow-100' : 'grow .75s ease-in-out 0.1s',
+        'grow-250' : 'grow .75s ease-in-out 0.25s',
       }
     },
   },

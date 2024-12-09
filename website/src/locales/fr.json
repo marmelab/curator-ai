@@ -13,5 +13,14 @@
     "feature5": "Sélectionnez les sources pour créer votre newsletter personnalisée.",
     "altimg": "Image d'un exemple d'email. Chaque actualité a un titre et une brève description rédigée par l'IA.",
     "copyright": "Copyright &copy; {{date}} Marmelab",
-    "allRightsReserved": "Tous droits réservés."
+    "allRightsReserved": "Tous droits réservés.",
+    "personImg": "Image d'un exemple d'email. Chaque nouvelle a un titre et une brève description rédigée par l'IA.",
+    "why0" : "Facilitant",
+    "why1" : "Plus de temps perdu sur des informations inutiles",
+    "why2" : "Plus besoin de chercher sur plusieurs sites pour trouver l'information dont vous avez besoin",
+    "why3" : "Plus de publicités autour de l'information que vous recherchez",
+    "why4" : "Plus de perte d'informations importantes",
+    "why5" : "Une newsletter qui correspond vraiment à vos centres d'intérêts",
+    "arrow" : "Flèche pointant de gauche à droite",
+    "badWebsiteImg" : "Image d'un mauvais site web. Le site est plein de publicités et l'information est difficile à trouver"
 }
