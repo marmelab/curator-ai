@@ -1,6 +1,6 @@
--- Création de la table Subscribers
+-- creation of the table subscribers
 CREATE TABLE IF NOT EXISTS Subscribers (
-    id SERIAL PRIMARY KEY, -- Identifiant unique, auto-incrémenté
-    user_email VARCHAR(255) UNIQUE NOT NULL, -- Adresse email unique et obligatoire
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Date d'inscription, valeur par défaut : date/heure actuelle
+    id SERIAL PRIMARY KEY, -- unique id, auto-incremented
+    user_email VARCHAR(255) UNIQUE NOT NULL, -- unique email of the user, mendatory
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- date of subscription, default : nowaday
 );
