@@ -18,5 +18,13 @@
     "person2": "Set your email preferences and receive a newsletter that <strong>suits you!</strong>",
     "person3": "Choose the piece of news you want to follow",
     "person4": "Set when you want to reveive your news : daily, weekly, on fridays...",
-    "personImg": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI"
+    "personImg": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI",
+    "why0" : "Simplifying",
+    "why1" : "No more time wasted on useless information",
+    "why2" : "No more need to search several websites to find the information you need",
+    "why3" : "No more ads around the information you are looking for",
+    "why4" : "No more loss of important information",
+    "why5" : "A newsletter that really suits your center of interest",
+    "arrow" : "Arrow pointing from left to right",
+    "badWebsiteImg" : "Picture of a bad website. The website is full of ads and the information is hard to find"
 }

@@ -11,8 +11,8 @@ export function PersonalizedSection() {
   const { t } = useTranslation();  // `t` is the function to access translations
   return (
     <section
-      id="free-chapters"
-      aria-label="Free preview"
+      id="personalized"
+      aria-label="Personalized section"
       className="bg-slate-200 sm:scroll-mt-32"
     >
       <div className="overflow-hidden lg:relative">

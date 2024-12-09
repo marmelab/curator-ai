@@ -18,5 +18,13 @@
     "person2": "Définissez vos préférences d'email et recevez une newsletter qui <strong>vous correspond !</strong>",
     "person3": "Choisissez l'actualité que vous souhaitez suivre",
     "person4": "Définissez quand vous souhaitez recevoir vos actualités : quotidiennement, hebdomadairement, le vendredi...",
-    "personImg": "Image d'un exemple d'email. Chaque nouvelle a un titre et une brève description rédigée par l'IA."
+    "personImg": "Image d'un exemple d'email. Chaque nouvelle a un titre et une brève description rédigée par l'IA.",
+    "why0" : "Facilitant",
+    "why1" : "Plus de temps perdu sur des informations inutiles",
+    "why2" : "Plus besoin de chercher sur plusieurs sites pour trouver l'information dont vous avez besoin",
+    "why3" : "Plus de publicités autour de l'information que vous recherchez",
+    "why4" : "Plus de perte d'informations importantes",
+    "why5" : "Une newsletter qui correspond vraiment à vos centres d'intérêts",
+    "arrow" : "Flèche pointant de gauche à droite",
+    "badWebsiteImg" : "Image d'un mauvais site web. Le site est plein de publicités et l'information est difficile à trouver"
 }
