@@ -13,13 +13,13 @@ export function Header() {
 
   const changeLanguage = (lng: string) => {
     i18next.changeLanguage(lng);
-    // window.location.reload();
+    console.log(i18next.language);
   }
 
   return (
     <header className="overflow-hidden bg-slate-100 lg:bg-transparent lg:px-5">
       <div className="relative grid grid-cols-3 items-center gap-y-12 py-20 lg:static lg:py-28 xl:py-12">
-        <div/>
+        <div />
 
         <h1 className="text-center text-5xl font-bold">
           <span className="text-light_blue">Curator</span> <span className="text-mid_blue">AI</span>
