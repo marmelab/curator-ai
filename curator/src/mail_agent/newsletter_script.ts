@@ -9,7 +9,7 @@ var postmark = require("postmark");
 // TODO : Add all the dynamic part (newsletter parameters, email params)
 
 async function runNewsletter() {
-    const {json, markdown, html} = await curateAndGenerateNewsletter();
+    const {markdown, html} = await curateAndGenerateNewsletter();
     //console.log(markdown);  // uncomment this part and comment below to test without postmark
 
     // Sending email :
@@ -18,7 +18,7 @@ async function runNewsletter() {
 
     client.sendEmail({
     "From": mail,
-    "To": "theo.slimani@telecomnancy.net",
+    "To": mail,
     "Subject": "Your weekly newsletter",
     "HtmlBody": html,
     "TextBody": markdown,

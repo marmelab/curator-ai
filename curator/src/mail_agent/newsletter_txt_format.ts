@@ -1,11 +1,10 @@
-const { curate } = require('curator-ai');
+import { curate } from "../curate";
 
 import { Summary } from "../types";
 
 // links to curate from (TODO : make it based on user preference)
 
 const links = [
-    'https://stability.ai/news/stable-code-2024-llm-code-completion-release',
     'https://www.fromjason.xyz/p/notebook/where-have-all-the-websites-gone/',
     'https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/',
     'https://biomejs.dev/blog/biome-v1-5/',
@@ -118,7 +117,7 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
 // Uses the curate function to generate newsletter data and formats output to be used in mail
 // TODO : add parameters based on user (links,interests?,maxArticles?,maxContentSize?)
 
-export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: string, html: string }> {
+export function curateAndGenerateNewsletter(): Promise<{markdown: string, html: string }> {
     
     return curate({
         links,
@@ -133,7 +132,7 @@ export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: s
 
         // Returns raw json and formatted newletters
 
-        return { curatedLinks, markdown, html};
+        return { markdown, html};
 
     }).catch((err: unknown) => {
 
@@ -144,6 +143,6 @@ export function curateAndGenerateNewsletter(): Promise<{json:string, markdown: s
         } else {
             console.error("Unknown error occurred during link curation");
         }
-        return "Failed to generate newsletter.";
+        return { markdown: '', html: '' }
     });
 }
