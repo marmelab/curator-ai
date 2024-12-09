@@ -1,7 +1,10 @@
-import { type Metadata } from 'next'
+"use client"
+
+import { metadata } from './metadata';
 import { Inter } from 'next/font/google'
 import clsx from 'clsx'
-
+import i18next from '@/i18n';
+import { useEffect } from 'react';
 import '@/styles/tailwind.css'
 
 const inter = Inter({
@@ -10,26 +13,29 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-export const metadata: Metadata = {
-  title: 'Curator AI',
-  description:
-    'A personnalized newsletter curator.',
-}
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+
+  useEffect(() => {
+    document.documentElement.lang = i18next.language;
+    console.log(i18next.language);
+  }, [i18next.language]);
+
   return (
     <html
-      lang="en"
-      className={clsx(
-        'h-full scroll-smooth bg-white antialiased',
-        inter.variable,
-      )}
+      lang="{i18next.language}"
+      className={
+        clsx(
+          'h-full scroll-smooth bg-white antialiased',
+          inter.variable,
+        )
+      }
     >
       <head>
+        <meta httpEquiv="Content-Language" content={i18next.language} />
         <link
           rel="preconnect"
           href="https://cdn.fontshare.com"
@@ -41,6 +47,6 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col">{children}</body>
-    </html>
+    </html >
   )
 }
