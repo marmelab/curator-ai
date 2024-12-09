@@ -13,7 +13,6 @@ init: ## Initialize the project
 install: ## Install the dependencies
 	cd curator && npm install
 	cd website && npm install
-	cd mail_agent && npm install
 
 webpage: ## Run the webpage localy
 	cd website && npm run start
