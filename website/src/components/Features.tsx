@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import { CheckIcon } from './CheckIcon'
+import SampleImage from '@/images/SampleImage.png'
 
 const features = [
     'Select the news topics you want to follow',
@@ -32,11 +33,13 @@ export function Features() {
           </div>
         </div>
         <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
-          <img
+          
+          <Image
             alt="Picture of a sample email. Each news has a title and a brief descritpion made by the AI"
-            src="SampleImage.png"
-            className="w-full rounded-xl bg-gray-50 object-contain lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
-          />
+            src= {SampleImage}
+            className="w-full rounded-xl bg-gray-50 object-contain"
+            width={800}
+            height={600}/>
         </div>
       </div>
     </div>
