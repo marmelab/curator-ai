@@ -10,6 +10,7 @@ import { Container } from '@/components/Container'
 import { GridPattern } from '@/components/GridPattern'
 
 export default function NotFound() {
+  const { t } = useTranslation();  // `t` is the function to access translations
   return (
     <>
       <Header />
@@ -22,16 +23,16 @@ export default function NotFound() {
             404
           </p>
           <h1 className="mt-6 font-display text-5xl font-extrabold text-slate-900 sm:text-6xl">
-            <Trans i18nKey="pageNotFound" />
+            {t('pageNotFound')}
           </h1>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            <Trans i18nKey="404text" />
+            {t('404text')}
           </p>
           <Link
             href="/"
             className="mt-6 text-base font-medium text-blue-600 hover:text-blue-800"
           >
-            <Trans i18nKey="backHome" /> <span aria-hidden="true">&rarr;</span>
+            {t('backHome')} <span aria-hidden="true">&rarr;</span>
           </Link>
         </Container>
       </div>
