@@ -1,10 +1,11 @@
 import Image from 'next/image'
-
 import { GridPattern } from '@/components/GridPattern'
+import { LanguageSelector } from '@/components/LanguageSelector'
 import coverImage from '@/images/curator-ai-cover.webp'
-
+import { useTranslation } from 'react-i18next';
 
 export function Hero() {
+  const { t } = useTranslation();  // `t` is the function to access translations
   return (
     <header className="overflow-hidden bg-slate-100 lg:bg-transparent lg:px-5">
       <div className="mx-auto grid max-w-6xl grid-cols-1 grid-rows-[auto_1fr] gap-y-16 pt-16 md:pt-20 lg:grid-cols-12 lg:gap-y-20 lg:px-3 lg:pb-36 lg:pt-20 xl:py-32">
@@ -20,19 +21,21 @@ export function Hero() {
             <Image className="w-full" src={coverImage} alt="" priority />
           </div>
         </div>
-        <div className="relative px-4 sm:px-6 lg:col-span-7 lg:pb-14 lg:pl-16 lg:pr-0 xl:pl-20">
+        <div className="relative grid grid-cols-3 px-4 sm:px-6 lg:col-span-7 lg:pb-14 lg:pl-16 lg:pr-0 xl:pl-20">
           <div className="hidden lg:absolute lg:-top-32 lg:bottom-0 lg:left-[-100vw] lg:right-[-100vw] lg:block lg:bg-slate-100" />
-          <div className="relative text-4xl font-extrabold text-cyan-900 sm:text-6xl">
+          <div className="relative text-4xl font-extrabold text-cyan-900 sm:text-6xl whitespace-nowrap">
             Curator AI
           </div>
+          <div />
+          <LanguageSelector />
         </div>
         <div className="bg-white pt-16 lg:col-span-7 lg:bg-transparent lg:pl-16 lg:pt-0 xl:pl-20">
           <div className="mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4 lg:px-0">
             <h1 className="font-display text-4xl font-extrabold text-slate-900 sm:text-6xl">
-              Feeling overwhelmed by all your IT trend sources?
+              {t('hero1')}
             </h1>
             <p className="mt-4 text-3xl text-slate-600">
-              Your personalized trends curator, designed to help you save time.
+              {t('hero2')}
             </p>
           </div>
         </div>

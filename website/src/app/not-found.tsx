@@ -10,7 +10,6 @@ import { Container } from '@/components/Container'
 import { GridPattern } from '@/components/GridPattern'
 
 export default function NotFound() {
-  const { t } = useTranslation();  // `t` is the function to access translations
   return (
     <>
       <Header />

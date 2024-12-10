@@ -1,7 +1,4 @@
-import i18next from '@/i18n';
-// import the i18n configuration
 import { useTranslation } from 'react-i18next';
-import { Trans } from 'react-i18next'
 import { GridPattern } from '@/components/GridPattern'
 
 export function Footer() {
@@ -13,7 +10,7 @@ export function Footer() {
       </div>
       <div className="relative text-center text-sm text-slate-600">
         <p>Copyright &copy; {new Date().getFullYear()} Marmelab</p>
-        <p><Trans i18nKey="allRightsReserved" /></p>
+        <p>{t('allRightsReserved')}</p>
       </div>
     </footer>
   )
