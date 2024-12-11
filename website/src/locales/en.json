@@ -4,6 +4,7 @@
     "pageNotFound": "Page not found",
     "404text": "Sorry, we couldn’t find the page you’re looking for.",
     "backHome": "Go back home",
+    "coverImgAlt": "Website cover image, presenting IT monitoring.",
     "hero1": "Feeling overwhelmed by all your IT trend sources?",
     "hero2": "Your personalized trends curator, designed to help you save time.",
     "feature1": "An AI-powered tool to keep you perfectly informed",
@@ -11,7 +12,7 @@
     "feature3": "Select the news topics you want to follow",
     "feature4": "Choose when you'd like to receive your news: daily, weekly, or on Fridays.",
     "feature5": "Select the sources to create your personalized newsletter.",
-    "altimg": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI",
+    "altImg": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI",
     "copyright": "Copyright &copy; {{date}} Marmelab",
     "allRightsReserved": "All rights reserved."
 }
