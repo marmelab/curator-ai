@@ -10,7 +10,6 @@ import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
 
 export default function NotFound() {
   const { t } = useTranslation();  // `t` is the function to access translations
-
   return (
     <>
       <div className="relative flex flex-auto items-center">
