@@ -1,0 +1,10 @@
+{
+    "name": "curator-ai",
+    "workspaces": [
+        "website",
+        "curator"
+    ],
+    "scripts": {
+        "build" : "npm run build --workspaces"
+    }
+}

@@ -11,15 +11,13 @@ init: ## Initialize the project
 	make build
 
 install: ## Install the dependencies
-	cd curator && npm install
-	cd website && npm install
+	npm install
 
 webpage: ## Run the webpage localy
 	cd website && npm run start
 
 build: ## Compile the project
-	cd curator && npm run build
-	cd website && npm run build
+	npm run build
 
 run: ## Summarize a list of articles
 	cd curator && npm start
