@@ -1,14 +1,12 @@
+import { Features } from '@/components/Features'
 import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
-import { Introduction } from '@/components/Introduction'
-import { PersonalizedSection } from '@/components/PersonalizedSection'
+import { Hero } from '@/components/Hero'
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <Introduction />
-      <PersonalizedSection />
+      <Hero />
+      <Features />
       <Footer />
     </>
   )

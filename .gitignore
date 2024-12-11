@@ -3,11 +3,6 @@ node_modules
 dist
 tmp/*
 .env
-website/src/output.css
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
 
 # testing
 /coverage
