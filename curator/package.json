@@ -1,0 +1,40 @@
+{
+  "name": "curator-ai",
+  "author": "adrien guernier <adrien@marmelab.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marmelab/curator-ai"
+  },
+  "version": "0.0.6",
+  "main": "./dist/index.js",
+  "bin": {
+    "curate": "./dist/cli.js"
+  },
+  "license": "MIT",
+  "files": [
+    "*.md",
+    "dist",
+    "src"
+  ],
+  "devDependencies": {
+    "@types/cli-progress": "^3.11.5",
+    "@types/jsdom": "^21.1.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cli-progress": "^3.12.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "jsdom": "^24.0.0",
+    "openai": "^4.24.3",
+    "rss-parser": "^3.13.0"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "start": "ts-node ./src/cli.ts"
+  }
+}
