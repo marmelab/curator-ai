@@ -1,16 +1,12 @@
 'use client'
 import Link from 'next/link'
-
-// import the i18n configuration
 import { useTranslation } from 'react-i18next';
-import { Trans } from 'react-i18next'
-import '@/i18n';  // Import the i18n configuration
+import '@/i18n';
 import { Container } from '@/components/Container'
 import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
 
 export default function NotFound() {
-  const { t } = useTranslation();  // `t` is the function to access translations
-
+  const { t } = useTranslation();
   return (
     <>
       <div className="relative flex flex-auto items-center">

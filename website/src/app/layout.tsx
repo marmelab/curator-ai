@@ -1,6 +1,5 @@
 "use client"
 
-import { metadata } from './metadata';
 import { Inter } from 'next/font/google'
 import clsx from 'clsx'
 import i18next from '@/i18n';

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import sampleImage from '@/images/sampleImage.png'
 
 export function Features() {
-  const { t } = useTranslation();  // `t` is the function to access translations
+  const { t } = useTranslation();
 
   const features = [
     t('feature3'),
@@ -36,7 +36,7 @@ export function Features() {
         <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
 
           <Image
-            alt={t('altimg')}
+            alt={t('altImg')}
             src={sampleImage}
             className="w-full rounded-xl bg-gray-50 object-contain"
             width={800}

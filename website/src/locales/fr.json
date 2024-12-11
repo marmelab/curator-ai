@@ -4,6 +4,7 @@
     "pageNotFound": "Page non trouvée",
     "404text": "Désolé, nous n'avons pas pu trouver la page que vous cherchez.",
     "backHome": "Retour à l'accueil",
+    "coverImgAlt": "Image de couverture du site, présentant la veille informatique.",
     "hero1": "Vous vous sentez submergé par toutes vos sources de tendances IT ?",
     "hero2": "Votre curateur de tendances personnalisé, conçu pour vous faire gagner du temps.",
     "feature1": "Un outil alimenté par l'IA pour vous tenir parfaitement informé",
@@ -11,7 +12,7 @@
     "feature3": "Sélectionnez les sujets d'actualité que vous souhaitez suivre",
     "feature4": "Choisissez quand vous souhaitez recevoir vos actualités : quotidiennement, hebdomadairement ou le vendredi.",
     "feature5": "Sélectionnez les sources pour créer votre newsletter personnalisée.",
-    "altimg": "Image d'un exemple d'email. Chaque actualité a un titre et une brève description rédigée par l'IA.",
+    "altImg": "Image d'un exemple d'email. Chaque actualité a un titre et une brève description rédigée par l'IA.",
     "copyright": "Copyright &copy; {{date}} Marmelab",
     "allRightsReserved": "Tous droits réservés."
 }
