@@ -6,8 +6,7 @@ import { Container } from '@/components/Container'
 import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
 
 export default function NotFound() {
-  const { t } = useTranslation();  // `t` is the function to access translations
-
+  const { t } = useTranslation();
   return (
     <>
       <div className="relative flex flex-auto items-center">
