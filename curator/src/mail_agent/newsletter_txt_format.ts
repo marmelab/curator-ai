@@ -46,37 +46,6 @@ function formatNewsletterMarkdown(articles : Summary[]) {
     return newsletter;
 }
 
-// Formats the newsletter in html (no style) 
-// articles : Summary[]
-// 
-// return newsletter : String
-
-function formatNewsletterHtml(articles: Summary[]) {
-
-    // Header
-
-    let htmlNewsletter = '<div style="font-family: Arial, sans-serif;">';
-    htmlNewsletter += '<h1>Newsletter HTML</h1>';
-    htmlNewsletter += '<p>Hello everyone! Here are the latest news!</p>';
-
-    // Dynamic formatting for each article
-
-    articles.forEach(article => {
-        const title = article.title || "Title not available";
-        const author = article.author || "Unknown author";
-        const summary = article.summary || "Summary not available.";
-        const link = article.link || "#";
-
-        
-        htmlNewsletter += '<h3>' + title + '</h3>' +
-            '<p><strong>by ' + author + '</strong></p>' +  
-            '<p><a href="' + link + '">Read the full article</a></p>' +
-            '<blockquote>' + summary + '</blockquote>';
-    });
-
-    return htmlNewsletter;
-}
-
 // Formats the newsletter in html with style
 // articles : Summary[]
 // 
@@ -88,7 +57,7 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
 
     let htmlNewsletter = `
     <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
-        <h1 style="color: #4CAF50; text-align: center; font-size: 32px;">Newsletter HTML</h1>
+        <h1 style="color: #4CAF50; text-align: center; font-size: 32px;">Newsletter</h1>
         <p style="font-size: 18px; text-align: center;">Hello everyone! Here are the latest news!</p>
     `;
 
