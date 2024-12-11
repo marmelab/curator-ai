@@ -23,7 +23,11 @@ To run the webpage localy:
 ```sh
 make webpage
 ```
-For further information check [src/web/README.md](src/web/README.md).
+
+To start Next in dev mode:
+```sh
+make dev
+```
 
 ## CLI Usage
 
