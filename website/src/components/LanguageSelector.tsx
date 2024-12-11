@@ -6,7 +6,7 @@ import enImage from '@/images/enImage.png'
 
 export function LanguageSelector() {
 
-  const { t } = useTranslation();  // `t` is the function to access translations
+  const { t } = useTranslation();
 
   const changeLanguage = (lng: string) => {
     i18next.changeLanguage(lng);
