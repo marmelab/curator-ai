@@ -9,6 +9,26 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 -   Node.js >= 18
 -   an [OpenAI API](https://platform.openai.com/) key
 
+## Initialize the project
+
+After cloning the repository, run the following command : 
+```sh
+make init
+```
+It will install every dependencies and create a .env file with all the required fields.
+
+## Start the webpage
+
+To run the webpage localy:
+```sh
+make webpage
+```
+
+To start Next in dev mode:
+```sh
+make dev
+```
+
 ## CLI Usage
 
 ```sh
