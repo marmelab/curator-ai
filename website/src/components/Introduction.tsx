@@ -15,7 +15,7 @@ export function Introduction() {
     e.preventDefault();
 
     setIsSubmitting(true);
-    setMessage(''); // Reset the message state
+    setMessage('');
 
     try {
       await handleSubscription(email);
