@@ -1,8 +1,9 @@
 // src/pages/api/subscribe.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
+import { validateEmail } from '@/utils/validateEmail'; // Import the utility
 
-// Initialisation de Supabase avec les variables d'environnement
+// Initialize Supabase with environment variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -11,13 +12,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     const { email } = req.body;
 
-    // Validation de l'email
-    if (!email || !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+    // Use the utility for email validation
+    if (!email || !validateEmail(email)) {
       return res.status(400).json({ error: 'Invalid email address.' });
     }
 
     try {
-      // Vérifie si l'email existe déjà dans la table "subscribers"
+      // Check if the email already exists in the "subscribers" table
       const { data: existingEmail, error: selectError } = await supabase
         .from('subscribers')
         .select('user_email')
@@ -32,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(409).json({ error: 'Email already registered.' });
       }
 
-      // Insère l'email dans la table "subscribers"
+      // Insert the email into the "subscribers" table
       const { error: insertError } = await supabase.from('subscribers').insert([{ user_email: email }]);
 
       if (insertError) {
