@@ -8,7 +8,7 @@ export async function handleSendWelcomeEmail(email: string): Promise<void> {
   try {
     // Inject CSS into the HTML (inlined CSS for email compatibility)
     const htmlWithCss = welcomeEmailHTML.replace(
-      '<link rel="stylesheet" href="./welcomeEmailStyles.css">',
+      'STYLE TOKEN',
       `<style>${welcomeEmailCSS}</style>`
     );
 
