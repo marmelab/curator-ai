@@ -1,151 +1,121 @@
-// src/services/ressources/welcomeEmailContent.ts
-
-// Contenu du texte brut pour l'email
 export const welcomeEmailText = `
-Hi there! 👋
+Welcome to Curator AI!
 
-Welcome to CURATOR AI! 🎉 We’re excited to have you on board. CURATOR AI is an AI-powered service designed to keep you updated on your favorite topics and news.
+Curator AI is here to simplify your information tracking. With our AI, you'll receive a newsletter containing summarized and curated articles based on your preferred topics and sources. Here's how to interact with us:
 
-### Here’s how to get started:
+### 📚 Add topics:
+*I want to follow the topics AI and health.*
 
-1. **Choose your topics of interest:**
-   - You can tell us which themes you'd like to follow. For example:
-     - "I would like to follow topics like LLM, AI, and code."
+### 🌐 Add sites:
+*Add https://www.lemonde.fr/ to my sources.*
 
-2. **Add specific websites to monitor:**
-   - You can specify websites you want to be tracked, like:
-     - "Please follow the website https://www.mediapart.fr/."
-     - Or add multiple websites:
-       - "Please follow the websites https://www.mediapart.fr/ ; https://www.lemonde.fr/."
+### ⏰ Set delivery schedule:
+*Send me the newsletter every Monday at 8 AM.*
 
-   > These sources are optional, but they can help keep you updated with the latest content from your favorite sites. You can also remove sites at any time in the future.
+By default, you will receive your first newsletter within 5 minutes, and then once a week on the same day and time as your registration.
 
-3. **Set your preferred newsletter frequency:**
-   - Choose when you'd like to receive your updates. For example:
-     - "I would like to receive my newsletter every Monday at 8 AM."
+Need help or want to make changes? Just email us anytime.
 
-### That’s it! 🚀 Your personalized news feed is ready to go!
-
-If you ever want to make changes, just reply to this email with your updated preferences, and we’ll take care of the rest.
-
-Best regards,  
-The CURATOR AI Team
+Happy exploring!  
+The Curator AI Team 🚀
 `;
 
 
-// Contenu HTML pour l'email
 export const welcomeEmailHTML = `
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to CURATOR AI</title>
+    STYLE TOKEN
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f4f4f4; padding: 20px; margin: 0;">
-  <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <h1 style="color: #007bff; text-align: center;">Hi there! 👋</h1>
-    <p style="font-size: 18px; text-align: center;">Welcome to CURATOR AI! 🎉 We’re excited to have you on board. CURATOR AI is an AI-powered service designed to keep you updated on your favorite topics and news.</p>
-
-    <h2 style="color: #333;">Here’s how to get started:</h2>
-
-    <ol style="padding-left: 20px;">
-      <li style="font-size: 16px;"> <strong>Choose your topics of interest:</strong> 
-        <p style="font-size: 14px;">You can tell us which themes you'd like to follow. For example:</p>
-        <ul style="font-size: 14px; margin-top: 0;">
-          <li>"I would like to follow topics like LLM, AI, and code."</li>
+<body>
+    <div class="email-container">
+        <h1 class="header">Welcome to Curator AI!</h1>
+        <p class="intro">We're thrilled to have you on board 🎉.</p>
+        <p class="content">
+            With our AI, you'll receive a personalized newsletter containing the most relevant articles, summarized and tailored to your preferences.
+        </p>
+        <h2 class="subheader">How to interact with Curator AI?</h2>
+        <ul class="instructions">
+            <li> 📚 Add topics: <strong>"I want to follow the topics AI and health."</strong></li>
+            <li> 🌐 Add a site: <strong>"Add https://www.lemonde.fr/ to my sources."</strong></li>
+            <li> ⏰ Set delivery schedule: <strong>"Send me the newsletter every Monday at 8 AM."</strong></li>
         </ul>
-      </li>
-
-      <li style="font-size: 16px;"> <strong>Add specific websites to monitor:</strong> 
-        <p style="font-size: 14px;">You can specify websites you want to be tracked, like:</p>
-        <ul style="font-size: 14px; margin-top: 0;">
-          <li>"Please follow the website https://www.mediapart.fr/."</li>
-          <li>"Please follow the websites https://www.mediapart.fr/ ; https://www.lemonde.fr/."</li>
-        </ul>
-        <p style="font-size: 14px;">These sources are optional, but they can help keep you updated with the latest content from your favorite sites. You can also remove sites at any time in the future.</p>
-      </li>
-
-      <li style="font-size: 16px;"> <strong>Set your preferred newsletter frequency:</strong>
-        <p style="font-size: 14px;">Choose when you'd like to receive your updates. For example:</p>
-        <ul style="font-size: 14px; margin-top: 0;">
-          <li>"I would like to receive my newsletter every Monday at 8 AM."</li>
-        </ul>
-      </li>
-    </ol>
-
-    <p style="font-size: 16px;">That’s it! 🚀 Your personalized news feed is ready to go!</p>
-    <p style="font-size: 14px;">If you ever want to make changes, just reply to this email with your updated preferences, and we’ll take care of the rest.</p>
-
-    <p style="font-size: 14px; color: #555;">Best regards,<br>The CURATOR AI Team</p>
-  </div>
+        <p class="reminder">
+            📩 Your first newsletter will be sent within 5 minutes of signing up. By default, future newsletters will arrive weekly at the same time as your registration.
+        </p>
+        <p class="closing">
+            For any questions or changes, just reply to this email. Happy exploring!
+        </p>
+        <p class="signature">The Curator AI Team 🚀</p>
+    </div>
 </body>
 </html>
 `;
 
-// Contenu CSS pour l'email
 export const welcomeEmailCSS = `
-/* Simple inline CSS for the email */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
-  color: #007bff;
-  text-align: center;
+.email-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333333;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
 }
 
-h2 {
-  color: #333;
-  font-size: 18px;
+.header {
+    color: #4CAF50;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.intro, .content, .reminder, .closing {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #555555;
 }
 
-ul li {
-  margin: 5px 0;
+.subheader {
+    font-size: 20px;
+    color: #FF5722;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
-ol {
-  padding-left: 20px;
+.instructions {
+    list-style-type: none;
+    padding: 0;
 }
 
-ol li {
-  font-size: 16px;
-  margin-bottom: 15px;
+.instructions li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.5;
 }
 
-p {
-  font-size: 14px;
-  color: #333;
+.instructions li strong {
+    color: #1E88E5;
 }
 
-p strong {
-  color: #333;
+.reminder {
+    font-style: italic;
+    color: #777777;
 }
 
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-div {
-  max-width: 600px;
-  margin: auto;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.signature {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    margin-top: 30px;
 }
 `;
-
