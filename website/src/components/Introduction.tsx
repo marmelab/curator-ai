@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/Button';
-import { validateEmail } from '@/utils/validateEmail'; // Import the utility
+import { handleSubscription } from '@/services/subscribeService'; // Import subscription service
+import { handleSendWelcomeEmail } from '@/services/emailService'; // Import email service
 
 export function Introduction() {
   const [email, setEmail] = useState('');
@@ -13,49 +14,17 @@ export function Introduction() {
   const handleEmailSubmission = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Use the utility for email validation
-    if (!email || !validateEmail(email)) {
-      setMessage('Please enter a valid email address.');
-      return;
-    }
-
     setIsSubmitting(true);
+    setMessage(''); // Reset the message state
 
     try {
-      // Call the API to handle subscription
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
+      await handleSubscription(email);
 
-      const result = await response.json();
+      await handleSendWelcomeEmail(email);
 
-      if (!response.ok) {
-        setMessage(`Error: ${result.error || 'Unknown error'}`);
-        return;
-      }
-
-      setMessage(`Email received and successfully registered: ${email}.`);
-
-      // Optionally: Call another API to send a welcome email
-      await fetch('/api/sendEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          recipientEmail: email,
-          subject: 'Welcome to CURATOR AI!',
-          textBody: 'Hi there!\n\nWelcome to CURATOR AI! We\'re excited to have you on board.',
-          htmlBody: '<p>Hi there!</p><p>Welcome to CURATOR AI! We\'re excited to have you on board.</p>',
-        }),
-      });
-    } catch (error) {
-      console.error('Unexpected error:', error);
-      setMessage('An error occurred while registering the email.');
+      setMessage(`Success! The email ${email} has been registered and a welcome email has been sent.`);
+    } catch (error: any) {
+      setMessage(error.message || 'An error occurred while processing your request.');
     } finally {
       setIsSubmitting(false);
     }
