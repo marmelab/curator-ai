@@ -1,0 +1,24 @@
+{
+  "pageNotFound": {
+    "title": "Page non trouvée",
+    "content": "Désolé, nous n'avons pas pu trouver la page que vous cherchez.",
+    "backHome": "Retour à l'accueil"
+  },
+  "hero": {
+    "coverImgAlt": "Image de couverture du site, présentant la veille informatique.",
+    "title": "Vous vous sentez submergé par toutes vos sources de tendances IT ?",
+    "content": "Votre curateur de tendances personnalisé, conçu pour vous faire gagner du temps."
+  },
+  "feature": {
+    "title": "Un outil alimenté par l'IA pour vous tenir parfaitement informé",
+    "content": "Personnalisez vos préférences de messagerie pour recevoir une newsletter adaptée rien que pour vous !",
+    "check1": "Sélectionnez les sujets d'actualité que vous souhaitez suivre",
+    "check2": "Choisissez quand vous souhaitez recevoir vos actualités : quotidiennement, hebdomadairement ou le vendredi.",
+    "check3": "Sélectionnez les sources pour créer votre newsletter personnalisée.",
+    "mailImgAlt": "Image d'un exemple d'email. Chaque actualité a un titre et une brève description rédigée par l'IA."
+  },
+  "footer": {
+    "copyright": "Copyright &copy; {{date}} Marmelab",
+    "allRightsReserved": "Tous droits réservés."
+  }
+}

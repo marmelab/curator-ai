@@ -5,6 +5,7 @@
         "curator"
     ],
     "scripts": {
-        "build" : "npm run build --workspaces"
+        "build": "npm run build --workspaces",
+        "format": "prettier --write ."
     }
 }
