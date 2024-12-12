@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/Button';
+import { validateEmail } from '@/utils/validateEmail'; // Import the utility
 
 export function Introduction() {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ export function Introduction() {
   const handleEmailSubmission = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation de l'email
+    // Use the utility for email validation
     if (!email || !validateEmail(email)) {
       setMessage('Please enter a valid email address.');
       return;
@@ -21,7 +22,7 @@ export function Introduction() {
     setIsSubmitting(true);
 
     try {
-      // Appel de l'API pour gérer l'inscription
+      // Call the API to handle subscription
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
@@ -39,7 +40,7 @@ export function Introduction() {
 
       setMessage(`Email received and successfully registered: ${email}.`);
 
-      // Optionnel : Appeler une autre API pour envoyer un email
+      // Optionally: Call another API to send a welcome email
       await fetch('/api/sendEmail', {
         method: 'POST',
         headers: {
@@ -58,12 +59,6 @@ export function Introduction() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  // Fonction pour valider l'email
-  const validateEmail = (email: string) => {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(email);
   };
 
   return (
