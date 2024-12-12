@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
+import { BackgroundGridPattern } from '@/components/BackgroundGridPattern';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -10,8 +10,8 @@ export function Footer() {
       </div>
       <div className="relative text-center text-sm text-slate-600">
         <p>Copyright &copy; {new Date().getFullYear()} Marmelab</p>
-        <p>{t('allRightsReserved')}</p>
+        <p>{t('footer.allRightsReserved')}</p>
       </div>
     </footer>
-  )
+  );
 }

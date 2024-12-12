@@ -18,6 +18,7 @@ webpage: ## Run the webpage localy
 
 build: ## Compile the project
 	npm run build
+	npm run format
 
 run: ## Summarize a list of articles
 	cd curator && npm start

@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import styles from "./LanguageSelector.module.scss";
-import { availableLanguages } from "@/i18n";
-import "flag-icons/css/flag-icons.min.css";
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { availableLanguages } from '@/i18n';
+import 'flag-icons/css/flag-icons.min.css';
 
 interface FlagIconProps {
   countryCode: string;
 }
 
-function FlagIcon({ countryCode = "" }: FlagIconProps) {
-
-  if (countryCode === "en") {
-    countryCode = "gb";
+function FlagIcon({ countryCode = '' }: FlagIconProps) {
+  if (countryCode === 'en') {
+    countryCode = 'gb';
   }
 
   return (
     <span
-      className={`fi fis ${styles.fiCircle} inline-block mr-2 fi-${countryCode}`}
+      className={`fi fis shadow-inner mr-2 inline-block h-[12px] w-[12px] rounded-full border-0 bg-white text-[12px] shadow-[rgba(0,0,0,.06)] fi-${countryCode}`}
     />
   );
 }
@@ -30,19 +28,15 @@ const LANGUAGE_SELECTOR_ID = 'language-selector';
 
 export const LanguageSelector = () => {
   const { i18n } = useTranslation();
-  const [languages, setLanguages] = useState<Language[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const selectedLanguage = languages.find(language => language.key === i18n.language);
+  const selectedLanguage = availableLanguages.find(
+    (language) => language.key === i18n.language,
+  );
 
   const handleLanguageChange = async (language: Language) => {
     await i18n.changeLanguage(language.key);
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    // Load local languages from the imported availableLanguages
-    setLanguages(availableLanguages);
-  }, []);
 
   useEffect(() => {
     const handleWindowClick = (event: any) => {
@@ -51,11 +45,11 @@ export const LanguageSelector = () => {
         return;
       }
       setIsOpen(false);
-    }
-    window.addEventListener('click', handleWindowClick)
+    };
+    window.addEventListener('click', handleWindowClick);
     return () => {
       window.removeEventListener('click', handleWindowClick);
-    }
+    };
   }, []);
 
   if (!selectedLanguage) {
@@ -64,13 +58,13 @@ export const LanguageSelector = () => {
 
   return (
     <>
-      <div className="flex items-center z-40">
+      <div className="z-40 flex items-center">
         <div className="relative inline-block text-left">
           <div>
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               id={LANGUAGE_SELECTOR_ID}
               aria-haspopup="true"
               aria-expanded={isOpen}
@@ -92,31 +86,34 @@ export const LanguageSelector = () => {
               </svg>
             </button>
           </div>
-          {isOpen && <div
-            className="origin-top-right absolute right-0 mt-2 w-40  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-            role="menu"
-            aria-orientation="horizontal"
-            aria-labelledby="language-selector"
-          >
-            <div className="py-1 grid grid-rows-2 gap-2" role="none">
-              {languages.map((language, index) => {
-                return (
-                  <button
-                    key={language.key}
-                    onClick={() => handleLanguageChange(language)}
-                    className={`${selectedLanguage.key === language.key
-                      ? "bg-gray-100 text-gray-900"
-                      : "text-gray-700"
-                      } px-4 py-2 text-sm text-left items-center inline-flex hover:bg-gray-100 ${index % 2 === 0 ? 'rounded-r' : 'rounded-l'}`}
-                    role="menuitem"
-                  >
-                    <FlagIcon countryCode={language.key} />
-                    <span className="truncate">{language.name}</span>
-                  </button>
-                );
-              })}
+          {isOpen && (
+            <div
+              className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+              role="menu"
+              aria-orientation="horizontal"
+              aria-labelledby="language-selector"
+            >
+              <div className="grid grid-rows-2 gap-2 py-1" role="none">
+                {availableLanguages.map((language, index) => {
+                  return (
+                    <button
+                      key={language.key}
+                      onClick={() => handleLanguageChange(language)}
+                      className={`${
+                        selectedLanguage.key === language.key
+                          ? 'bg-gray-100 text-gray-900'
+                          : 'text-gray-700'
+                      } inline-flex items-center px-4 py-2 text-left text-sm hover:bg-gray-100 ${index % 2 === 0 ? 'rounded-r' : 'rounded-l'}`}
+                      role="menuitem"
+                    >
+                      <FlagIcon countryCode={language.key} />
+                      <span className="truncate">{language.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>}
+          )}
         </div>
       </div>
     </>

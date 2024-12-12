@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
-import { LanguageSelector } from '@/components/LanguageSelector'
-import coverImage from '@/images/curatorAiCover.webp'
+import Image from 'next/image';
+import { BackgroundGridPattern } from '@/components/BackgroundGridPattern';
+import { LanguageSelector } from '@/components/LanguageSelector';
+import coverImage from '@/images/curatorAiCover.webp';
 import { useTranslation } from 'react-i18next';
 
 export function Hero() {
@@ -18,7 +18,12 @@ export function Hero() {
             />
           </div>
           <div className="relative z-10 mx-auto flex w-64 rounded-xl bg-slate-600 shadow-xl md:w-80 lg:w-auto">
-            <Image className="w-full" src={coverImage} alt={t('coverImgAlt')} priority />
+            <Image
+              className="w-full"
+              src={coverImage}
+              alt={t('coverImgAlt')}
+              priority
+            />
           </div>
         </div>
         <div className="relative px-4 sm:px-6 lg:col-span-7 lg:pb-14 lg:pl-16 lg:pr-0 xl:pl-20">
@@ -28,20 +33,18 @@ export function Hero() {
           </h1>
           <div />
         </div>
-        <div className='absolute right-2 px-10'>
+        <div className="absolute right-2 px-10">
           <LanguageSelector />
         </div>
         <div className="bg-white pt-16 lg:col-span-7 lg:bg-transparent lg:pl-16 lg:pt-0 xl:pl-20">
           <div className="mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4 lg:px-0">
             <h2 className="font-display text-4xl font-extrabold text-slate-900 sm:text-6xl">
-              {t('hero1')}
+              {t('hero.title')}
             </h2>
-            <p className="mt-4 text-3xl text-slate-600">
-              {t('hero2')}
-            </p>
+            <p className="mt-4 text-3xl text-slate-600">{t('hero.content')}</p>
           </div>
         </div>
       </div>
     </header>
-  )
+  );
 }

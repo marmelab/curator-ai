@@ -1,9 +1,9 @@
-import { useId } from 'react'
+import { useId } from 'react';
 
 export function BackgroundGridPattern(
   props: Omit<React.ComponentPropsWithoutRef<'pattern'>, 'id'>,
 ) {
-  let patternId = useId()
+  let patternId = useId();
 
   return (
     <svg aria-hidden="true" className="inset-0 h-full w-full">
@@ -20,5 +20,5 @@ export function BackgroundGridPattern(
       </defs>
       <rect width="100%" height="100%" fill={`url(#${patternId})`} />
     </svg>
-  )
+  );
 }

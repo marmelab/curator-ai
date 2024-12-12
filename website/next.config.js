@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    i18n: {
-        locales: ['en', 'fr'],
-        defaultLocale: 'en',
-    },
-}
+  i18n: {
+    locales: ['en', 'fr'],
+    defaultLocale: 'en',
+  },
+};
 
-module.exports = {}
+module.exports = {};

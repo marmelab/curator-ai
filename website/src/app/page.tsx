@@ -1,7 +1,7 @@
-'use client'
-import { Features } from '@/components/Features'
-import { Footer } from '@/components/Footer'
-import { Hero } from '@/components/Hero'
+'use client';
+import { Features } from '@/components/Features';
+import { Footer } from '@/components/Footer';
+import { Hero } from '@/components/Hero';
 import '@/i18n';
 
 export default function Home() {
@@ -11,5 +11,5 @@ export default function Home() {
       <Features />
       <Footer />
     </>
-  )
+  );
 }
