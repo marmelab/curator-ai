@@ -33,6 +33,14 @@ To start Next in dev mode:
 make dev
 ```
 
+## The conversational Agent
+
+```sh
+make conv_agent
+```
+
+This will return a list of preferences. If you want to see or change the message used, go into ```conversational_aget/src/test/test_structured_data.ts``` and change ```var userMail = <yourMessage>``` .
+
 ## CLI Usage
 
 ```sh
