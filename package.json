@@ -5,6 +5,9 @@
         "curator"
     ],
     "scripts": {
-        "build" : "npm run build --workspaces"
+        "build": "npm run build --workspaces"
+    },
+    "dependencies": {
+        "sass": "^1.82.0"
     }
 }

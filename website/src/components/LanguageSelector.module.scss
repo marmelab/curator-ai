@@ -1,0 +1,11 @@
+$size: 24px;
+
+.fiCircle {
+    width: $size !important;
+    height: $size !important;
+    font-size: $size !important;
+    border-radius: 100%;
+    border: none;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .06);
+    background: white;
+}

@@ -4,11 +4,15 @@ import { useTranslation } from 'react-i18next';
 import '@/i18n';
 import { Container } from '@/components/Container'
 import { BackgroundGridPattern } from '@/components/BackgroundGridPattern'
+import { LanguageSelector } from '@/components/LanguageSelector'
 
 export default function NotFound() {
   const { t } = useTranslation();
   return (
     <>
+      <div className='absolute right-2 p-10'>
+        <LanguageSelector />
+      </div>
       <div className="relative flex flex-auto items-center">
         <div className="absolute inset-0 -z-10 text-slate-900/10 [mask-image:linear-gradient(transparent,white,transparent)]">
           <BackgroundGridPattern x="50%" y="50%" patternTransform="translate(0 60)" />
