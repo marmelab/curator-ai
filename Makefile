@@ -17,7 +17,8 @@ webpage: ## Run the webpage localy
 	cd website && npm run start
 	
 send_mail: ## Send newsletter mail
-	cd curator && npx ts-node ./src/mail_agent/newsletter_script.ts
+	cp -n .env.sample .env
+	npx ts-node curator/src/mail_agent/newsletter_script.ts
 	
 build: ## Compile the project
 	npm run build
