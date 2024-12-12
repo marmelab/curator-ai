@@ -4,48 +4,65 @@ import { useTranslation } from 'react-i18next';
 import { CheckIcon } from './CheckIcon';
 import Image from 'next/image';
 import sampleImage from '@/images/sampleImage.png';
-import { createClient } from '@supabase/supabase-js';
 import {Button} from '@/components/Button';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export function Features() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleEmailSubmission = async (e: React.FormEvent) => {
-    e.preventDefault(); // Empêche le rechargement de la page
+    e.preventDefault();
 
-    // Vérifie si l'email est valide avant d'envoyer à Supabase
+    // Validation de l'email
     if (!email || !validateEmail(email)) {
-      setMessage('Veuillez entrer un email valide.');
+      setMessage('Please enter a valid email address.');
       return;
     }
 
-    try {
-      // Insertion de l'email dans la table "subscribers"
-      const { data, error } = await supabase
-        .from('subscribers')
-        .insert([{ user_email: email }]);
+    setIsSubmitting(true);
 
-      if (error) {
-        setMessage(`Erreur : ${error.message}`);
+    try {
+      // Appel de l'API pour gérer l'inscription
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setMessage(`Error: ${result.error || 'Unknown error'}`);
         return;
       }
 
-      // Si l'email est enregistré avec succès
-      setMessage(`Email reçu et enregistré : ${email}`);
-    } catch (error) {
-      setMessage('Une erreur s\'est produite lors de l\'enregistrement de l\'email.');
-    }
+      setMessage(`Email received and successfully registered: ${email}.`);
 
-    console.log('Email soumis :', email);
+      // Optionnel : Appeler une autre API pour envoyer un email
+      await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          recipientEmail: email,
+          subject: 'Welcome to CURATOR AI!',
+          textBody: 'Hi there!\n\nWelcome to CURATOR AI! We\'re excited to have you on board.',
+          htmlBody: '<p>Hi there!</p><p>Welcome to CURATOR AI! We\'re excited to have you on board.</p>',
+        }),
+      });
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      setMessage('An error occurred while registering the email.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  // Fonction pour valider si l'email a un format correct
+  // Fonction pour valider l'email
   const validateEmail = (email: string) => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return regex.test(email);
