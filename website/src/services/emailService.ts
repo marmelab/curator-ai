@@ -1,4 +1,8 @@
-import { welcomeEmailText, welcomeEmailHTML, welcomeEmailCSS } from '@/services/welcomeEmailContent';
+import {
+  welcomeEmailText,
+  welcomeEmailHTML,
+  welcomeEmailCSS,
+} from '@/services/welcomeEmailContent';
 
 /**
  * Handles the logic for sending a welcome email.
@@ -9,7 +13,7 @@ export async function handleSendWelcomeEmail(email: string): Promise<void> {
     // Inject CSS into the HTML (inlined CSS for email compatibility)
     const htmlWithCss = welcomeEmailHTML.replace(
       'STYLE TOKEN',
-      `<style>${welcomeEmailCSS}</style>`
+      `<style>${welcomeEmailCSS}</style>`,
     );
 
     // Send the email
@@ -21,8 +25,8 @@ export async function handleSendWelcomeEmail(email: string): Promise<void> {
       body: JSON.stringify({
         recipientEmail: email,
         subject: 'Welcome to CURATOR AI! 🚀',
-        textBody: welcomeEmailText,  // Plain text body
-        htmlBody: htmlWithCss,  // HTML body with inline CSS
+        textBody: welcomeEmailText, // Plain text body
+        htmlBody: htmlWithCss, // HTML body with inline CSS
       }),
     });
 

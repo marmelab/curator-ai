@@ -10,12 +10,16 @@
     "content": "Your personalized trends curator, designed to help you save time."
   },
   "feature": {
+    "try": "Try it now !",
+    "sub": "Subscribe",
     "title": "An AI-powered tool to keep you perfectly informed",
     "content": "Customize your email preferences to receive a newsletter tailored just for you!",
     "check1": "Select the news topics you want to follow",
     "check2": "Choose when you'd like to receive your news: daily, weekly, or on Fridays.",
     "check3": "Select the sources to create your personalized newsletter.",
-    "mailImgAlt": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI"
+    "mailImgAlt": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI",
+    "successEmail": "Success! The email {{email}} has been registered and a welcome email has been sent.",
+    "genericError": "An error occurred while processing your request."
   },
   "footer": {
     "copyright": "Copyright &copy; {{date}} Marmelab",

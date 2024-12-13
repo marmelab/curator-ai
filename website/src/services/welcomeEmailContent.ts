@@ -20,7 +20,6 @@ Happy exploring!
 The Curator AI Team 🚀
 `;
 
-
 export const welcomeEmailHTML = `
 <!DOCTYPE html>
 <html>
