@@ -1,10 +1,10 @@
 # Curator AI - Newsletter Mail Agent
 
-Mailing part of the Newsletter. Uses the curate agent to generate the content and formats the data to send it in an email. 
+Mailing part of the Newsletter. Uses the curate agent to generate the content and formats the data to send it in an email.
 
 ## Send a sample email
 
-First, define the POSTMARK_SERVER_API_KEY and POSTMARK_DEFAULT_MAIL in .env located in curator workspace root :
+First, define the POSTMARK_SERVER_API_KEY and POSTMARK_DEFAULT_MAIL in .env located at root of the repository.
 
 ```txt
 POSTMARK_SERVER_API_KEY=XXX
@@ -12,11 +12,13 @@ POSTMARK_DEFAULT_MAIL=XXX
 ```
 
 Make sure you have dependencies installed :
+
 ```sh
 make install
 ```
 
 Send a sample email from the root of the project :
+
 ```sh
 make send_mail
 ```
