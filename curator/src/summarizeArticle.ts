@@ -30,10 +30,12 @@ You will be provided with a technical article, and your task is to summarize the
 
 `;
 
-    const completion = await getCompletion({ messages: [
-        { role: 'system', content: prompt },
-        { role: 'user', content: text },
-    ]});
+    const completion = await getCompletion({
+        messages: [
+            { role: 'system', content: prompt },
+            { role: 'user', content: text },
+        ],
+    });
     if (!completion.message.content) return;
     try {
         return { ...JSON.parse(completion.message.content), link };

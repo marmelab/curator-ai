@@ -22,6 +22,7 @@ send_mail: ## Send newsletter mail
 	
 build: ## Compile the project
 	npm run build
+	npm run format
 
 run: ## Summarize a list of articles
 	cd curator && npm start
