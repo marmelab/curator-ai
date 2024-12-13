@@ -5,7 +5,7 @@
   "main": "server_test.ts",
   "scripts": {
     "build": "npx tsc",
-    "start": "ts-node ./src/test/test_structured_data.ts"
+    "start": "ts-node ./src/test/test_scrapper.ts"
   },
   "author": "",
   "license": "ISC",

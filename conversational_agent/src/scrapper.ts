@@ -1,11 +1,19 @@
 import { z } from "zod";
 import { zodResponseFormat } from "openai/helpers/zod";
+import dotenv from 'dotenv';
+import { OpenAI } from 'openai';
+
+dotenv.config({ path: './../.env' });
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY || '',
+});
 
 const PreferenceExtraction = z.object({
   themes: z.array(z.string()),
 });
 
-export async function runStructuredRequest(openai: any, userMail: string) {
+export async function runStructuredRequest(userMail: string) {
   const completion = await openai.beta.chat.completions.parse({
     model: "gpt-4o-mini",
     messages: [
