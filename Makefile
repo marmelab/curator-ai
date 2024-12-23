@@ -32,3 +32,7 @@ dev: ## Run the CLI in development mode
 
 conv_agent: ## Test the conversational agent
 	cd conversational_agent && npm run start
+
+clean: ## To clean the project
+	rm -f package-lock.json
+	rm -rf node_modules
