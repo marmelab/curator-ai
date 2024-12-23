@@ -39,7 +39,7 @@ make dev
 make conv_agent
 ```
 
-This will return a list of preferences. If you want to see or change the message used, go into ```conversational_aget/src/test/test_structured_data.ts``` and change ```var userMail = <yourMessage>``` .
+This will return a list of preferences. If you want to see or change the message used, go into `conversational_aget/src/test/test_structured_data.ts` and change `var userMail = <yourMessage>` .
 
 ## CLI Usage
 

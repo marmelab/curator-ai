@@ -31,4 +31,4 @@ dev: ## Run the CLI in development mode
 	cd website && npm run dev
 
 conv_agent: ## Test the conversational agent
-	cd conversational_agent && npm start
+	cd conversational_agent && npm run start
