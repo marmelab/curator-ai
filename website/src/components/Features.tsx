@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CheckIcon } from './CheckIcon';
-import i18next from '@/i18n';
 import Image from 'next/image';
 import sampleImage from '@/images/sampleImage.png';
 import { Button } from '@/components/Button';
@@ -12,16 +11,28 @@ export function Features() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleEmailSubmission = async (e: React.FormEvent) => {
+  const HandleEmailSubmission = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
 
     try {
       await handleSubscription(email);
 
-      //await handleSendWelcomeEmail(email);
+      const response = await fetch('/api/sendWelcomeEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          text: t('mail.txt'),
+          html: t('mail.html'),
+        }),
+      });
 
-      setMessage(t('feature.successEmail', { email }));
+      if (response.ok) {
+        setMessage(t('feature.successEmail', { email }));
+      }
     } catch (error: any) {
       setMessage(error.message || t('feature.genericError'));
     }
@@ -57,7 +68,7 @@ export function Features() {
               <h3 className="text-lg font-medium tracking-tight text-black">
                 {t('feature.try')}
               </h3>
-              <div className="mt-4 items-center flex inset-0 rounded-md border border-black/40 peer-focus:border-black peer-focus:ring-1 peer-focus:ring-blue-300 sm:rounded-xl">
+              <div className="inset-0 mt-4 flex items-center rounded-md border border-black/40 peer-focus:border-black peer-focus:ring-1 peer-focus:ring-blue-300 sm:rounded-xl">
                 <div className="relative sm:static sm:flex-auto">
                   <input
                     type="email"
@@ -75,7 +86,7 @@ export function Features() {
                   type="submit"
                   variant="solid"
                   color="blue"
-                  className=" w-full m-2 sm:relative sm:z-10 sm:w-auto sm:flex-none"
+                  className="m-2 w-full sm:relative sm:z-10 sm:w-auto sm:flex-none"
                 >
                   Subscribe
                 </Button>
