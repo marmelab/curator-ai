@@ -2,10 +2,10 @@
     "name": "conversational_agent",
     "version": "1.0.0",
     "description": "",
-    "main": "server_test.ts",
+    "main": "server.ts",
     "scripts": {
         "build": "npx tsc",
-        "start": "ts-node ./src/test/test_scrapper.ts"
+        "start": "ts-node ./src/server.ts"
     },
     "author": "",
     "license": "ISC",

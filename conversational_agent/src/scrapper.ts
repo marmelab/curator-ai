@@ -33,4 +33,6 @@ export async function runStructuredRequest(userMail: string) {
     const preferences_completion = completion.choices[0].message.parsed;
 
     console.log(preferences_completion);
+
+    return preferences_completion;
 }

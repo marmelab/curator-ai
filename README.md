@@ -8,6 +8,7 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 
 - Node.js >= 18
 - an [OpenAI API](https://platform.openai.com/) key
+- a [Postmark](https://postmarkapp.com/) server
 
 ## Initialize the project
 
@@ -39,7 +40,21 @@ make dev
 make conv_agent
 ```
 
-This will return a list of preferences. If you want to see or change the message used, go into `conversational_aget/src/test/test_structured_data.ts` and change `var userMail = <yourMessage>` .
+You will get as an anwser :
+
+```sh
+Server started at http://localhost:3000
+Serveur exposed with Ngrok : <YOUR_WEBHOOK_URI>
+```
+
+Go to your [Postmark](https://postmarkapp.com/) server, and :
+
+- Create an Inbound Message Stream if not already existing.
+- In the settings of this Inbound Stream, write `<YOUR_WEBHOOK_URI>` in the Webhook section.
+- Be sure that the email you have entered in the `.env` file as `DEFAULT_POSTMARK_MAIL` is in `Sender Signatures`
+
+Now you can send an email to the inbound address (in the inbound settings).
+This will return a list of preferences.
 
 ## CLI Usage
 
