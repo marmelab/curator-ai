@@ -36,26 +36,4 @@ app.post('/webhook', async (req: Request, res: Response) => {
 });
 
 // Start the server
-const startServer = async () => {
-    app.listen(PORT, async () => {
-        console.log(`Server started at http://localhost:${PORT}`);
-
-        // Use the authtoken from the .env file
-        const authtoken = process.env.NGROK_AUTH_TOKEN;
-
-        if (!authtoken) {
-            throw new Error("Ngrok authtoken is not defined in the .env file");
-        }
-
-        // Set the authtoken
-        await ngrok.authtoken(authtoken);
-        
-        // Exposer the serveur with Ngrok
-        const url = await ngrok.connect(PORT);
-        console.log(`Serveur exposed with Ngrok : ${url}`);
-    });
-};
-
-startServer().catch((err) => {
-    console.error("Error starting Ngrok : ", err);
-});
+app.listen(PORT);

@@ -40,18 +40,24 @@ make dev
 make conv_agent
 ```
 
-You will get as an anwser :
+This will start the server at `http://localhost:3000`.
+Now, in an other terminal :
 
 ```sh
-Server started at http://localhost:3000
-Serveur exposed with Ngrok : <YOUR_WEBHOOK_URI>
+make start_ngrok
+```
+
+This, will show a bunch of line. Note the one like :
+
+```sh
+Forwarding                    <YOUR_WEBHOOK_URI> -> http://localhost:3000
 ```
 
 Go to your [Postmark](https://postmarkapp.com/) server, and :
 
 - Create an Inbound Message Stream if not already existing.
-- In the settings of this Inbound Stream, write `<YOUR_WEBHOOK_URI>` in the Webhook section.
-- Be sure that the email you have entered in the `.env` file as `DEFAULT_POSTMARK_MAIL` is in `Sender Signatures`
+- In the settings of this Inbound Stream, write `<YOUR_WEBHOOK_URI>/webhook` in the Webhook section.
+- Be sure that the email you have entered in the `.env` file as `DEFAULT_POSTMARK_MAIL` is in `Sender Signatures`. This will be the email you are going to use after.
 
 Now you can send an email to the inbound address (in the inbound settings).
 This will return a list of preferences.
