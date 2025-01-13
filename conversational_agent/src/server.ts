@@ -21,18 +21,19 @@ app.post('/webhook', async (req: Request, res: Response) => {
 
     if (isSpam) {
         console.log('Spam received from ' + body['From']);
-    } else {
-        console.log(
-            'Email received from ' +
-                body['From'] +
-                ' on ' +
-                body['Date'] +
-                ' : \n' +
-                body['TextBody']
-        );
-
-        makeEmailResponse(body);
+        return;
     }
+    console.log(
+        'Email received from ' +
+            body['From'] +
+            ' on ' +
+            body['Date'] +
+            ' : \n' +
+            body['TextBody']
+    );
+
+    makeEmailResponse(body);
+
 });
 
 // Start the server
