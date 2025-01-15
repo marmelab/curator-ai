@@ -13,7 +13,7 @@ const PreferenceExtraction = z.object({
     themes: z.array(z.string()),
 });
 
-export async function runStructuredRequest(userMail: string) {
+export async function getAIPreferences(userMail: string): Promise<{ themes: string[]; } | null>{
     const completion = await openai.beta.chat.completions.parse({
         model: 'gpt-4o-mini',
         messages: [
@@ -30,9 +30,7 @@ export async function runStructuredRequest(userMail: string) {
         ),
     });
 
-    const preferences_completion = completion.choices[0].message.parsed;
+    const preferencesCompletion = completion.choices[0].message.parsed;
 
-    console.log(preferences_completion);
-
-    return preferences_completion;
+    return preferencesCompletion;
 }

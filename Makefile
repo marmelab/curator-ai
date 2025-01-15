@@ -20,6 +20,7 @@ install: ## Install the dependencies
 	npm install
 
 webpage: ## Run the webpage localy
+	npm run format
 	cd website && npm run start
 	
 send_mail: ## Send newsletter mail
@@ -31,12 +32,15 @@ build: ## Compile the project
 	npm run format
 
 run: ## Summarize a list of articles
+	npm run format
 	npm --workspace curator run start
 
 dev: ## Run the CLI in development mode
+	npm run format
 	npm --workspace website run dev
 
 conv_agent: ## Test the conversational agent
+	npm run format
 	npm --workspace conversational_agent run start
 
 clean: ## To clean the project
