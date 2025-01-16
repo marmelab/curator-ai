@@ -1,4 +1,4 @@
-import { getUserPreferences } from '../preferencesScrapper';
+import { getUserPreferences } from '../getUserPreferences';
 import { promises as fs } from 'fs';
 
 async function getStringFromFile(filePath: string): Promise<string> {
@@ -19,15 +19,14 @@ async function getStringFromFile(filePath: string): Promise<string> {
 
     let response = `Hello!\n\n`;
 
-    if (!aiResponse?.themes?.length) {
-        response = "Sorry, we didn't find any preferences in your E-Mail.";
-    } else {
-        const themeLabel = aiResponse.themes.length === 1 ? 'theme' : 'themes';
-        response += `The following ${themeLabel} have been added to your next newsletters:\n`;
-
-        aiResponse.themes.forEach(theme => {
-            response += `   - ${theme}\n`;
-        });
+    if (aiResponse?.themes?.length) {
+        return `Sorry, we didn't find any preferences in your E-Mail.`;
     }
+    response += `
+        The following ${
+            aiResponse?.themes.length == 1 ? 'theme' : 'themes'
+        } have been added to your next newsletters :\n
+        ${aiResponse?.themes.join('\n- ')}
+    `;
     console.log(response);
 })();

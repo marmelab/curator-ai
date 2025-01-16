@@ -1,4 +1,4 @@
-import { getUserPreferences } from './preferencesScrapper';
+import { getUserPreferences } from './getUserPreferences';
 
 export const buildResponse = async (body: any) => {
     // Generate a response from AI based on the received email text
@@ -6,23 +6,24 @@ export const buildResponse = async (body: any) => {
 
     let response = `Hello!\n\n`;
 
-    if (!aiResponse?.themes?.length) {
-        response = "Sorry, we didn't find any preferences in your E-Mail.";
-    } else {
-        const themeLabel = aiResponse.themes.length === 1 ? 'theme' : 'themes';
-        response += `The following ${themeLabel} have been added to your next newsletters:\n`;
-
-        aiResponse.themes.forEach(theme => {
-            response += `   - ${theme}\n`;
-        });
+    const emailMetadata = `
+        \n   -------- Previous Message --------\n
+        From: ${body['From']}\n
+        Sent: ${body['Date']}\n
+        To: ${body['To']}\n
+        Subject: ${body['Subject']}\n\n
+        ${body['TextBody']}\n
+    `;
+    if (aiResponse?.themes?.length) {
+        return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;
     }
-
-    response += `\n   -------- Previous Message --------\n`;
-    response += `   From: ` + body['From'] + `\n`;
-    response += `   Sent: ` + body['Date'] + `\n`;
-    response += `   To: ` + body['To'] + `\n`;
-    response += `   Subject: ` + body['Subject'] + `\n\n`;
-    response += body['TextBody'] + `\n`;
+    response += `
+        The following ${
+            aiResponse?.themes.length == 1 ? 'theme' : 'themes'
+        } have been added to your next newsletters :\n
+        ${aiResponse?.themes.join('\n- ')}
+        ${emailMetadata}
+    `;
 
     return response;
 };

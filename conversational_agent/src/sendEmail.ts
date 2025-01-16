@@ -16,8 +16,8 @@ export const sendMail = async (to: string, subject: string, body: string) => {
             From: process.env.DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
             To: to,
             Subject: 'Re: ' + subject,
-            HtmlBody: formatMailHtmlWithCSS(body),
-            TextBody: formatMailMarkdown(body),
+            HtmlBody: formatHtmlBody(body),
+            TextBody: formatTextBody(body),
             MessageStream: 'outbound',
         });
         console.error('E-Mail sent successfully : ', result);
@@ -31,17 +31,8 @@ export const sendMail = async (to: string, subject: string, body: string) => {
  * @param content String : The content of the mail
  * @returns String
  */
-function formatMailMarkdown(content: string) {
-    // Mail's header
-
-    let mail = 'Curator AI\n\n';
-    mail += content;
-
-    // Footer
-
-    mail += '\nSee you soon for your next newsletter!\n';
-
-    return mail;
+function formatTextBody(content: string) {
+    return `Curator AI\n\n ${content}\n\nSee you soon for your next newsletter!`;
 }
 
 /**
@@ -49,20 +40,14 @@ function formatMailMarkdown(content: string) {
  * @param content String : The content of the mail
  * @returns String
  */
-function formatMailHtmlWithCSS(content: String) {
-    // Header
-
-    let htmlMail = `
-    <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
-        <h1 style="color: #164e63; text-align: center; font-size: 32px;">Curator AI</h1>
-        <p style="font-size: 18px; text-align: center;">Incoming message :</p>
-    `;
-
-    htmlMail +=
-        `
-    <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">` +
-        content.replace(/\n/g, '<br/>') +
-        `</div>`;
-    htmlMail += `<p style="font-size: 18px; text-align: center;">See you soon for your next newsletter!</p>`;
-    return htmlMail;
+function formatHtmlBody(content: String) {
+    return `
+  <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
+  <h1 style="color: #164e63; text-align: center; font-size: 32px;">Curator AI</h1>
+  <p style="font-size: 18px; text-align: center;">Incoming message :</p>
+  <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  ${content.replace(/\n/g, '<br/>')}
+  </div>
+  <p style="font-size: 18px; text-align: center;">See you soon for your next newsletter!</p>
+`;
 }
