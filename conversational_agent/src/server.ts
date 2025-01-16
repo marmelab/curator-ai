@@ -24,7 +24,8 @@ app.post('/webhook', async (req: Request, res: Response) => {
         return;
     }
     console.log(
-        `Received email from ${body['From']} on ${body['Date']} : \n${body['TextBody']}`
+        `Received email from ${body['From']} on ${body['Date']} : 
+${body['TextBody']}`
     );
 
     const response = await buildResponse(body);

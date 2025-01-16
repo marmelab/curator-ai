@@ -32,7 +32,11 @@ export const sendMail = async (to: string, subject: string, body: string) => {
  * @returns String
  */
 function formatTextBody(content: string) {
-    return `Curator AI\n\n ${content}\n\nSee you soon for your next newsletter!`;
+    return `Curator AI
+
+    ${content}
+    
+    See you soon for your next newsletter!`;
 }
 
 /**

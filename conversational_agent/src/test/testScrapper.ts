@@ -17,12 +17,12 @@ async function getStringFromFile(filePath: string): Promise<string> {
     // Generate a response from AI based on the received email text
     const aiResponse = await getUserPreferences(userMail);
 
-    let response = `Hello!\n\n`;
-
     if (!aiResponse?.themes?.length) {
-        response += `Sorry, we didn't find any preferences in your E-Mail.`;
+        console.log(`Hello!
+Sorry, we didn't find any preferences in your E-Mail.`);
     } else {
-        response += `The following ${aiResponse?.themes.length == 1 ? 'theme' : 'themes'} have been added to your next newsletters :\n  - ${aiResponse?.themes.join('\n  - ')}`;
+        console.log(`Hello!
+The following ${aiResponse?.themes.length == 1 ? 'theme' : 'themes'} have been added to your next newsletters :
+- ${aiResponse?.themes.join('\n  - ')}`);
     }
-    console.log(response);
 })();
