@@ -6,6 +6,8 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 import { validateEmail } from '@/utils/validateEmail'; // Import the validation utility
+import { unsubscribe } from 'diagnostics_channel';
+import { randomInt } from 'crypto';
 
 /**
  * Handles the logic for subscribing an email, including validation.
@@ -25,7 +27,7 @@ export async function handleSubscription(email: string): Promise<void> {
       .single();
 
     if (selectError && selectError.code !== 'PGRST116') {
-      throw new Error(`Error verifying email: ${selectError.message}`);
+      throw new Error(`Error verifying email ${selectError.code}: ${selectError.message}`);
     }
 
     if (existingEmail) {

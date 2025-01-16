@@ -5,20 +5,22 @@ import { CheckIcon } from './CheckIcon';
 import Image from 'next/image';
 import sampleImage from '@/images/sampleImage.png';
 import { Button } from '@/components/Button';
+import { handleSubscription } from '@/services/subscribeService'; // Import subscription service
+import { handleSendWelcomeEmail } from '@/services/emailService';
 
 export function Features() {
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
-  const HandleEmailSubmission = async (e: React.FormEvent) => {
+  const handleEmailSubmission = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
 
     try {
       await handleSubscription(email);
 
-      const response = await fetch('/api/sendWelcomeEmail', {
+      /*const response = await fetch('/api/sendWelcomeEmail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,11 +30,10 @@ export function Features() {
           text: t('mail.txt'),
           html: t('mail.html'),
         }),
-      });
+      });*/
 
-      if (response.ok) {
-        setMessage(t('feature.successEmail', { email }));
-      }
+      //await handleSendWelcomeEmail(email, t('mail.txt'), t('mail.html'));
+      setMessage(t('feature.successEmail', { email }));
     } catch (error: any) {
       setMessage(error.message || t('feature.genericError'));
     }
@@ -63,7 +64,7 @@ export function Features() {
                 </li>
               ))}
             </ul>
-            {/* Formulaire de saisie de l'email */}
+            {/* email form */}
             <form className="mt-10 px-20" onSubmit={handleEmailSubmission}>
               <h3 className="text-lg font-medium tracking-tight text-black">
                 {t('feature.try')}
@@ -80,7 +81,6 @@ export function Features() {
                     onChange={(e) => setEmail(e.target.value)} // Mettez à jour l'email dans l'état
                     className="peer relative z-10 w-full appearance-none bg-transparent px-4 py-2 text-base text-black placeholder:text-slate-400/70 focus:outline-none sm:py-3"
                   />
-                  {/* <div className="absolute " /> */}
                 </div>
                 <Button
                   type="submit"
