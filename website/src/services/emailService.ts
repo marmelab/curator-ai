@@ -1,3 +1,5 @@
+'use server';
+
 import { welcomeEmailCSS } from '@/services/welcomeEmailContent';
 import { Client } from 'postmark';
 
