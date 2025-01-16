@@ -1,6 +1,6 @@
 'use server';
 
-import { welcomeEmailCSS } from '@/services/welcomeEmailContent';
+import { generateWelcomeEmail } from '@/services/welcomeEmailContent';
 import { Client } from 'postmark';
 
 /**
@@ -9,15 +9,12 @@ import { Client } from 'postmark';
  */
 export async function handleSendWelcomeEmail(
   email: string,
-  textBody: string,
-  htmlBody: string,
+  translations: { [key: string]: string }
 ): Promise<void> {
   const recipientEmail = email;
   const subject = 'Welcome to CURATOR AI! 🚀';
-  htmlBody = htmlBody.replace(
-    'STYLE TOKEN',
-    `<style>${welcomeEmailCSS}</style>`,
-  );
+  const htmlBody = generateWelcomeEmail(translations);
+  const textBody = translations.txt;
 
   try {
     const postmarkApiToken = process.env.NEXT_PUBLIC_POSTMARK_API_SERVER_TOKEN;

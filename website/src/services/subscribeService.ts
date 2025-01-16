@@ -27,7 +27,9 @@ export async function handleSubscription(email: string): Promise<void> {
       .single();
 
     if (selectError && selectError.code !== 'PGRST116') {
-      throw new Error(`Error verifying email ${selectError.code}: ${selectError.message}`);
+      throw new Error(
+        `Error verifying email ${selectError.code}: ${selectError.message}`,
+      );
     }
 
     if (existingEmail) {
