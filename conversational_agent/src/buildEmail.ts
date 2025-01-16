@@ -17,13 +17,7 @@ export const buildResponse = async (body: any) => {
     if (aiResponse?.themes?.length) {
         return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;
     }
-    response += `
-        The following ${
-            aiResponse?.themes.length == 1 ? 'theme' : 'themes'
-        } have been added to your next newsletters :\n
-        ${aiResponse?.themes.join('\n- ')}
-        ${emailMetadata}
-    `;
+    response += `The following ${aiResponse?.themes.length == 1 ? 'theme' : 'themes'} have been added to your next newsletters :\n  - ${aiResponse?.themes.join('\n  - ')}\n${emailMetadata}`;
 
     return response;
 };
