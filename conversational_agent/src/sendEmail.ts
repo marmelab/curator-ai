@@ -1,9 +1,8 @@
 import dotenv from 'dotenv';
+import postmark from 'postmark';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
-
-let postmark = require('postmark');
 
 export const sendMail = async (to: string, subject: string, body: string) => {
     // Use the Postmark API key from environment variables
@@ -14,7 +13,7 @@ export const sendMail = async (to: string, subject: string, body: string) => {
     try {
         // Send an email
         const result = await client.sendEmail({
-            From: process.env.DEFAULT_POSTMARK_MAIL, // Replace with a verified email
+            From: process.env.DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
             To: to,
             Subject: 'Re: ' + subject,
             HtmlBody: formatMailHtmlWithCSS(body),

@@ -13,7 +13,7 @@ const PreferenceExtraction = z.object({
     themes: z.array(z.string()),
 });
 
-export async function getAIPreferences(
+export async function getUserPreferences(
     userMail: string
 ): Promise<{ themes: string[] } | null> {
     const completion = await openai.beta.chat.completions.parse({

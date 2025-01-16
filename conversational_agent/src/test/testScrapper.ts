@@ -1,4 +1,4 @@
-import { getAIPreferences } from '../interestsScrapper';
+import { getUserPreferences } from '../preferencesScrapper';
 import { promises as fs } from 'fs';
 
 async function getStringFromFile(filePath: string): Promise<string> {
@@ -14,6 +14,20 @@ async function getStringFromFile(filePath: string): Promise<string> {
 (async () => {
     let userMail = await getStringFromFile(__dirname + '/myMessage.txt');
 
-    const answ = await getAIPreferences(userMail);
-    console.log(answ);
+    // Generate a response from AI based on the received email text
+    const aiResponse = await getUserPreferences(userMail);
+
+    let response = `Hello!\n\n`;
+
+    if (!aiResponse?.themes?.length) {
+        response = "Sorry, we didn't find any preferences in your E-Mail.";
+    } else {
+        const themeLabel = aiResponse.themes.length === 1 ? 'theme' : 'themes';
+        response += `The following ${themeLabel} have been added to your next newsletters:\n`;
+
+        aiResponse.themes.forEach(theme => {
+            response += `   - ${theme}\n`;
+        });
+    }
+    console.log(response);
 })();
