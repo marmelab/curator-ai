@@ -39,9 +39,13 @@ dev: ## Run the CLI in development mode
 	npm run format
 	npm --workspace website run dev
 
-conv_agent: ## Test the conversational agent
+conv_agent: ## Test the conversational agent with mail
 	npm run format
 	npm --workspace conversational_agent run start
+
+conv_agent_test: ## Test the conversational agent
+	npm run format
+	npm --workspace conversational_agent run test
 
 clean: ## To clean the project
 	rm -f package-lock.json

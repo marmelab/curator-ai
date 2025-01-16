@@ -5,7 +5,8 @@
     "main": "server.ts",
     "scripts": {
         "build": "npx tsc",
-        "start": "ts-node ./src/server.ts"
+        "start": "ts-node ./src/server.ts",
+        "test": "ts-node ./src/test/testScrapper.ts"
     },
     "author": "",
     "license": "ISC",

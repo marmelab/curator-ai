@@ -13,7 +13,9 @@ const PreferenceExtraction = z.object({
     themes: z.array(z.string()),
 });
 
-export async function getAIPreferences(userMail: string): Promise<{ themes: string[]; } | null>{
+export async function getAIPreferences(
+    userMail: string
+): Promise<{ themes: string[] } | null> {
     const completion = await openai.beta.chat.completions.parse({
         model: 'gpt-4o-mini',
         messages: [

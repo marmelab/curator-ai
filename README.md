@@ -18,7 +18,16 @@ After cloning the repository, run the following command :
 make init
 ```
 
-It will install every dependencies and create a .env file with all the required fields.
+It will install every dependencies.
+
+Then you can copy the `.env.sample` file as `.env`, and fill it with your info:
+
+- `OPENAI_API_KEY`: your Open API key.
+- `SUPABASE_URL`: the url of your Supabase DB.
+- `SUPABASE_ANON_KEY`: the anon key of your Supabase BD.
+- `POSTMARK_API_KEY`: your Postmark API key.
+- `DEFAULT_POSTMARK_MAIL`: the default email you are using to communicate with the service.
+- `NGROK_AUTH_TOKEN`: your Ngrok auth token.
 
 ## Start the webpage
 
@@ -35,6 +44,16 @@ make dev
 ```
 
 ## The conversational Agent
+
+## Test the interest scrapper (without the mail)
+
+```sh
+make conv_agent_test
+```
+
+This will return your preferences in a JSON format. If you want to see and change the request, go to the `./conversational_agent/src/test/myMessage.txt`.
+
+## Send an email an get your extracted preferences !
 
 ```sh
 make conv_agent

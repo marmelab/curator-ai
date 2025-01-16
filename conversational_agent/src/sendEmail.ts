@@ -7,7 +7,9 @@ let postmark = require('postmark');
 
 export const sendMail = async (to: string, subject: string, body: string) => {
     // Use the Postmark API key from environment variables
-    const client = new postmark.ServerClient(process.env.POSTMARK_API_KEY || '');
+    const client = new postmark.ServerClient(
+        process.env.POSTMARK_API_KEY || ''
+    );
 
     try {
         // Send an email
@@ -19,9 +21,9 @@ export const sendMail = async (to: string, subject: string, body: string) => {
             TextBody: formatMailMarkdown(body),
             MessageStream: 'outbound',
         });
-        console.error("E-Mail sent successfully : ", result)
+        console.error('E-Mail sent successfully : ', result);
     } catch (error) {
-        console.error("Error when trying to send the E-Mail :", error);
+        console.error('Error when trying to send the E-Mail :', error);
     }
 };
 
@@ -38,7 +40,7 @@ function formatMailMarkdown(content: string) {
 
     // Footer
 
-    mail += "\nSee you soon for your next newsletter!\n";
+    mail += '\nSee you soon for your next newsletter!\n';
 
     return mail;
 }
@@ -57,10 +59,11 @@ function formatMailHtmlWithCSS(content: String) {
         <p style="font-size: 18px; text-align: center;">Incoming message :</p>
     `;
 
-    htmlMail += `
-    <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">`
-        + content.replace(/\n/g, '<br/>') +
-    `</div>`;
-    htmlMail += `<p style="font-size: 18px; text-align: center;">See you soon for your next newsletter!</p>`
+    htmlMail +=
+        `
+    <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">` +
+        content.replace(/\n/g, '<br/>') +
+        `</div>`;
+    htmlMail += `<p style="font-size: 18px; text-align: center;">See you soon for your next newsletter!</p>`;
     return htmlMail;
 }
