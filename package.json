@@ -2,10 +2,15 @@
     "name": "curator-ai",
     "workspaces": [
         "website",
-        "curator"
+        "curator",
+        "conversational_agent"
     ],
     "scripts": {
         "build": "npm run build --workspaces",
         "format": "prettier --write ."
+    },
+    "dependencies": {
+        "ngrok": "^5.0.0-beta.2",
+        "postmark": "^4.0.5"
     }
 }

@@ -8,6 +8,7 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 
 - Node.js >= 18
 - an [OpenAI API](https://platform.openai.com/) key
+- a [Postmark](https://postmarkapp.com/) server
 
 ## Initialize the project
 
@@ -17,7 +18,16 @@ After cloning the repository, run the following command :
 make init
 ```
 
-It will install every dependencies and create a .env file with all the required fields.
+It will install every dependencies.
+
+Then you can copy the `.env.sample` file as `.env`, and fill it with your info:
+
+- `OPENAI_API_KEY`: your Open API key.
+- `SUPABASE_URL`: the url of your Supabase DB.
+- `SUPABASE_ANON_KEY`: the anon key of your Supabase BD.
+- `POSTMARK_API_KEY`: your Postmark API key.
+- `DEFAULT_POSTMARK_MAIL`: the default email you are using to communicate with the service.
+- `NGROK_AUTH_TOKEN`: your Ngrok auth token.
 
 ## Start the webpage
 
@@ -32,6 +42,44 @@ To start Next in dev mode:
 ```sh
 make dev
 ```
+
+## The conversational Agent
+
+## Test the interest scrapper (without the mail)
+
+```sh
+make conv_agent_test
+```
+
+This will return your preferences in a JSON format. If you want to see and change the request, go to the `./conversational_agent/src/test/myMessage.txt`.
+
+## Send an email an get your extracted preferences !
+
+```sh
+make conv_agent
+```
+
+This will start the server at `http://localhost:3000`.
+Now, in an other terminal :
+
+```sh
+make start_ngrok
+```
+
+This, will show a bunch of line. Note the one like :
+
+```sh
+Forwarding                    <YOUR_WEBHOOK_URI> -> http://localhost:3000
+```
+
+Go to your [Postmark](https://postmarkapp.com/) server, and :
+
+- Create an Inbound Message Stream if not already existing.
+- In the settings of this Inbound Stream, write `<YOUR_WEBHOOK_URI>/webhook` in the Webhook section.
+- Be sure that the email you have entered in the `.env` file as `DEFAULT_POSTMARK_MAIL` is in `Sender Signatures`. This will be the email you are going to use after.
+
+Now you can send an email to the inbound address (in the inbound settings).
+This will return a list of preferences.
 
 ## CLI Usage
 
