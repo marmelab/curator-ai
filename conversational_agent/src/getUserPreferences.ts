@@ -11,11 +11,12 @@ const openai = new OpenAI({
 
 const PreferenceExtraction = z.object({
     themes: z.array(z.string()),
+    unwanted_themes: z.array(z.string()),
 });
 
 export async function getUserPreferences(
     userMail: string
-): Promise<{ themes: string[] } | null> {
+): Promise<{ themes: string[]; unwanted_themes: string[] } | null> {
     const completion = await openai.beta.chat.completions.parse({
         model: 'gpt-4o-mini',
         messages: [

@@ -1,14 +1,12 @@
 import dotenv from 'dotenv';
-import postmark from 'postmark';
+import { ServerClient } from 'postmark';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
 
 export const sendMail = async (to: string, subject: string, body: string) => {
     // Use the Postmark API key from environment variables
-    const client = new postmark.ServerClient(
-        process.env.POSTMARK_API_KEY || ''
-    );
+    const client = new ServerClient(process.env.POSTMARK_API_KEY || '');
 
     try {
         // Send an email
