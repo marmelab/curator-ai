@@ -13,19 +13,32 @@ async function getStringFromFile(filePath: string): Promise<string> {
     }
 }
 
-async function formatResponse(aiResponse: { themes: string[] } | null) {
+async function formatResponse(aiResponse: { themes: string[]; unwanted_themes: string[] } | null) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
     const cleanThemes = purify.sanitize(
         aiResponse?.themes.length == 1 ? 'theme' : 'themes'
     );
+    console.log(aiResponse);
     if (!aiResponse?.themes?.length) {
         return `Hello!
 Sorry, we didn't find any preferences in your E-Mail.`;
     }
-    return `Hello!
-The following ${cleanThemes} have been added to your next newsletters :
+
+    let textThemes = '';
+    if (aiResponse?.themes?.length) {
+        textThemes += `The following ${cleanThemes} have been added to your next newsletters :
 - ${aiResponse?.themes.join('\n  - ')}`;
+    }
+
+    let textUnwantedThemes = '';
+    if (aiResponse?.unwanted_themes?.length) {
+        textUnwantedThemes += `\nYou will no longer be annoyed with the following ${cleanThemes} :
+- ${aiResponse?.unwanted_themes.join('\n  - ')}`;
+    }
+    return `Hello!
+${textThemes}
+${textUnwantedThemes}`;
 }
 
 (async () => {
