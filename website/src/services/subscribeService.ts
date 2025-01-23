@@ -5,10 +5,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-import { validateEmail } from '@/utils/validateEmail'; // Import the validation utility
-import { unsubscribe } from 'diagnostics_channel';
-import { randomInt } from 'crypto';
-
+import { validateEmail } from '@/utils/validateEmail';
 /**
  * Handles the logic for subscribing an email, including validation.
  * @param email - The email address to subscribe.
