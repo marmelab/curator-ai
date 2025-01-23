@@ -9,9 +9,3 @@ _Describe the solution this PR implements_
 ## How To Test
 
 _Describe the steps required to test the changes_
-
-## Additional Checks
-
-- [ ] The PR targets `master` for a bugfix, or `next` for a feature
-- [ ] The PR includes **unit tests** (if not possible, describe why)
-- [ ] The **documentation** is up to date

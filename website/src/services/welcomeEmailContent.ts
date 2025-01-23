@@ -1,6 +1,7 @@
-export function generateWelcomeEmail(translations: { [key: string]: string }): string {
-
-    const emailBody = `<!DOCTYPE html>
+export function generateWelcomeEmail(translations: {
+  [key: string]: string;
+}): string {
+  const emailBody = `<!DOCTYPE html>
 <html>
 <head>
     <style>
@@ -89,5 +90,5 @@ export function generateWelcomeEmail(translations: { [key: string]: string }): s
     </body>
 </html>
 `;
-    return emailBody;
+  return emailBody;
 }

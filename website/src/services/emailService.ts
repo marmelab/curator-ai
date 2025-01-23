@@ -9,7 +9,7 @@ import { Client } from 'postmark';
  */
 export async function handleSendWelcomeEmail(
   email: string,
-  translations: { [key: string]: string }
+  translations: { [key: string]: string },
 ): Promise<void> {
   const recipientEmail = email;
   const subject = 'Welcome to CURATOR AI! 🚀';

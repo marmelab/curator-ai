@@ -20,7 +20,7 @@ export const buildResponse = async (body: any) => {
     
     `;
 
-    if (aiResponse?.themes?.length) {
+    if (!aiResponse?.themes?.length) {
         return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;
     }
     return `Hello!
