@@ -31,7 +31,7 @@ Then you can copy the `.env.sample` file as `.env`, and fill it with your info:
 
 ## Start the webpage
 
-To run the webpage localy:
+To run the webpage locally:
 
 ```sh
 make webpage
@@ -42,8 +42,13 @@ To start Next in dev mode:
 ```sh
 make dev
 ```
+To start the supabase database (in order to test the subscription feature)
 
-## The conversational Agent
+```sh
+npx supabase start
+```
+
+Warning : the supabase containers use Docker Desktop. The image is quite consequent (~5Gb needed)
 
 ## Test the interest scrapper (without the mail)
 
