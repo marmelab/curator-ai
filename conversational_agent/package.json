@@ -17,6 +17,7 @@
         "openai": "^4.68.4",
         "postmark": "^4.0.5",
         "ts-node": "^10.9.2",
+        "supabase": "^2.6.8",
         "zod": "^3.23.8"
     },
     "devDependencies": {
