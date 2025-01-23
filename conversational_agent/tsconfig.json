@@ -2,8 +2,6 @@
     "include": ["./src/**/*"],
     "exclude": ["node_modules", "dist"],
     "compilerOptions": {
-        /* Visit https://aka.ms/tsconfig to read more about this file */
-        /* Projects */
         /* Language and Environment */
         "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
         /* Modules */

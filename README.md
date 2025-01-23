@@ -42,6 +42,7 @@ To start Next in dev mode:
 ```sh
 make dev
 ```
+
 To start the supabase database (in order to test the subscription feature)
 
 ```sh
