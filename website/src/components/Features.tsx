@@ -91,12 +91,12 @@ export function Features() {
                   color="blue"
                   className="m-2 w-full sm:relative sm:z-10 sm:w-auto sm:flex-none"
                 >
-                  Subscribe
+                  {t('feature.sub')}
                 </Button>
               </div>
             </form>
 
-            {/* Affichage du message de confirmation */}
+            {/* confirmation email */}
             {message && <p className="mt-4 text-green-500">{message}</p>}
           </div>
         </div>
