@@ -11,14 +11,13 @@ const links = [
 ];
 
 function formatNewsletterMarkdown(articles: Summary[]) {
-    
     const formatArticle = (article: Summary) => {
-        const title   = article.title || 'Title not available';
-        const author  = article.author || 'Unknown author';
+        const title = article.title || 'Title not available';
+        const author = article.author || 'Unknown author';
         const summary = article.summary || 'Summary not available.';
-        const link    = article.link || '#';
+        const link = article.link || '#';
 
-        return  `### ${title}\n
+        return `### ${title}\n
                 *by ${author}*\n
                 🔗 [Read the full article](${link})\n\n
                 > ${summary}\n\n`;
