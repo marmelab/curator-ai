@@ -49,7 +49,6 @@ function formatHtmlBody(content: String) {
     const purify = DOMPurify(window);
     const clean = purify.sanitize(content.replace(/\n/g, '<br/>'));
     return `
-    <script type="text/javascript" src="src/purify.js"></script>
   <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
   <h1 style="color: #164e63; text-align: center; font-size: 32px;">Curator AI</h1>
   <p style="font-size: 18px; text-align: center;">Incoming message :</p>
