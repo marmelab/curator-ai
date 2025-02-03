@@ -49,6 +49,7 @@
     },
     "scripts": {
         "build": "npx tsc",
-        "start": "ts-node ./src/cli.ts"
+        "start": "ts-node ./src/cli.ts",
+        "test:newsletter": "cp -n ./../.env.sample ./../.env && npx ts-node src/mail_agent/newsletter_script.ts"
     }
 }
