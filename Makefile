@@ -30,6 +30,7 @@ send_mail: ## Send newsletter mail
 build: ## Compile the project
 	npm run build
 	npm run format
+	make start_supabase
 
 run: ## Summarize a list of articles
 	npm run format
@@ -48,6 +49,7 @@ conv_agent_test: ## Test the conversational agent
 	npm --workspace conversational_agent run test
 
 clean: ## To clean the project
+	make stop_supabase
 	rm -rf node_modules
 
 # Start ngrok on a specific port
@@ -55,3 +57,9 @@ start_ngrok:
 	npx ngrok config add-authtoken $(NGROK_AUTH_TOKEN)
 	@echo "Starting ngrok on port 3000"
 	npx ngrok http 3000
+
+start_supabase:
+	npx supabase start -x vector
+
+stop_supabase:
+	npx supabase stop
