@@ -1,4 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
+import { JSDOM } from 'jsdom';
+import DOMPurify from 'dompurify';
 
 // Initialize Supabase with environment variables
 const supabaseUrl = process.env.SUPABASE_URL!;
@@ -24,8 +26,12 @@ export async function handleSubscription(email: string): Promise<void> {
       .single();
 
     if (selectError && selectError.code !== 'PGRST116') {
+      const window = new JSDOM('').window;
+      const purify = DOMPurify(window);
+      const cleanErrorCode = purify.sanitize(selectError.code);
+      const cleanErrorMessage = purify.sanitize(selectError.message);
       throw new Error(
-        `Error verifying email ${selectError.code}: ${selectError.message}`,
+        `Error verifying email ${cleanErrorCode}: ${cleanErrorMessage}`,
       );
     }
 
@@ -39,7 +45,10 @@ export async function handleSubscription(email: string): Promise<void> {
       .insert([{ user_email: email }]);
 
     if (insertError) {
-      throw new Error(`Error inserting email: ${insertError.message}`);
+      const window = new JSDOM('').window;
+      const purify = DOMPurify(window);
+      const cleanErrorMessage = purify.sanitize(insertError.message);
+      throw new Error(`Error inserting email: ${cleanErrorMessage}`);
     }
 
     console.log('Email successfully registered.');

@@ -1,5 +1,6 @@
 import { curate } from '../curate';
-
+import { JSDOM } from 'jsdom';
+import DOMPurify from 'dompurify';
 import { Summary } from '../types';
 
 const links = [
@@ -12,10 +13,12 @@ const links = [
 
 function formatNewsletterMarkdown(articles: Summary[]) {
     const formatArticle = (article: Summary) => {
-        const title = article.title || 'Title not available';
-        const author = article.author || 'Unknown author';
-        const summary = article.summary || 'Summary not available.';
-        const link = article.link || '#';
+        const window = new JSDOM('').window;
+        const purify = DOMPurify(window);
+        const title = purify.sanitize(article.title || 'Title not available');
+        const author = purify.sanitize(article.author || 'Unknown author');
+        const summary = purify.sanitize(article.summary || 'Summary not available.');
+        const link = purify.sanitize(article.link || '#');
 
         return `### ${title}\n
                 *by ${author}*\n
@@ -34,10 +37,12 @@ function formatNewsletterMarkdown(articles: Summary[]) {
 function formatNewsletterHtmlWithCSS(articles: Summary[]) {
     // Format a single article
     const formatArticle = (article: Summary) => {
-        const title = article.title || 'Title not available';
-        const author = article.author || 'Unknown author';
-        const summary = article.summary || 'Summary not available.';
-        const link = article.link || '#';
+        const window = new JSDOM('').window;
+        const purify = DOMPurify(window);
+        const title = purify.sanitize(article.title || 'Title not available');
+        const author = purify.sanitize(article.author || 'Unknown author');
+        const summary = purify.sanitize(article.summary || 'Summary not available.');
+        const link = purify.sanitize(article.link || '#');
 
         return `
         <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">

@@ -32,9 +32,12 @@ export const sendMail = async (to: string, subject: string, body: string) => {
  * @returns String
  */
 function formatTextBody(content: string) {
+    const window = new JSDOM('').window;
+    const purify = DOMPurify(window);
+    const cleanContent = purify.sanitize(content);
     return `Curator AI
 
-    ${content}
+    ${cleanContent}
     
     See you soon for your next newsletter!`;
 }
@@ -47,13 +50,13 @@ function formatTextBody(content: string) {
 function formatHtmlBody(content: String) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const clean = purify.sanitize(content.replace(/\n/g, '<br/>'));
+    const cleanContent = purify.sanitize(content.replace(/\n/g, '<br/>'));
     return `
   <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
   <h1 style="color: #164e63; text-align: center; font-size: 32px;">Curator AI</h1>
   <p style="font-size: 18px; text-align: center;">Incoming message :</p>
   <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  ${clean}
+  ${cleanContent}
   </div>
   <p style="font-size: 18px; text-align: center;">See you soon for your next newsletter!</p>
 `;

@@ -1,3 +1,6 @@
+import { JSDOM } from 'jsdom';
+import DOMPurify from 'dompurify';
+
 export function generateWelcomeEmail(translations: {
   [key: string]: string;
 }): string {
