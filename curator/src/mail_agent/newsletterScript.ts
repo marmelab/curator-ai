@@ -1,4 +1,4 @@
-import { curateAndGenerateNewsletter } from './newsletterTxtFormat';
+import { curateAndGenerateNewsletter } from './newsletterFormat';
 import dotenv from 'dotenv';
 import { ServerClient } from 'postmark';
 
