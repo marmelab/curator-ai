@@ -90,6 +90,7 @@ export function curateAndGenerateNewsletter(): Promise<{
             } else {
                 console.error('Unknown error occurred during link curation');
             }
+            console.error('Error during link curation: ', err);
             return { markdown: '', html: '' };
         });
 }
