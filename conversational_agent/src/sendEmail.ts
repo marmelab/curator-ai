@@ -50,7 +50,7 @@ function formatTextBody(content: string) {
 function formatHtmlBody(content: String) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const cleanContent = purify.sanitize(content.replace(/\n/g, '<br/>'));
+    const cleanContent = purify.sanitize(content).replace(/\n/g, '<br/>');
     return `
   <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
   <h1 style="color: #164e63; text-align: center; font-size: 32px;">Curator AI</h1>

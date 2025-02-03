@@ -2,8 +2,6 @@
 
 import { generateWelcomeEmail } from '@/services/welcomeEmailContent';
 import { Client } from 'postmark';
-import { JSDOM } from 'jsdom';
-import DOMPurify from 'dompurify';
 
 /**
  * Handles the logic for sending a welcome email.
@@ -34,11 +32,8 @@ export async function handleSendWelcomeEmail(
     };
     // Sending Email via Postmark API
     const response = await client.sendEmail(emailData);
-    const window = new JSDOM('').window;
-    const purify = DOMPurify(window);
-    const cleanMessage = purify.sanitize(response.Message);
     if (response && response.ErrorCode) {
-      throw new Error(`Postmark Error: ${cleanMessage}`);
+      throw new Error(`Postmark Error: ${response.Message}`);
     }
     console.log('Email sent successfully!');
   } catch (error) {
