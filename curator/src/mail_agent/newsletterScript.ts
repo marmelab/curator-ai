@@ -1,10 +1,10 @@
-import { curateAndGenerateNewsletter } from './newsletter_txt_format';
+import { curateAndGenerateNewsletter } from './newsletterTxtFormat';
 import dotenv from 'dotenv';
 import { ServerClient } from 'postmark';
 
-dotenv.config({ path: './../.env' });
+dotenv.config();
 
-const send_mail = true;
+const sendMail = true;
 
 // Calls the curateAndGenerateNewsletter function with right parameters then sends the mail
 // TODO : Add all the dynamic part (newsletter parameters, email params)
@@ -14,12 +14,14 @@ async function runNewsletter() {
 
     // Sending email :
     if (
-        process.env.POSTMARK_API_KEY &&
-        process.env.DEFAULT_POSTMARK_EMAIL &&
-        send_mail
+        process.env.POSTMARK_SERVER_API_KEY &&
+        process.env.POSTMARK_DEFAULT_MAIL &&
+        sendMail
     ) {
-        const client = new ServerClient(process.env.POSTMARK_API_KEY as string);
-        const mail = process.env.DEFAULT_POSTMARK_EMAIL as string;
+        const client = new ServerClient(
+            process.env.POSTMARK_SERVER_API_KEY as string
+        );
+        const mail = process.env.POSTMARK_DEFAULT_MAIL as string;
 
         client.sendEmail({
             From: mail,
@@ -33,11 +35,11 @@ async function runNewsletter() {
         console.log('Newsletter email sent');
     } else {
         if (
-            !process.env.POSTMARK_API_KEY ||
-            !process.env.DEFAULT_POSTMARK_EMAIL
+            !process.env.POSTMARK_SERVER_API_KEY ||
+            !process.env.POSTMARK_DEFAULT_MAIL
         ) {
             console.error(
-                'Make sure to define POSTMARK_API_KEY and DEFAULT_POSTMARK_EMAIL if you want to send mail'
+                'Make sure to define POSTMARK_SERVER_API_KEY and POSTMARK_DEFAULT_MAIL if you want to send mail'
             );
         }
 

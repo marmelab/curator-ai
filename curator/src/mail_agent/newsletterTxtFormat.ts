@@ -61,7 +61,6 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
     return htmlNewsletter;
 }
 
-// Uses the curate function to generate newsletter data and formats output to be used in mail
 // TODO : add parameters based on user (links,interests?,maxArticles?,maxContentSize?)
 
 export function curateAndGenerateNewsletter(): Promise<{
@@ -91,6 +90,7 @@ export function curateAndGenerateNewsletter(): Promise<{
             } else {
                 console.error('Unknown error occurred during link curation');
             }
+            console.error('Error during link curation: ', err);
             return { markdown: '', html: '' };
         });
 }
