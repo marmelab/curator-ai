@@ -1,5 +1,5 @@
 {
-  "name": "tailwindui-primer",
+  "name": "website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
     "@headlessui/react": "^2.1.0",
+    "@supabase/supabase-js": "^2.46.2",
     "@types/node": "^20.10.8",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
@@ -19,7 +20,9 @@
     "flag-icons": "^7.2.3",
     "i18next": "^24.0.5",
     "i18next-http-backend": "^3.0.1",
+    "dotenv": "^16.4.7",
     "next": "^14.0.4",
+    "postmark": "^4.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-flag-kit": "^1.1.1",

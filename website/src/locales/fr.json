@@ -10,15 +10,32 @@
     "content": "Votre curateur de tendances personnalisé, conçu pour vous faire gagner du temps."
   },
   "feature": {
+    "try": "Essayez maintenant !",
+    "sub": "S'abonner",
     "title": "Un outil alimenté par l'IA pour vous tenir parfaitement informé",
     "content": "Personnalisez vos préférences de messagerie pour recevoir une newsletter adaptée rien que pour vous !",
     "check1": "Sélectionnez les sujets d'actualité que vous souhaitez suivre",
     "check2": "Choisissez quand vous souhaitez recevoir vos actualités : quotidiennement, hebdomadairement ou le vendredi.",
     "check3": "Sélectionnez les sources pour créer votre newsletter personnalisée.",
-    "mailImgAlt": "Image d'un exemple d'email. Chaque actualité a un titre et une brève description rédigée par l'IA."
+    "mailImgAlt": "Image d'un exemple d'email. Chaque actualité a un titre et une brève description rédigée par l'IA.",
+    "successEmail": "Succès ! L'email {{email}} a été enregistré et un email de bienvenue a été envoyé.",
+    "genericError": "Une erreur s'est produite lors du traitement de votre demande."
   },
   "footer": {
     "copyright": "Copyright &copy; {{date}} Marmelab",
     "allRightsReserved": "Tous droits réservés."
+  },
+  "welcomeEmail": {
+    "txt": "Bienvenue chez Curator AI ! Curator AI est là pour simplifier votre suivi de l'information. Avec notre IA, vous recevrez une newsletter contenant des articles résumés et sélectionnés en fonction de vos sujets et sources préférés. Envoyez un mail avec l'une de ces instructions pour intéragir avec Curator AI :\n### 📚 Ajouter des sujets : *Je veux suivre les sujets IA et santé.*\n### 🌐 Ajouter des sites : *Ajouter https://www.lemonde.fr/ à mes sources.*\n### ⏰ Définir la périodicité : *Envoyez-moi la newsletter tous les lundis à 8h.*\nPar défaut, vous recevrez votre première newsletter dans les 5 minutes, puis une fois par semaine le même jour et à la même heure que votre inscription.",
+    "welcome": "Bienvenue chez Curator AI!",
+    "welcome2": "Nous sommes ravis de vous accueillir 🎉.",
+    "intro": "Avec notre IA, vous recevrez une newsletter personnalisée contenant les articles les plus pertinents, résumés et adaptés à vos préférences.",
+    "instructionsHeader": "Comment interagir avec Curator AI ? Envoyez un mail avec l'une de ces instructions :",
+    "instructionSubjects": "📚 Ajouter des sujets : <strong>\"Je veux suivre les sujets IA et santé.\"</strong>",
+    "instructionSites": "🌐 Ajouter un site : <strong>\"Ajouter https://www.lemonde.fr/ à mes sources.\"</strong>",
+    "instructionFrequency": "⏰ Définir la périodicité : <strong>\"Envoyez-moi la newsletter tous les lundis à 8h.\"</strong>",
+    "reminder": "📩 Votre première newsletter sera envoyée dans les 5 minutes suivant votre inscription. Par défaut, les futures newsletters arriveront chaque semaine à la même heure que votre inscription.",
+    "closing": "Pour toute question ou modification, répondez simplement à cet email. Bonne exploration!",
+    "signature": "L'équipe Curator AI 🚀"
   }
 }

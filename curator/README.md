@@ -4,7 +4,7 @@ Mailing part of the Newsletter. Uses the curate agent to generate the content an
 
 ## Send a sample email
 
-First, define the POSTMARK_SERVER_API_KEY and POSTMARK_DEFAULT_MAIL in .env located at root of the repository.
+First, define the `POSTMARK_SERVER_API_KEY` and `POSTMARK_DEFAULT_MAIL` in `.env` located at root of the repository.
 
 ```txt
 POSTMARK_SERVER_API_KEY=XXX

@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   useEffect(() => {
     document.documentElement.lang = i18next.language;
-  }, [i18next.language]);
+  }, []);
 
   return (
     <html

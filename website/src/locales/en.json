@@ -10,15 +10,32 @@
     "content": "Your personalized trends curator, designed to help you save time."
   },
   "feature": {
+    "try": "Try it now !",
+    "sub": "Subscribe",
     "title": "An AI-powered tool to keep you perfectly informed",
     "content": "Customize your email preferences to receive a newsletter tailored just for you!",
     "check1": "Select the news topics you want to follow",
     "check2": "Choose when you'd like to receive your news: daily, weekly, or on Fridays.",
     "check3": "Select the sources to create your personalized newsletter.",
-    "mailImgAlt": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI"
+    "mailImgAlt": "Picture of a sample email. Each news has a title and a brief descritpion made by the AI",
+    "successEmail": "Success! The email {{email}} has been registered and a welcome email has been sent.",
+    "genericError": "An error occurred while processing your request."
   },
   "footer": {
     "copyright": "Copyright &copy; {{date}} Marmelab",
     "allRightsReserved": "All rights reserved."
+  },
+  "welcomeEmail": {
+    "txt": "Welcome to Curator AI! Curator AI is here to simplify your information tracking. With our AI, you'll receive a newsletter containing summarized and curated articles based on your preferred topics and sources. Send back an email with one of these instructions to interact with Curator AI:\n### 📚 Add topics: *I want to follow the topics AI and health.*\n### 🌐 Add sites: *Add https://www.lemonde.fr/ to my sources.*\n### ⏰ Set delivery schedule: *Send me the newsletter every Monday at 8 AM.*\nBy default, you will receive your first newsletter within 5 minutes, and then once a week on the same day and time as your registration.",
+    "welcome": "Welcome to Curator AI!",
+    "welcome2": "We're thrilled to have you on board 🎉.",
+    "intro": "With our AI, you'll receive a personalized newsletter containing the most relevant articles, summarized and tailored to your preferences.",
+    "instructionsHeader": "How to interact with Curator AI? Answer by email with one of the followings:",
+    "instructionSubjects": "📚 Add topics: <strong>\"I want to follow the topics AI and health.\"</strong>",
+    "instructionSites": "🌐 Add a site: <strong>\"Add https://www.lemonde.fr/ to my sources.\"</strong>",
+    "instructionFrequency": "⏰ Set delivery schedule: <strong>\"Send me the newsletter every Monday at 8 AM.\"</strong>",
+    "reminder": "📩 Your first newsletter will be sent within 5 minutes of signing up. By default, future newsletters will arrive weekly at the same time as your registration.",
+    "closing": "For any questions or changes, just reply to this email. Happy exploring!",
+    "signature": "The Curator AI Team 🚀"
   }
 }
