@@ -48,7 +48,6 @@ conv_agent_test: ## Test the conversational agent
 	npm --workspace conversational_agent run test
 
 clean: ## To clean the project
-	rm -f package-lock.json
 	rm -rf node_modules
 
 # Start ngrok on a specific port

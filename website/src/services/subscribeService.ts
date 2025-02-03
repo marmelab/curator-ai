@@ -1,16 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
+import { validateEmail } from '@/utils/validateEmail';
 
 // Initialize Supabase with environment variables
 const supabaseUrl = process.env.SUPABASE_URL!;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const window = new JSDOM('').window;
-const purify = DOMPurify(window);
-
-import { validateEmail } from '@/utils/validateEmail';
 /**
  * Handles the logic for subscribing an email, including validation.
  * @param email - The email address to subscribe.
@@ -29,10 +26,8 @@ export async function handleSubscription(email: string): Promise<void> {
       .single();
 
     if (selectError && selectError.code !== 'PGRST116') {
-      const cleanErrorCode = purify.sanitize(selectError.code);
-      const cleanErrorMessage = purify.sanitize(selectError.message);
       throw new Error(
-        `Error verifying email ${cleanErrorCode}: ${cleanErrorMessage}`,
+        `Error verifying email ${selectError.code}: ${selectError.message}`,
       );
     }
 
@@ -46,8 +41,7 @@ export async function handleSubscription(email: string): Promise<void> {
       .insert([{ user_email: email }]);
 
     if (insertError) {
-      const cleanErrorMessage = purify.sanitize(insertError.message);
-      throw new Error(`Error inserting email: ${cleanErrorMessage}`);
+      throw new Error(`Error inserting email: ${insertError.message}`);
     }
 
     console.log('Email successfully registered.');
