@@ -10,11 +10,11 @@ const links = [
     'https://birtles.blog/2024/01/06/weird-things-engineers-believe-about-development/',
     'https://julesblom.com/writing/flushsync',
 ];
+const window = new JSDOM('').window;
+const purify = DOMPurify(window);
 
 function formatNewsletterMarkdown(articles: Summary[]) {
     const formatArticle = (article: Summary) => {
-        const window = new JSDOM('').window;
-        const purify = DOMPurify(window);
         const title = purify.sanitize(article.title || 'Title not available');
         const author = purify.sanitize(article.author || 'Unknown author');
         const summary = purify.sanitize(article.summary || 'Summary not available.');
@@ -37,8 +37,6 @@ function formatNewsletterMarkdown(articles: Summary[]) {
 function formatNewsletterHtmlWithCSS(articles: Summary[]) {
     // Format a single article
     const formatArticle = (article: Summary) => {
-        const window = new JSDOM('').window;
-        const purify = DOMPurify(window);
         const title = purify.sanitize(article.title || 'Title not available');
         const author = purify.sanitize(article.author || 'Unknown author');
         const summary = purify.sanitize(article.summary || 'Summary not available.');

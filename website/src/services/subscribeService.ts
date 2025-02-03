@@ -7,6 +7,9 @@ const supabaseUrl = process.env.SUPABASE_URL!;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+const window = new JSDOM('').window;
+const purify = DOMPurify(window);
+
 import { validateEmail } from '@/utils/validateEmail';
 /**
  * Handles the logic for subscribing an email, including validation.
@@ -26,8 +29,6 @@ export async function handleSubscription(email: string): Promise<void> {
       .single();
 
     if (selectError && selectError.code !== 'PGRST116') {
-      const window = new JSDOM('').window;
-      const purify = DOMPurify(window);
       const cleanErrorCode = purify.sanitize(selectError.code);
       const cleanErrorMessage = purify.sanitize(selectError.message);
       throw new Error(
@@ -45,8 +46,6 @@ export async function handleSubscription(email: string): Promise<void> {
       .insert([{ user_email: email }]);
 
     if (insertError) {
-      const window = new JSDOM('').window;
-      const purify = DOMPurify(window);
       const cleanErrorMessage = purify.sanitize(insertError.message);
       throw new Error(`Error inserting email: ${cleanErrorMessage}`);
     }
