@@ -15,8 +15,10 @@ async function getStringFromFile(filePath: string): Promise<string> {
 
 async function formatResponse(aiResponse: { themes: string[] } | null) {
     const window = new JSDOM('').window;
-        const purify = DOMPurify(window);
-        const cleanThemes = purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes');
+    const purify = DOMPurify(window);
+    const cleanThemes = purify.sanitize(
+        aiResponse?.themes.length == 1 ? 'theme' : 'themes'
+    );
     if (!aiResponse?.themes?.length) {
         return `Hello!
 Sorry, we didn't find any preferences in your E-Mail.`;

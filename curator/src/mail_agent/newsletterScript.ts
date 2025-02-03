@@ -2,7 +2,7 @@ import { curateAndGenerateNewsletter } from './newsletterTxtFormat';
 import dotenv from 'dotenv';
 import { ServerClient } from 'postmark';
 
-dotenv.config({path: './../.env'});
+dotenv.config({ path: './../.env' });
 
 const sendMail = true;
 
@@ -12,21 +12,17 @@ const sendMail = true;
 async function runNewsletter() {
     const { markdown, html } = await curateAndGenerateNewsletter();
 
-    if (
-        !process.env.POSTMARK_API_KEY ||
-        !process.env.DEFAULT_POSTMARK_EMAIL
-    ){
+    if (!process.env.POSTMARK_API_KEY || !process.env.DEFAULT_POSTMARK_EMAIL) {
         throw new Error(
             'Make sure to define POSTMARK_SERVER_API_KEY and POSTMARK_DEFAULT_MAIL if you want to send mail'
         );
     }
 
-    if (!sendMail){
+    if (!sendMail) {
         console.log('Here is the current result :');
         console.log(markdown);
         return;
     }
-
 
     // Sending email :
     const client = new ServerClient(process.env.POSTMARK_API_KEY as string);
@@ -42,6 +38,6 @@ async function runNewsletter() {
         MessageStream: 'outbound',
     });
 
-    console.log('Newsletter email sent')
+    console.log('Newsletter email sent');
 }
 runNewsletter();

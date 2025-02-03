@@ -17,7 +17,9 @@ function formatNewsletterMarkdown(articles: Summary[]) {
     const formatArticle = (article: Summary) => {
         const title = purify.sanitize(article.title || 'Title not available');
         const author = purify.sanitize(article.author || 'Unknown author');
-        const summary = purify.sanitize(article.summary || 'Summary not available.');
+        const summary = purify.sanitize(
+            article.summary || 'Summary not available.'
+        );
         const link = purify.sanitize(article.link || '#');
 
         return `### ${title}\n
@@ -39,7 +41,9 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
     const formatArticle = (article: Summary) => {
         const title = purify.sanitize(article.title || 'Title not available');
         const author = purify.sanitize(article.author || 'Unknown author');
-        const summary = purify.sanitize(article.summary || 'Summary not available.');
+        const summary = purify.sanitize(
+            article.summary || 'Summary not available.'
+        );
         const link = purify.sanitize(article.link || '#');
 
         return `

@@ -13,7 +13,9 @@ export const buildResponse = async (body: any) => {
     const cleanBodyTo = purify.sanitize(body['To']);
     const cleanBodySubject = purify.sanitize(body['Subject']);
     const cleanBodyTextBody = purify.sanitize(body['TextBody']);
-    const cleanThemes = purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes');
+    const cleanThemes = purify.sanitize(
+        aiResponse?.themes.length == 1 ? 'theme' : 'themes'
+    );
 
     const emailMetadata = `
         
