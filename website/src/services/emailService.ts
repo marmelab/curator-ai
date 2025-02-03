@@ -16,21 +16,22 @@ export async function handleSendWelcomeEmail(
   const htmlBody = generateWelcomeEmail(translations);
   const textBody = translations.txt;
 
+  const postmarkApiToken = process.env.POSTMARK_API_KEY;
+  const defaultSenderEmail = process.env.DEFAULT_POSTMARK_EMAIL;
+  if (!postmarkApiToken || !defaultSenderEmail) {
+    throw new Error('Missing Postmark API token or default sender email');
+  }
+  const client = new Client(postmarkApiToken);
+  const emailData = {
+    From: defaultSenderEmail,
+    To: recipientEmail,
+    Subject: subject,
+    TextBody: textBody,
+    HtmlBody: htmlBody,
+  };
+
+  // Sending Email via Postmark API
   try {
-    const postmarkApiToken = process.env.NEXT_PUBLIC_POSTMARK_API_SERVER_TOKEN;
-    const defaultSenderEmail = process.env.NEXT_PUBLIC_DEFAULT_SENDING_EMAIL;
-    if (!postmarkApiToken || !defaultSenderEmail) {
-      throw new Error('Missing Postmark API token or default sender email');
-    }
-    const client = new Client(postmarkApiToken);
-    const emailData = {
-      From: defaultSenderEmail,
-      To: recipientEmail,
-      Subject: subject,
-      TextBody: textBody,
-      HtmlBody: htmlBody,
-    };
-    // Sending Email via Postmark API
     const response = await client.sendEmail(emailData);
     if (response && response.ErrorCode) {
       throw new Error(`Postmark Error: ${response.Message}`);
