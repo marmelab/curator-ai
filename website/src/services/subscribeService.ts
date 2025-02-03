@@ -1,6 +1,4 @@
 import { createClient } from '@supabase/supabase-js';
-import { JSDOM } from 'jsdom';
-import DOMPurify from 'dompurify';
 import { validateEmail } from '@/utils/validateEmail';
 
 // Initialize Supabase with environment variables
