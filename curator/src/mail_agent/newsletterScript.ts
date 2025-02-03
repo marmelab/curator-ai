@@ -1,10 +1,10 @@
-import { curateAndGenerateNewsletter } from './newsletter_txt_format';
+import { curateAndGenerateNewsletter } from './newsletterTxtFormat';
 import dotenv from 'dotenv';
 import { ServerClient } from 'postmark';
 
 dotenv.config();
 
-const send_mail = true;
+const sendMail = true;
 
 // Calls the curateAndGenerateNewsletter function with right parameters then sends the mail
 // TODO : Add all the dynamic part (newsletter parameters, email params)
@@ -16,7 +16,7 @@ async function runNewsletter() {
     if (
         process.env.POSTMARK_SERVER_API_KEY &&
         process.env.POSTMARK_DEFAULT_MAIL &&
-        send_mail
+        sendMail
     ) {
         const client = new ServerClient(
             process.env.POSTMARK_SERVER_API_KEY as string
