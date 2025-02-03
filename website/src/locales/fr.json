@@ -17,6 +17,18 @@
     "check3": "Sélectionnez les sources pour créer votre newsletter personnalisée.",
     "mailImgAlt": "Image d'un exemple d'email. Chaque actualité a un titre et une brève description rédigée par l'IA."
   },
+  "faq": {
+    "title": "Foire Aux Questions",
+    "description": "Trouvez ici des réponses aux questions les plus fréquentes.",
+    "question1": "Qu'est-ce que Curator AI ?",
+    "answer1": "Curator AI est un service de veille automatisée par intelligence artificielle. Il résume l’actualité de vos sites et sujets préférés dans une newsletter personnalisée.",
+    "question2": "Comment m'inscrire au service Curator AI ?",
+    "answer2": "Entrez votre adresse e-mail sur notre site. Vous recevrez un e-mail de bienvenue dans les 5 minutes.",
+    "question3": "Comment interagir avec Curator AI ?",
+    "answer3": "Il suffit de répondre à n'importe quel e-mail du service pour ajouter des sujets, des sources ou modifier vos préférences.",
+    "question4": "Comment personnaliser ma newsletter ?",
+    "answer4": "Vous pouvez ajuster la fréquence, les thèmes, les sources, le nombre d'articles et la taille des résumés. Répondez simplement par e-mail avec vos préférences. Par exemple :\n\n'Bonjour Curator AI, je souhaite recevoir ma newsletter tous les lundis et jeudis à 8h. Merci d’inclure des actualités sur l’IA, la santé et la finance. Ajoutez les sites https://www.lemonde.fr/ et https://www.techcrunch.com/ à mes sources. Limitez la newsletter à 5 articles par édition, avec des résumés concis.'"
+  },
   "footer": {
     "copyright": "Copyright &copy; {{date}} Marmelab",
     "allRightsReserved": "Tous droits réservés."
