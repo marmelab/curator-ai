@@ -47,7 +47,7 @@ function formatTextBody(content: string) {
  * @param content String : The content of the mail
  * @returns String
  */
-function formatHtmlBody(content: String) {
+function formatHtmlBody(content: string) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
     const cleanContent = purify.sanitize(content).replace(/\n/g, '<br/>');
