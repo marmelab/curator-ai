@@ -9,6 +9,8 @@ const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+console.log(supabaseUrl);
+
 // Retrieve the themes for the subscribed email
 export const getThemes = async (mail: string) => {
     const { data: themesData, error: themesError } = await supabase
@@ -17,8 +19,10 @@ export const getThemes = async (mail: string) => {
         .eq('user_email', mail)
         .single();
 
+    
     if (themesError) {
-        throw new Error(`Error retrieving themes: ${themesError.message}`);
+        console.error(`Error retrieving themes: ${themesError.message}`);
+        return null;
     }
 
     console.log('Retrieved themes:', themesData?.themes);
@@ -34,9 +38,8 @@ export const getUnwantedThemes = async (mail: string) => {
         .single();
 
     if (themesError) {
-        throw new Error(
-            `Error retrieving unwanted themes: ${themesError.message}`
-        );
+        console.error(`Error retrieving unwanted themes: ${themesError.message}`);
+        return null;
     }
 
     console.log('Retrieved unwanted themes:', themesData?.unwanted_themes);
@@ -64,6 +67,11 @@ export const addThemes = async (
 ) => {
     const oldThemes = await getThemes(mail);
     const oldUnwantedThemes = await getUnwantedThemes(mail);
+    if(oldThemes == null || oldUnwantedThemes == null) {
+        console.error(oldThemes, oldUnwantedThemes);
+        return false;
+    }
+
     const newThemes = arrayUnion(
         arrayDifference(oldThemes?.themes || [], unwanted_themes),
         themes
@@ -81,6 +89,8 @@ export const addThemes = async (
         .eq('user_email', mail);
 
     if (updateError) {
-        throw new Error(`Error updating themes: ${updateError.message}`);
+        console.error(`Error updating themes: ${updateError.message}`);
+        return false; 
     }
+    return true;
 };

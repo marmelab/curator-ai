@@ -30,7 +30,7 @@ export const sendMail = async (body: any) => {
 
 const buildResponse = async (body: any) => {
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences(body['TextBody']);
+    const aiResponse = await getUserPreferences(body['From'], body['TextBody']);
 
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
@@ -58,6 +58,10 @@ const buildResponse = async (body: any) => {
         ${cleanBodyTextBody}
     
     `;
+
+    if (aiResponse == null) {
+        return `Sorry, we couldn't find you in our database. ${emailMetadata}`;
+    }
 
     if (!aiResponse?.themes?.length && !aiResponse?.unwanted_themes?.length) {
         return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;

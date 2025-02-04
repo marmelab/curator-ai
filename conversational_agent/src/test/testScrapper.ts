@@ -13,13 +13,20 @@ async function getStringFromFile(filePath: string): Promise<string> {
     }
 }
 
-async function formatResponse(aiResponse: { themes: string[]; unwanted_themes: string[] } | null) {
+async function formatResponse(
+    aiResponse: { themes: string[]; unwanted_themes: string[] } | null
+) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
     const cleanThemes = purify.sanitize(
         aiResponse?.themes.length == 1 ? 'theme' : 'themes'
     );
     console.log(aiResponse);
+
+    if (aiResponse == null) {
+        return `Sorry, we couldn't find you in our database.`;
+    }
+
     if (!aiResponse?.themes?.length) {
         return `Hello!
 Sorry, we didn't find any preferences in your E-Mail.`;
@@ -42,10 +49,10 @@ ${textUnwantedThemes}`;
 }
 
 (async () => {
-    let userMail = await getStringFromFile(__dirname + '/myMessage.txt');
+    let userMessage = await getStringFromFile(__dirname + '/myMessage.txt');
 
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences(userMail);
+    const aiResponse = await getUserPreferences("pierre.auguste@telecomnancy.net", userMessage);
 
     console.log(await formatResponse(aiResponse));
 })();

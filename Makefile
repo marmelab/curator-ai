@@ -15,12 +15,12 @@ help:
 init: ## Initialize the project
 	make install
 	make build
+	make migrate_supabase
 
 install: ## Install the dependencies
 	npm install
 
 webpage: ## Run the webpage localy
-	npm run format
 	cd website && npm run start
 	
 send_mail: ## Send newsletter mail
@@ -33,19 +33,17 @@ build: ## Compile the project
 	make start_supabase
 
 run: ## Summarize a list of articles
-	npm run format
 	npm --workspace curator run start
 
 dev: ## Run the CLI in development mode
-	npm run format
 	npm --workspace website run dev
 
 conv_agent: ## Test the conversational agent with mail
-	npm run format
+	make start_supabase
 	npm --workspace conversational_agent run start
 
 conv_agent_test: ## Test the conversational agent
-	npm run format
+	make start_supabase
 	npm --workspace conversational_agent run test
 
 clean: ## To clean the project
@@ -57,6 +55,9 @@ start_ngrok:
 	npx ngrok config add-authtoken $(NGROK_AUTH_TOKEN)
 	@echo "Starting ngrok on port 3000"
 	npx ngrok http 3000
+
+migrate_supabase:
+	npx supabase db reset
 
 start_supabase:
 	npx supabase start -x vector
