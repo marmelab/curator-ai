@@ -53,8 +53,8 @@ clean: ## To clean the project
 # Start ngrok on a specific port
 start_ngrok:
 	npx ngrok config add-authtoken $(NGROK_AUTH_TOKEN)
-	@echo "Starting ngrok on port 3000"
-	npx ngrok http 3000
+	@echo "Starting ngrok on port 3001"
+	npx ngrok http 3001
 
 migrate_supabase:
 	npx supabase db reset
