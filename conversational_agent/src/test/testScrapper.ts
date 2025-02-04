@@ -2,6 +2,7 @@ import { getUserPreferences } from '../getUserPreferences';
 import { promises as fs } from 'fs';
 import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
+import { Console, log } from 'console';
 
 async function getStringFromFile(filePath: string): Promise<string> {
     try {
@@ -33,6 +34,8 @@ The following ${cleanThemes} have been added to your next newsletters :
 
     // Generate a response from AI based on the received email text
     const aiResponse = await getUserPreferences(userMail);
+
+    console.log(aiResponse);
 
     console.log(await formatResponse(aiResponse));
 })();

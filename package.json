@@ -14,6 +14,12 @@
     },
     "dependencies": {
         "dompurify": "^3.2.4",
-        "jsdom": "^26.0.0"
+        "install": "^0.13.0",
+        "jsdom": "^26.0.0",
+        "ngrok": "^5.0.0-beta.2",
+        "npm": "^11.1.0",
+        "postmark": "^4.0.5",
+        "supabase": "^2.9.6",
+        "ts-node": "^10.9.2"
     }
 }
