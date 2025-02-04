@@ -17,7 +17,6 @@ export const getThemes = async (mail: string) => {
         .eq('user_email', mail)
         .single();
 
-    
     if (themesError) {
         console.error(`Error retrieving themes: ${themesError.message}`);
         return null;
@@ -26,7 +25,7 @@ export const getThemes = async (mail: string) => {
     return themesData;
 };
 
-// Retrieve the themes for the subscribed email
+// Retrieve the unwnated themes for the subscribed email
 export const getUnwantedThemes = async (mail: string) => {
     const { data: themesData, error: themesError } = await supabase
         .from('subscribers')
