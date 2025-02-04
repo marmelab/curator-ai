@@ -21,6 +21,18 @@
     "successEmail": "Success! The email {{email}} has been registered and a welcome email has been sent.",
     "genericError": "An error occurred while processing your request."
   },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Find answers to the most common questions here.",
+    "question1": "What is Curator AI?",
+    "answer1": "Curator AI is an AI-powered information monitoring service. It summarizes news from your favorite websites and topics into a personalized newsletter.",
+    "question2": "How do I sign up for Curator AI?",
+    "answer2": "Simply enter your email address on our website. You'll receive a welcome email within 5 minutes.",
+    "question3": "How can I interact with Curator AI?",
+    "answer3": "Just reply to any email from the service to add topics, sources, or adjust your preferences.",
+    "question4": "How can I customize my newsletter?",
+    "answer4": "You can customize the frequency, topics, sources, number of articles, and summary length. Just reply to an email with your preferences. For example:\n\n'Hello Curator AI, I’d like to receive my newsletter every Monday and Thursday at 8 AM. Please include news about AI, healthcare, and finance. Add the websites https://www.lemonde.fr/ and https://www.techcrunch.com/ to my sources. Limit the newsletter to 5 articles per issue, with concise summaries.'"
+},
   "footer": {
     "copyright": "Copyright &copy; {{date}} Marmelab",
     "allRightsReserved": "All rights reserved."
