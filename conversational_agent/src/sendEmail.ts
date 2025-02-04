@@ -31,7 +31,7 @@ export const sendMail = async (body: any) => {
 
 const buildResponse = async (body: any) => {
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences(body['TextBody']);
+    const aiResponse = await getUserPreferences(body['StrippedTextReply']);
 
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
@@ -39,7 +39,7 @@ const buildResponse = async (body: any) => {
     const cleanBodyDate = purify.sanitize(body['Date']);
     const cleanBodyTo = purify.sanitize(body['To']);
     const cleanBodySubject = purify.sanitize(body['Subject']);
-    const cleanBodyTextBody = purify.sanitize(body['TextBody']);
+    const cleanBodyTextBody = purify.sanitize(body['StrippedTextReply']);
     const cleanThemes = purify.sanitize(
         aiResponse?.themes.length == 1 ? 'theme' : 'themes'
     );
