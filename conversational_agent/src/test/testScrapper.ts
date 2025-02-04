@@ -2,6 +2,7 @@ import { getUserPreferences } from '../getUserPreferences';
 import { promises as fs } from 'fs';
 import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
+import { Console, log } from 'console';
 
 async function getStringFromFile(filePath: string): Promise<string> {
     try {
@@ -39,6 +40,8 @@ ${aiResponse?.unwantedThemes?.length ? `You will no longer be annoyed with the f
 
     // Generate a response from AI based on the received email text
     const aiResponse = await getUserPreferences('test@mail.net', userMessage);
+
+    console.log(aiResponse);
 
     console.log(await formatResponse(aiResponse));
 })();

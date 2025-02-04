@@ -32,6 +32,7 @@ send_mail: ## Send newsletter mail
 build: start_supabase ## Compile the project
 	npm run build
 	npm run format
+	make start_supabase
 
 run: ## Summarize a list of articles
 	npm --workspace curator run start

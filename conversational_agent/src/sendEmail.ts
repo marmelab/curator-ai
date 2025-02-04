@@ -18,7 +18,7 @@ export const sendMail = async (body: MailBody) => {
             From: process.env.DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
             To: body['From'],
             Subject: 'Re: ' + body['Subject'],
-            ReplyTo: body["To"],  
+            ReplyTo: body['To'],
             HtmlBody: formatHtmlBody(formattedBody),
             TextBody: formatTextBody(formattedBody),
             MessageStream: 'outbound',
