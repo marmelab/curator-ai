@@ -19,7 +19,6 @@ export const sendMail = async (body: MailBody) => {
             To: body['From'],
             ReplyTo: body["To"],  // Make sure replies go back to Postmark
             Subject: 'Re: ' + body['Subject'],
-            ReplyTo: body['To'],
             HtmlBody: formatHtmlBody(formattedBody),
             TextBody: formatTextBody(formattedBody),
             MessageStream: 'outbound',
@@ -32,7 +31,7 @@ export const sendMail = async (body: MailBody) => {
 
 const buildResponse = async (body: MailBody) => {
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences(body['TextBody']);
+    const aiResponse = await getUserPreferences(body['From'], body['TextBody']);
 
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
