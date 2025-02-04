@@ -27,7 +27,7 @@ async function formatResponse(
         return `Sorry, we couldn't find you in our database.`;
     }
 
-    if (!aiResponse?.themes?.length) {
+    if (!aiResponse?.themes?.length && !aiResponse?.unwanted_themes?.length) {
         return `Hello!
 Sorry, we didn't find any preferences in your E-Mail.`;
     }
