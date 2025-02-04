@@ -32,7 +32,7 @@
     "answer3": "Just reply to any email from the service to add topics, sources, or adjust your preferences.",
     "question4": "How can I customize my newsletter?",
     "answer4": "You can customize the frequency, topics, sources, number of articles, and summary length. Just reply to an email with your preferences. For example:\n\n'Hello Curator AI, I’d like to receive my newsletter every Monday and Thursday at 8 AM. Please include news about AI, healthcare, and finance. Add the websites https://www.lemonde.fr/ and https://www.techcrunch.com/ to my sources. Limit the newsletter to 5 articles per issue, with concise summaries.'"
-},
+  },
   "footer": {
     "copyright": "Copyright &copy; {{date}} Marmelab",
     "allRightsReserved": "All rights reserved."

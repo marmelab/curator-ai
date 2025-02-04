@@ -4,7 +4,7 @@ import { ServerClient } from 'postmark';
 
 dotenv.config({ path: './../.env' });
 
-const sendMail = true;
+const sendMail = false;
 
 // Calls the curateAndGenerateNewsletter function with right parameters then sends the mail
 // TODO : Add all the dynamic part (newsletter parameters, email params)

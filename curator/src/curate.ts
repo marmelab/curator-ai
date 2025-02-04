@@ -6,6 +6,7 @@ export interface CurateOptions {
     links: string[];
     interests?: string[];
     max?: number;
+    minimumDate?: Date;
     maxContentSize?: number;
     onProgress?: (progress: number) => void;
 }
@@ -14,6 +15,7 @@ export const curate = async ({
     links,
     interests = [],
     max = 5,
+    minimumDate,
     maxContentSize,
     onProgress,
 }: CurateOptions) => {
@@ -21,6 +23,7 @@ export const curate = async ({
         links,
         interests,
         maxContentSize,
+        minimumDate,
         onProgress,
     });
     const mostRelevantArticles = getMostRelevant({ summaries, max });
@@ -31,20 +34,22 @@ interface ScrapeAndSummarizeArticlesOptions {
     links: string[];
     interests?: string[];
     maxContentSize?: number;
+    minimumDate?: Date;
     onProgress?: (progress: number) => void;
 }
 
 const scrapeAndSummarizeArticles = async ({
     links,
     interests = [],
+    minimumDate = new Date(0),
     maxContentSize,
     onProgress = () => {},
 }: ScrapeAndSummarizeArticlesOptions) => {
     const content: Summary[] = [];
     for (let i = 0; i < links.length; i++) {
-        const text = await scrape({ url: links[i], maxContentSize });
+        const {text, date} = await scrape({ url: links[i], maxContentSize });
         onProgress(i + 0.5);
-        if (text === undefined) {
+        if (text === undefined || date < minimumDate) {
             onProgress(i + 1);
             continue;
         }

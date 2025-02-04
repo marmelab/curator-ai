@@ -15,6 +15,9 @@ const purify = DOMPurify(window);
 
 function formatNewsletterMarkdown(articles: Summary[]) {
     const formatArticle = (article: Summary) => {
+        if (!article.title && !article.author) {
+            return '';
+        }
         const title = purify.sanitize(article.title || 'Title not available');
         const author = purify.sanitize(article.author || 'Unknown author');
         const summary = purify.sanitize(
@@ -70,18 +73,21 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
 
 // TODO : add parameters based on user (links,interests?,maxArticles?,maxContentSize?)
 
-export async function curateAndGenerateNewsletter(): Promise<{
+export async function curateAndGenerateNewsletter() 
+: Promise<{
     markdown: string;
     html: string;
-}> {
+}> 
+{
     return curate({
         links,
         interests: ['react', 'ai'],
         max: 5,
+        minimumDate : new Date('2024-02-01'),
     })
         .then((curatedLinks: Summary[]) => {
             // Generate the formatted string when promise completed
-
+            
             const markdown = formatNewsletterMarkdown(curatedLinks);
             const html = formatNewsletterHtmlWithCSS(curatedLinks);
 
