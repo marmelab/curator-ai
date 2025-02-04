@@ -17,6 +17,7 @@ export const sendMail = async (body: any) => {
         const result = await client.sendEmail({
             From: process.env.DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
             To: body['From'],
+            ReplyTo: body["To"],  // Make sure replies go back to Postmark
             Subject: 'Re: ' + body['Subject'],
             HtmlBody: formatHtmlBody(formattedBody),
             TextBody: formatTextBody(formattedBody),
@@ -30,7 +31,7 @@ export const sendMail = async (body: any) => {
 
 const buildResponse = async (body: any) => {
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences(body['From'], body['TextBody']);
+    const aiResponse = await getUserPreferences(body['TextBody']);
 
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);

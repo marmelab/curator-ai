@@ -60,7 +60,7 @@ ${textUnwantedSources}`;
     const userMessage = await getStringFromFile(__dirname + '/myMessage.txt');
 
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences("pierre.auguste@telecomnancy.net", userMessage);
+    const aiResponse = await getUserPreferences(userMessage);
     console.log(aiResponse);
     console.log(await formatResponse(aiResponse));
 })();
