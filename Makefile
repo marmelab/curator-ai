@@ -14,7 +14,8 @@ help:
 
 init: install build migrate_supabase ## Initialize the project
 
-install: install ## Install the dependencies
+install: ## Install the dependencies
+	npm install
 
 webpage: ## Run the webpage localy
 	cd website && npm run start

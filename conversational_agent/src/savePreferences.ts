@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
+import _ from "lodash";
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
@@ -43,19 +44,6 @@ export const getUnwantedThemes = async (mail: string) => {
     return themesData;
 };
 
-function arrayDifference(a: string[], b: string[]): string[] {
-    const setB = new Set(b);
-    return a.filter((element: string) => !setB.has(element));
-}
-
-function arrayUnion(a: string[], b: string[]): string[] {
-    const set = new Set(a);
-    for (const element of b) {
-        set.add(element);
-    }
-    return Array.from(set);
-}
-
 // Update the themes for the subscribed email
 export const addThemes = async (
     themes: string[],
@@ -69,12 +57,12 @@ export const addThemes = async (
         return false;
     }
 
-    const newThemes = arrayUnion(
-        arrayDifference(oldThemes?.themes || [], unwantedThemes),
+    const newThemes = _.union(
+        _.difference(oldThemes?.themes || [], unwantedThemes),
         themes
     );
-    const newUnwantedThemes = arrayUnion(
-        arrayDifference(oldUnwantedThemes?.unwanted_themes || [], themes),
+    const newUnwantedThemes = _.union(
+        _.difference(oldUnwantedThemes?.unwanted_themes || [], themes),
         unwantedThemes
     );
     const { error: updateError } = await supabase

@@ -21,7 +21,6 @@ async function formatResponse(
     const cleanThemes = purify.sanitize(
         aiResponse?.themes.length == 1 ? 'theme' : 'themes'
     );
-    console.log(aiResponse);
 
     if (aiResponse == null) {
         return `Sorry, we couldn't find you in our database.`;
