@@ -34,7 +34,9 @@ export const getUnwantedThemes = async (mail: string) => {
         .single();
 
     if (themesError) {
-        console.error(`Error retrieving unwanted themes: ${themesError.message}`);
+        console.error(
+            `Error retrieving unwanted themes: ${themesError.message}`
+        );
         return null;
     }
 
@@ -62,7 +64,7 @@ export const addThemes = async (
 ) => {
     const oldThemes = await getThemes(mail);
     const oldUnwantedThemes = await getUnwantedThemes(mail);
-    if(oldThemes == null || oldUnwantedThemes == null) {
+    if (oldThemes == null || oldUnwantedThemes == null) {
         console.error(oldThemes, oldUnwantedThemes);
         return false;
     }
@@ -85,7 +87,7 @@ export const addThemes = async (
 
     if (updateError) {
         console.error(`Error updating themes: ${updateError.message}`);
-        return false; 
+        return false;
     }
     return true;
 };

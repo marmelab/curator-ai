@@ -37,11 +37,13 @@ export async function getUserPreferences(
 
     const preferencesCompletion = completion.choices[0].message.parsed;
 
-    if (!await addThemes(
-        preferencesCompletion?.themes || [],
-        preferencesCompletion?.unwanted_themes || [],
-        userMail
-    )) {
+    if (
+        !(await addThemes(
+            preferencesCompletion?.themes || [],
+            preferencesCompletion?.unwanted_themes || [],
+            userMail
+        ))
+    ) {
         return null;
     }
 
