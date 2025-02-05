@@ -10,12 +10,12 @@ dotenv.config({ path: './../.env' });
 
 export const sendMail = async (body: MailBody) => {
     // Use the Postmark API key from environment variables
-    const client = new ServerClient(process.env.NEXT_PUBLIC_POSTMARK_API_KEY || '');
+    const client = new ServerClient(process.env.POSTMARK_API_KEY || '');
     try {
         const formattedBody = await buildResponse(body);
         // Send an email
         const result = await client.sendEmail({
-            From: process.env.NEXT_PUBLIC_DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
+            From: process.env.DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
             To: body['From'],
             Subject: 'Re: ' + body['Subject'],
             ReplyTo: body["To"],  

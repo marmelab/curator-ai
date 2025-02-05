@@ -1,4 +1,4 @@
-'use server';
+"use server"
 
 import { generateWelcomeEmail } from '@/services/welcomeEmailContent';
 import { Client } from 'postmark';
@@ -20,11 +20,9 @@ export async function handleSendWelcomeEmail(
   const htmlBody = generateWelcomeEmail(translations);
   const textBody = translations.txt;
 
-  const postmarkApiToken = process.env.NEXT_PUBLIC_POSTMARK_API_KEY!;
-  const defaultSenderEmail = process.env.NEXT_PUBLIC_DEFAULT_POSTMARK_MAIL!;
-  const defaultInboundEmail = process.env.NEXT_PUBLIC_INBOUND_POSTMARK_MAIL!;
-  console.log('postmarkApiToken: ' + postmarkApiToken);
-  console.log('defaultSenderEmail: ' + defaultSenderEmail);
+  const postmarkApiToken = process.env.POSTMARK_API_KEY!;
+  const defaultSenderEmail = process.env.DEFAULT_POSTMARK_MAIL!;
+  const defaultInboundEmail = process.env.INBOUND_POSTMARK_MAIL!;
   if (!postmarkApiToken || !defaultSenderEmail) {
     throw new Error('Missing Postmark API token or default sender email');
   }

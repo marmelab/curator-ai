@@ -15,10 +15,10 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 After cloning the repository, you can copy the `.env.sample` file as `.env`, and fill it with your info:
 
 - `OPENAI_API_KEY`: your Open API key.
-- `NEXT_PUBLIC_SUPABASE_URL`: the url of your Supabase DB.
+- `SUPABASE_URL`: the url of your Supabase DB.
 - `SUPABASE_ANON_KEY`: the anon key of your Supabase BD.
-- `NEXT_PUBLIC_POSTMARK_API_KEY`: your Postmark API key.
-- `NEXT_PUBLIC_DEFAULT_POSTMARK_MAIL`: the default email you are using to communicate with the service.
+- `POSTMARK_API_KEY`: your Postmark API key.
+- `DEFAULT_POSTMARK_MAIL`: the default email you are using to communicate with the service.
 - `NGROK_AUTH_TOKEN`: your Ngrok auth token.
 
 Then run the following command :
@@ -79,7 +79,7 @@ Go to your [Postmark](https://postmarkapp.com/) server, and :
 
 - Create an Inbound Message Stream if not already existing.
 - In the settings of this Inbound Stream, write `<YOUR_WEBHOOK_URI>/webhook` in the Webhook section.
-- Be sure that the email you have entered in the `.env` file as `NEXT_PUBLIC_DEFAULT_POSTMARK_MAIL` is in `Sender Signatures`. This will be the email you are going to use after.
+- Be sure that the email you have entered in the `.env` file as `DEFAULT_POSTMARK_MAIL` is in `Sender Signatures`. This will be the email you are going to use after.
 
 Now you can send an email to the inbound address (in the inbound settings).
 This will return a list of preferences.
