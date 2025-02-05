@@ -34,28 +34,20 @@ const buildResponse = async (body: any) => {
 
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const cleanBodyFrom = purify.sanitize(body['From']);
-    const cleanBodyDate = purify.sanitize(body['Date']);
-    const cleanBodyTo = purify.sanitize(body['To']);
-    const cleanBodySubject = purify.sanitize(body['Subject']);
-    const cleanBodyTextBody = purify.sanitize(body['TextBody']);
-    const cleanThemes = purify.sanitize(
-        aiResponse?.themes.length == 1 ? 'theme' : 'themes'
-    );
 
     const emailMetadata = `
         
         -------- Previous Message --------
         
-        From: ${cleanBodyFrom}
+        From: ${purify.sanitize(body['From'])}
         
-        Sent: ${cleanBodyDate}
+        Sent: ${purify.sanitize(body['Date'])}
         
-        To: ${cleanBodyTo}
+        To: ${purify.sanitize(body['To'])}
         
-        Subject: ${cleanBodySubject}
+        Subject: ${purify.sanitize(body['Subject'])}
         
-        ${cleanBodyTextBody}
+        ${purify.sanitize(body['TextBody'])}
     
     `;
 
@@ -63,14 +55,14 @@ const buildResponse = async (body: any) => {
         return `Sorry, we couldn't find you in our database. ${emailMetadata}`;
     }
 
-    if (!aiResponse?.themes?.length && !aiResponse?.unwanted_themes?.length) {
+    if (!aiResponse?.themes?.length && !aiResponse?.unwantedThemes?.length) {
         return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;
     }
     
     return `Hello!
-${aiResponse?.themes?.length ? `The following ${cleanThemes} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
+${aiResponse?.themes?.length ? `The following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
 
-${aiResponse?.unwanted_themes?.length ? `You will no longer be annoyed with the following ${cleanThemes}:\n- ${aiResponse.unwanted_themes.join('\n- ')}` : ''}
+${aiResponse?.unwantedThemes?.length ? `You will no longer be annoyed with the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')}:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
 
 ${emailMetadata}`;
 
@@ -84,10 +76,9 @@ ${emailMetadata}`;
 function formatTextBody(content: string) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const cleanContent = purify.sanitize(content);
     return `Curator AI
 
-    ${cleanContent}
+    ${purify.sanitize(content)}
     
     See you soon for your next newsletter!`;
 }
@@ -100,13 +91,12 @@ function formatTextBody(content: string) {
 function formatHtmlBody(content: string) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const cleanContent = purify.sanitize(content).replace(/\n/g, '<br/>');
     return `
   <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
   <h1 style="color: #164e63; text-align: center; font-size: 32px;">Curator AI</h1>
   <p style="font-size: 18px; text-align: center;">Incoming message :</p>
   <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  ${cleanContent}
+  ${purify.sanitize(content).replace(/\n/g, '<br/>')}
   </div>
   <p style="font-size: 18px; text-align: center;">See you soon for your next newsletter!</p>
 `;

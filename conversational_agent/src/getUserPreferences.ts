@@ -12,13 +12,13 @@ const openai = new OpenAI({
 
 const PreferenceExtraction = z.object({
     themes: z.array(z.string()),
-    unwanted_themes: z.array(z.string()),
+    unwantedThemes: z.array(z.string()),
 });
 
 export async function getUserPreferences(
     userMail: string,
     userMessage: string
-): Promise<{ themes: string[]; unwanted_themes: string[] } | null> {
+): Promise<{ themes: string[]; unwantedThemes: string[] } | null> {
     const completion = await openai.beta.chat.completions.parse({
         model: 'gpt-4o-mini',
         messages: [
@@ -40,7 +40,7 @@ export async function getUserPreferences(
     if (
         !(await addThemes(
             preferencesCompletion?.themes || [],
-            preferencesCompletion?.unwanted_themes || [],
+            preferencesCompletion?.unwantedThemes || [],
             userMail
         ))
     ) {
