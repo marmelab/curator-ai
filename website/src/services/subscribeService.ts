@@ -1,9 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 import { validateEmail } from '@/utils/validateEmail';
+import dotenv from 'dotenv';
+
+// Load environment variables from the .env file
+dotenv.config({ path: './../.env' });
 
 // Initialize Supabase with environment variables
-const supabaseUrl = process.env.SUPABASE_URL!;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+console.log("supabaseUrl: " + supabaseUrl);
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 /**

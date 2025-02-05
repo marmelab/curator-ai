@@ -12,22 +12,22 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 
 ## Initialize the project
 
-After cloning the repository, run the following command :
+After cloning the repository, you can copy the `.env.sample` file as `.env`, and fill it with your info:
+
+- `OPENAI_API_KEY`: your Open API key.
+- `NEXT_PUBLIC_SUPABASE_URL`: the url of your Supabase DB.
+- `SUPABASE_ANON_KEY`: the anon key of your Supabase BD.
+- `POSTMARK_API_KEY`: your Postmark API key.
+- `DEFAULT_POSTMARK_MAIL`: the default email you are using to communicate with the service.
+- `NGROK_AUTH_TOKEN`: your Ngrok auth token.
+
+Then run the following command :
 
 ```sh
 make init
 ```
 
-It will install every dependencies.
-
-Then you can copy the `.env.sample` file as `.env`, and fill it with your info:
-
-- `OPENAI_API_KEY`: your Open API key.
-- `SUPABASE_URL`: the url of your Supabase DB.
-- `SUPABASE_ANON_KEY`: the anon key of your Supabase BD.
-- `POSTMARK_API_KEY`: your Postmark API key.
-- `DEFAULT_POSTMARK_MAIL`: the default email you are using to communicate with the service.
-- `NGROK_AUTH_TOKEN`: your Ngrok auth token.
+It will install every dependencies, build the project and migrate the db.
 
 ## Start the webpage
 
@@ -42,6 +42,8 @@ To start Next in dev mode:
 ```sh
 make dev
 ```
+
+This will reload automatically the webpage if you dev on the front. If you dev on the server side, you must restart it.
 
 To start the supabase database (in order to test the subscription feature)
 

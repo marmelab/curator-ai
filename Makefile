@@ -18,7 +18,7 @@ install: ## Install the dependencies
 	npm install
 
 webpage: ## Run the webpage localy
-	cd website && npm run start
+	npm --workspace website run start
 	
 send_mail: ## Send newsletter mail
 	cp -n .env.sample .env

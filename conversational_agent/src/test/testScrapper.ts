@@ -32,17 +32,13 @@ Sorry, we didn't find any preferences in your E-Mail.`;
 ${aiResponse?.themes?.length ? `The following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
 
 ${aiResponse?.unwantedThemes?.length ? `You will no longer be annoyed with the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')}:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}`;
-
 }
 
 (async () => {
     const userMessage = await getStringFromFile(__dirname + '/myMessage.txt');
 
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences(
-        'test@mail.net',
-        userMessage
-    );
+    const aiResponse = await getUserPreferences('test@mail.net', userMessage);
 
     console.log(await formatResponse(aiResponse));
 })();

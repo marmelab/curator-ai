@@ -1,15 +1,16 @@
-"use-server"
+'use-server';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
-import _ from "lodash";
+import _ from 'lodash';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
 
 // Initialize Supabase with environment variables
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
+console.log("test");
 
 // Retrieve the themes for the subscribed email
 export const getThemes = async (mail: string) => {

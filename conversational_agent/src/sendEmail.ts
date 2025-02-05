@@ -57,14 +57,13 @@ const buildResponse = async (body: MailBody) => {
     if (!aiResponse?.themes?.length && !aiResponse?.unwantedThemes?.length) {
         return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;
     }
-    
+
     return `Hello!
 ${aiResponse?.themes?.length ? `The following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
 
 ${aiResponse?.unwantedThemes?.length ? `You will no longer be annoyed with the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')}:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
 
 ${emailMetadata}`;
-
 };
 
 /**
