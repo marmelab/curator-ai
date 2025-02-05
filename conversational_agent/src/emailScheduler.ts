@@ -1,4 +1,4 @@
-import { exec } from "child_process"; 
+import { exec } from "child_process";  
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 import path from "path";
@@ -13,13 +13,15 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const INTERVAL = 10000; // 10 seconds
+const loggingActivated = true; // Set to false to disable logs
 
 async function getPendingNewsletters() {
   const currentISO = new Date().toISOString();
   const { data, error } = await supabase
     .from("subscribers")
-    .select("user_email, next_newsletter, periodicity")
+    .select("id, user_email, next_newsletter, periodicity")
     .lte("next_newsletter", currentISO);
+  
   if (error) {
     console.error("❌ Error fetching pending newsletters:", error);
     return [];
@@ -27,22 +29,25 @@ async function getPendingNewsletters() {
   return data;
 }
 
-async function updateNextNewsletter(userEmail: string, periodicity: number) {
+async function updateNextNewsletter(userId: number, periodicity: number) {
   const newNewsletterTimestampSeconds = Math.floor(Date.now() / 1000) + periodicity;
   const newNewsletterISO = new Date(newNewsletterTimestampSeconds * 1000).toISOString();
+  
   const { error } = await supabase
     .from("subscribers")
     .update({ next_newsletter: newNewsletterISO })
-    .eq("user_email", userEmail);
+    .eq("id", userId);
+
   if (error) {
-    console.error(`❌ Error updating next newsletter for ${userEmail}:`, error);
-  } else {
-    console.log(`📅 Next newsletter for ${userEmail} scheduled at ${newNewsletterISO}`);
+    console.error(`❌ Error updating next newsletter for user ID ${userId}:`, error);
+  } else if (loggingActivated) {
+    console.log(`📅 Next newsletter for user ID ${userId} scheduled at ${newNewsletterISO}`);
   }
 }
 
 function sendNewsletter(userEmail: string) {
-  console.log(`📤 Sending newsletter to ${userEmail}...`);
+  if (loggingActivated) console.log(`📤 Sending newsletter to ${userEmail}...`);
+  
   exec("ts-node ./conversational_agent/src/hello.ts", (error, stdout, stderr) => {
     if (error) {
       console.error(`❌ Error sending newsletter to ${userEmail}:`, error.message);
@@ -52,24 +57,27 @@ function sendNewsletter(userEmail: string) {
       console.error(`⚠️ Stderr for ${userEmail}:`, stderr);
       return;
     }
-    console.log(`✅ Newsletter sent to ${userEmail}:`, stdout);
+    if (loggingActivated) console.log(`✅ Newsletter sent to ${userEmail}:`, stdout);
   });
 }
 
 async function checkAndSendNewsletters() {
-  console.log("⏳ Checking for pending newsletters at", new Date().toISOString());
+  if (loggingActivated) console.log("⏳ Checking for pending newsletters at", new Date().toISOString());
+  
   const pendingNewsletters = await getPendingNewsletters();
   if (!pendingNewsletters.length) {
-    console.log("✅ No newsletters to send.");
+    if (loggingActivated) console.log("✅ No newsletters to send.");
     return;
   }
+  
   const nowSeconds = Math.floor(Date.now() / 1000);
   for (const subscriber of pendingNewsletters) {
-    const { user_email, next_newsletter, periodicity } = subscriber;
+    const { id, user_email, next_newsletter, periodicity } = subscriber;
     const newsletterTimestamp = Math.floor(new Date(next_newsletter).getTime() / 1000);
+    
     if (newsletterTimestamp <= nowSeconds) {
       sendNewsletter(user_email);
-      await updateNextNewsletter(user_email, periodicity);
+      await updateNextNewsletter(id, periodicity);
     }
   }
 }
