@@ -7,10 +7,10 @@ import { getUserPreferences } from './getUserPreferences';
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
 
-export const sendMail = async (body: any) => {
+export const sendMail = async (body: MailBody) => {
     // Use the Postmark API key from environment variables
     const client = new ServerClient(process.env.POSTMARK_API_KEY || '');
-
+    console.log(body)
     try {
         const formattedBody = await buildResponse(body);
         // Send an email
@@ -28,7 +28,7 @@ export const sendMail = async (body: any) => {
     }
 };
 
-const buildResponse = async (body: any) => {
+const buildResponse = async (body: MailBody) => {
     // Generate a response from AI based on the received email text
     const aiResponse = await getUserPreferences(body['From'], body['TextBody']);
 

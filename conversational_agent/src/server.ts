@@ -14,7 +14,7 @@ const PORT = 3000;
 app.use(express.json());
 
 // Webhook to receive incoming emails
-app.post('/webhook', async (req: Request, res: Response) => {
+app.post('/webhook', async (req: Request<{}, {}, MailBody>, res: Response) => {
     res.status(200).send('Webhook received');
 
     const body = req.body;
