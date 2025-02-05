@@ -62,6 +62,7 @@ make conv_agent
 ```
 
 This will start the server at `http://localhost:3000`.
+This server is local, but we need to make it online.
 Now, in an other terminal :
 
 ```sh
