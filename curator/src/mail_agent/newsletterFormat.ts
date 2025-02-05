@@ -15,9 +15,6 @@ const purify = DOMPurify(window);
 
 function formatNewsletterMarkdown(articles: Summary[]) {
     const formatArticle = (article: Summary) => {
-        if (!article.title && !article.author) {
-            return '';
-        }
         const title = purify.sanitize(article.title || 'Title not available');
         const author = purify.sanitize(article.author || 'Unknown author');
         const summary = purify.sanitize(
@@ -30,6 +27,15 @@ function formatNewsletterMarkdown(articles: Summary[]) {
                 🔗 [Read the full article](${link})\n\n
                 > ${summary}\n\n`;
     };
+
+    // If there are no new articles
+    if (articles.length === 0) {
+        return `
+            Newsletter\n\n
+            Hello hello ! Sorry, no new articles today. But don't worry, we'll be back soon with more news!\n
+            See you soon!\n
+            `;
+    }
 
     return `
         Newsletter\n\n
@@ -60,6 +66,16 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
         </div>`;
     };
 
+    // If there are no new articles
+    if (articles.length === 0) {
+        return `
+        <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
+            <h1 style="color: #4CAF50; text-align: center; font-size: 32px;">Newsletter</h1>
+            <p style="font-size: 18px; text-align: center;">Hello hello ! Sorry, no new articles today. But don't worry, we'll be back soon with more news!</p>
+            <p style="font-size: 18px; text-align: center;">See you soon!</p>
+        </div>`;
+    }
+
     // Main newsletter structure
     const htmlNewsletter = `
     <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
@@ -81,9 +97,9 @@ export async function curateAndGenerateNewsletter()
 {
     return curate({
         links,
-        interests: ['react', 'ai'],
+        interests: ['lego'],
         max: 5,
-        minimumDate : new Date('2024-02-01'),
+        minimumDate : new Date('2025-02-01'),
     })
         .then((curatedLinks: Summary[]) => {
             // Generate the formatted string when promise completed
@@ -92,7 +108,6 @@ export async function curateAndGenerateNewsletter()
             const html = formatNewsletterHtmlWithCSS(curatedLinks);
 
             // Returns raw json and formatted newletters
-
             return { markdown, html };
         })
         .catch((err: unknown) => {

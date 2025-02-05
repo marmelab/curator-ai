@@ -18,8 +18,6 @@ export const scrape = async ({
     const article = new Readability(dom.window.document).parse();
     const publicationDate = await scrapeDate($);
 
-    console.log('publicationDate', publicationDate);
-
     return {
         text: article?.textContent.substring(0, maxContentSize),
         date: publicationDate
@@ -27,7 +25,7 @@ export const scrape = async ({
 };
 
 async function scrapeDate($: cheerio.CheerioAPI) {
-    // Extract the latest date of publication
+    // Extract the latest dazte of publication
     let latestDate: Date | null = null;
     let publicationDate: string | null = null;
 
