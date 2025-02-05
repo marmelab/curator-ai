@@ -22,6 +22,7 @@ export async function handleSendWelcomeEmail(
 
   const postmarkApiToken = process.env.NEXT_PUBLIC_POSTMARK_API_KEY!;
   const defaultSenderEmail = process.env.NEXT_PUBLIC_DEFAULT_POSTMARK_MAIL!;
+  const defaultInboundEmail = process.env.NEXT_PUBLIC_INBOUND_POSTMARK_MAIL!;
   console.log('postmarkApiToken: ' + postmarkApiToken);
   console.log('defaultSenderEmail: ' + defaultSenderEmail);
   if (!postmarkApiToken || !defaultSenderEmail) {
@@ -31,6 +32,7 @@ export async function handleSendWelcomeEmail(
   const emailData = {
     From: defaultSenderEmail,
     To: recipientEmail,
+    ReplyTo: defaultInboundEmail,
     Subject: subject,
     TextBody: textBody,
     HtmlBody: htmlBody,
