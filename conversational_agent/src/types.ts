@@ -1,4 +1,4 @@
-interface MailBody {
+export interface MailBody {
     From: string;
     Subject: string;
     Date: string;

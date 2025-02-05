@@ -10,7 +10,6 @@ dotenv.config({ path: './../.env' });
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
-console.log('test');
 
 // Retrieve the themes for the subscribed email
 export const getThemes = async (mail: string) => {

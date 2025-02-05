@@ -3,12 +3,13 @@ import dotenv from 'dotenv';
 import { sendMail } from './sendEmail';
 import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
+import { MailBody } from './types';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 // Middleware to parse requests as JSON
 app.use(express.json());

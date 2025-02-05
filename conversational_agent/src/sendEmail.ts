@@ -3,6 +3,7 @@ import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
 import { ServerClient } from 'postmark';
 import { getUserPreferences } from './getUserPreferences';
+import { MailBody } from './types';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });

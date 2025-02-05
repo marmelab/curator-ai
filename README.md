@@ -45,21 +45,15 @@ make dev
 
 This will reload automatically the webpage if you dev on the front. If you dev on the server side, you must restart it.
 
-To start the supabase database (in order to test the subscription feature)
-
-```sh
-npx supabase start
-```
-
-Warning : the supabase containers use Docker Desktop. The image is quite consequent (~5Gb needed)
-
 ## Test the interest scrapper (without the mail)
+
+If you want to test the service and how the request sent by email works, without sending actual email, you can use that. Otherwise, you can go to the next part.
 
 ```sh
 make conv_agent_test
 ```
 
-This will return your preferences in a JSON format. If you want to see and change the request, go to the `./conversational_agent/src/test/myMessage.txt`.
+This will return the service answer. If you want to see and change the request, go to the `./conversational_agent/src/test/myMessage.txt`.
 
 ## Send an email an get your extracted preferences !
 
