@@ -12,9 +12,7 @@ endif
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-init: ## Initialize the project
-	make install
-	make build
+init: install build ## Initialize the project
 
 install: ## Install the dependencies
 	npm install
@@ -23,9 +21,9 @@ webpage: ## Run the webpage localy
 	npm run format
 	cd website && npm run start
 	
-send_mail: ## Send newsletter mail
+sendMail: ## Send newsletter mail
 	cp -n .env.sample .env
-	npx ts-node curator/src/mail_agent/newsletterScript.ts
+	npx ts-node curator/src/mailAgent/newsletterScript.ts
 	
 build: ## Compile the project
 	npm run build
@@ -39,13 +37,13 @@ dev: ## Run the CLI in development mode
 	npm run format
 	npm --workspace website run dev
 
-conv_agent: ## Test the conversational agent with mail
+convAgent: ## Test the conversational agent with mail
 	npm run format
-	npm --workspace conversational_agent run start
+	npm --workspace conversationalAgent run start
 
-conv_agent_test: ## Test the conversational agent
+convAgentTest: ## Test the conversational agent
 	npm run format
-	npm --workspace conversational_agent run test
+	npm --workspace conversationalAgent run test
 
 clean: ## To clean the project
 	rm -rf node_modules
