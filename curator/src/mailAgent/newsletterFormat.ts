@@ -89,21 +89,19 @@ function formatNewsletterHtmlWithCSS(articles: Summary[]) {
 
 // TODO : add parameters based on user (links,interests?,maxArticles?,maxContentSize?)
 
-export async function curateAndGenerateNewsletter() 
-: Promise<{
+export async function curateAndGenerateNewsletter(): Promise<{
     markdown: string;
     html: string;
-}> 
-{
+}> {
     return curate({
         links,
         interests: ['lego'],
         max: 5,
-        minimumDate : new Date('2025-02-01'),
+        minimumDate: new Date('2025-02-01'),
     })
         .then((curatedLinks: Summary[]) => {
             // Generate the formatted string when promise completed
-            
+
             const markdown = formatNewsletterMarkdown(curatedLinks);
             const html = formatNewsletterHtmlWithCSS(curatedLinks);
 

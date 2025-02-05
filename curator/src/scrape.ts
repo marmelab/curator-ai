@@ -20,7 +20,7 @@ export const scrape = async ({
 
     return {
         text: article?.textContent.substring(0, maxContentSize),
-        date: publicationDate
+        date: publicationDate,
     };
 };
 
@@ -32,13 +32,13 @@ async function scrapeDate($: cheerio.CheerioAPI) {
     const dateFormats = [
         "yyyy-MM-dd'T'HH:mm:ssXXX",
         "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
-        "yyyy-MM-dd",
-        "MM/dd/yyyy",
-        "dd-MM-yyyy",
-        "MMMM d, yyyy",
-        "MMM d, yyyy",
-        "d MMMM yyyy",
-        "d MMM yyyy"
+        'yyyy-MM-dd',
+        'MM/dd/yyyy',
+        'dd-MM-yyyy',
+        'MMMM d, yyyy',
+        'MMM d, yyyy',
+        'd MMMM yyyy',
+        'd MMM yyyy',
     ];
 
     $('time').each((index, element) => {
@@ -67,7 +67,9 @@ async function scrapeDate($: cheerio.CheerioAPI) {
 
     // Check for meta tags with name="date" or property="article:published_time"
     if (!publicationDate) {
-        const metaDate = $('meta[name="date"], meta[property="article:published_time"]');
+        const metaDate = $(
+            'meta[name="date"], meta[property="article:published_time"]'
+        );
         if (metaDate.length > 0) {
             publicationDate = metaDate.attr('content') ?? null;
         }
@@ -87,5 +89,4 @@ async function scrapeDate($: cheerio.CheerioAPI) {
     }
 
     return new Date(publicationDate);
-
 }
