@@ -31,20 +31,11 @@ async function formatResponse(
 Sorry, we didn't find any preferences in your E-Mail.`;
     }
 
-    let textThemes = '';
-    if (aiResponse?.themes?.length) {
-        textThemes += `The following ${cleanThemes} have been added to your next newsletters :
-- ${aiResponse?.themes.join('\n  - ')}`;
-    }
-
-    let textUnwantedThemes = '';
-    if (aiResponse?.unwanted_themes?.length) {
-        textUnwantedThemes += `\nYou will no longer be annoyed with the following ${cleanThemes} :
-- ${aiResponse?.unwanted_themes.join('\n  - ')}`;
-    }
     return `Hello!
-${textThemes}
-${textUnwantedThemes}`;
+${aiResponse?.themes?.length ? `The following ${cleanThemes} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
+
+${aiResponse?.unwanted_themes?.length ? `You will no longer be annoyed with the following ${cleanThemes}:\n- ${aiResponse.unwanted_themes.join('\n- ')}` : ''}`;
+
 }
 
 (async () => {
