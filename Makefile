@@ -17,7 +17,7 @@ init: install build migrate_supabase ## Initialize the project
 install: ## Install the dependencies
 	npm install
 
-webpage: ## Run the webpage localy
+webpage: start_supabase ## Run the webpage localy
 	npm --workspace website run start
 	
 send_mail: ## Send newsletter mail

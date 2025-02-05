@@ -12,7 +12,7 @@ const sendMail = true;
 async function runNewsletter() {
     const { markdown, html } = await curateAndGenerateNewsletter();
 
-    if (!process.env.POSTMARK_API_KEY || !process.env.DEFAULT_POSTMARK_EMAIL) {
+    if (!process.env.NEXT_PUBLIC_POSTMARK_API_KEY || !process.env.DEFAULT_POSTMARK_EMAIL) {
         throw new Error(
             'Make sure to define POSTMARK_SERVER_API_KEY and POSTMARK_DEFAULT_MAIL if you want to send mail'
         );
@@ -25,7 +25,7 @@ async function runNewsletter() {
     }
 
     // Sending email :
-    const client = new ServerClient(process.env.POSTMARK_API_KEY as string);
+    const client = new ServerClient(process.env.NEXT_PUBLIC_POSTMARK_API_KEY as string);
 
     const mail = process.env.DEFAULT_POSTMARK_EMAIL as string;
 
