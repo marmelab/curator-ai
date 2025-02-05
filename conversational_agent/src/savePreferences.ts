@@ -69,7 +69,7 @@ export const addThemes = async (
         .from('subscribers')
         .update({
             themes: newThemes,
-            unwantedThemes: newUnwantedThemes,
+            unwanted_themes: newUnwantedThemes,
         })
         .eq('user_email', mail);
 

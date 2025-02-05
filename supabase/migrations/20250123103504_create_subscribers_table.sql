@@ -9,3 +9,6 @@ CREATE TABLE Subscribers (
     unwanted_themes TEXT[] DEFAULT '{}', -- List of strings, default is an empty array
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Date of subscription, default: now
 );
+
+INSERT INTO Subscribers (id, user_email)
+VALUES (0, 'test@mail.net');
