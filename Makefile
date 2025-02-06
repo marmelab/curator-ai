@@ -20,6 +20,7 @@ install: ## Install the dependencies
 webpage: build_webpage run_webpage ## Build and run the webpage localy
 
 build_webpage: start_supabase ## Build the webpage
+	rm -rf website/.next
 	npm --workspace website run build
 
 run_webpage: ## Run the webpage localy

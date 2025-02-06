@@ -3,6 +3,7 @@
 import { generateWelcomeEmail } from '@/services/welcomeEmailContent';
 import { Client } from 'postmark';
 import dotenv from 'dotenv';
+import { AppError } from '@/lib/error';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
@@ -24,7 +25,7 @@ export async function handleSendWelcomeEmail(
   const defaultSenderEmail = process.env.DEFAULT_POSTMARK_MAIL!;
   const defaultInboundEmail = process.env.INBOUND_POSTMARK_MAIL!;
   if (!postmarkApiToken || !defaultSenderEmail) {
-    throw new Error('Missing Postmark API token or default sender email');
+    throw new AppError('Missing Postmark API token or default sender email');
   }
   const client = new Client(postmarkApiToken);
   const emailData = {
@@ -45,6 +46,6 @@ export async function handleSendWelcomeEmail(
     console.log('Email sent successfully!');
   } catch (error) {
     console.error('Error in sending email:', error);
-    throw new Error('Error sending email');
+    throw new AppError('Error sending email');
   }
 }
