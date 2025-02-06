@@ -3,7 +3,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { validateEmail } from '@/utils/validateEmail';
 import dotenv from 'dotenv';
-import { AppError } from '@/lib/error';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
@@ -17,9 +16,11 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
  * Handles the logic for subscribing an email, including validation.
  * @param email - The email address to subscribe.
  */
-export async function handleSubscription(email: string): Promise<void> {
+export async function handleSubscription(
+  email: string,
+): Promise<{ message: string; hasError: boolean }> {
   if (!validateEmail(email)) {
-    throw new AppError('Invalid email address.');
+    return { message: `Invalid email address.`, hasError: true };
   }
 
   try {
@@ -31,13 +32,14 @@ export async function handleSubscription(email: string): Promise<void> {
       .single();
 
     if (selectError && selectError.code !== 'PGRST116') {
-      throw new AppError(
-        `Error verifying email ${selectError.code}: ${selectError.message}`,
-      );
+      return {
+        message: `Error verifying email ${selectError.code}: ${selectError.message}`,
+        hasError: true,
+      };
     }
 
     if (existingEmail) {
-      throw new AppError('Email already registered.');
+      return { message: `Email already registered.`, hasError: true };
     }
 
     // Insert the email into the "subscribers" table
@@ -46,12 +48,16 @@ export async function handleSubscription(email: string): Promise<void> {
       .insert([{ user_email: email }]);
 
     if (insertError) {
-      throw new AppError(`Error inserting email: ${insertError.message}`);
+      console.error(`Error inserting email: ${insertError.message}`);
+      return {
+        message: `Error inserting email: ${insertError.message}`,
+        hasError: true,
+      };
     }
 
-    console.log('Email successfully registered.');
+    return { message: `Email successfully registered.`, hasError: false };
   } catch (error) {
     console.error('Unexpected error:', error);
-    throw error;
+    return { message: `Unexpected error occure`, hasError: true };
   }
 }
