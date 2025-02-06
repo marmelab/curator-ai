@@ -1,9 +1,9 @@
 import { exec } from "child_process";  
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
-import path from "path";
+import cron from "node-cron";
 
-dotenv.config({ path: path.resolve(process.cwd(), ".env") });
+dotenv.config({ path: "./../.env" });
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
@@ -12,9 +12,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
-const INTERVAL = 10000; // 10 seconds
 const loggingActivated = true; // Set to false to disable logs
 
+// Main
+console.log("🟢 Newsletter Scheduler started... Press CTRL + C to stop.");
+cron.schedule('* * * * *', checkAndSendNewsletters);
+
+// Functions
 async function getPendingNewsletters() {
   const currentISO = new Date().toISOString();
   const { data, error } = await supabase
@@ -81,6 +85,3 @@ async function checkAndSendNewsletters() {
     }
   }
 }
-
-console.log("🟢 Newsletter Scheduler started... Press CTRL + C to stop.");
-setInterval(checkAndSendNewsletters, INTERVAL);
