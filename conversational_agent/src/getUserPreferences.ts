@@ -55,22 +55,16 @@ Ensure no duplicate entries in either "sources" or "unwanted_sources".
 
     const preferencesCompletion = completion.choices[0].message.parsed;
 
-    if (
-        !(
-            (await addThemes(
+    await addThemes(
                 preferencesCompletion?.themes || [],
                 preferencesCompletion?.unwantedThemes || [],
                 userMail
-            )) &&
-            (await addSources(
+            );
+    await addSources(
                 preferencesCompletion?.sources || [],
                 preferencesCompletion?.unwantedSources || [],
                 userMail
-            ))
-        )
-    ) {
-        return null;
-    }
+            );
 
     return preferencesCompletion;
 }
