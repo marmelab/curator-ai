@@ -7,19 +7,32 @@ import sampleImage from '@/images/sampleImage.png';
 import { Button } from '@/components/Button';
 import { handleSubscription } from '@/services/subscribeService'; // Import subscription service
 import { handleSendWelcomeEmail } from '@/services/emailService';
-import { AppError } from '@/lib/error';
 
 export function Features() {
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
+  const [subscriptionMessage, setSubscriptionMessage] = useState('');
+  const [subscriptionError, setSubscriptionError] = useState(false);
+  const [emailMessage, setEmailMessage] = useState('');
+  const [emailError, setEmailError] = useState(false);
   const [message, setMessage] = useState('');
 
   const handleEmailSubmission = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Default messages below the subscription field
+    setSubscriptionMessage('');
+    setSubscriptionError(false);
+    setEmailMessage('');
+    setEmailError(false);
     setMessage('');
 
     try {
-      await handleSubscription(email);
+      const subscriptionReturn = await handleSubscription(email);
+      setSubscriptionMessage(subscriptionReturn.message);
+      setSubscriptionError(subscriptionReturn.hasError);
+      if (subscriptionReturn.hasError) {
+        return;
+      }
 
       const translations = {
         txt: t('welcomeEmail.txt'),
@@ -35,17 +48,19 @@ export function Features() {
         signature: t('welcomeEmail.signature'),
       };
 
-      await handleSendWelcomeEmail(email, translations);
-      setMessage(t('feature.successEmail', { email }));
-    } catch (error: any) {
-      console.error('Error Type:', error.constructor.name);
-      console.error('Full Error Object:', error);
-      if (error instanceof AppError) {
-        setMessage(t('feature.appError'));
-      } else {
-        setMessage(t('feature.genericError'));
+      const emailSendingReturn = await handleSendWelcomeEmail(
+        email,
+        translations,
+      );
+      setEmailMessage(emailSendingReturn.message);
+      setEmailError(emailSendingReturn.hasError);
+      if (emailSendingReturn.hasError) {
+        return;
       }
 
+      setMessage(t('feature.successEmail', { email }));
+    } catch (error: any) {
+      setMessage(t('feature.genericError'));
       console.error('Error during email submission:', error);
     }
   };
@@ -104,8 +119,23 @@ export function Features() {
               </div>
             </form>
 
-            {/* confirmation email */}
-            {message && <p className="mt-4 text-green-500">{message}</p>}
+            {subscriptionMessage && (
+              <p
+                className={`mt-4 ${subscriptionError ? 'text-red-500' : 'text-green-500'}`}
+              >
+                {subscriptionMessage}
+              </p>
+            )}
+
+            {emailMessage && (
+              <p
+                className={`mt-4 ${emailError ? 'text-red-500' : 'text-green-500'}`}
+              >
+                {emailMessage}
+              </p>
+            )}
+
+            {message}
           </div>
         </div>
         <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
