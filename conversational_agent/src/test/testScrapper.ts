@@ -14,9 +14,12 @@ async function getStringFromFile(filePath: string): Promise<string> {
 }
 
 async function formatResponse(
-    
-    aiResponse: { themes: string[]; unwantedThemes: string[]; sources: string[]; unwantedSources: string[] } | null
-
+    aiResponse: {
+        themes: string[];
+        unwantedThemes: string[];
+        sources: string[];
+        unwantedSources: string[];
+    } | null
 ) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
@@ -25,7 +28,12 @@ async function formatResponse(
         return `Sorry, we couldn't find you in our database.`;
     }
 
-    if (!aiResponse?.themes?.length && !aiResponse?.unwantedThemes?.length && !aiResponse?.sources?.length && !aiResponse?.unwantedSources?.length) {
+    if (
+        !aiResponse?.themes?.length &&
+        !aiResponse?.unwantedThemes?.length &&
+        !aiResponse?.sources?.length &&
+        !aiResponse?.unwantedSources?.length
+    ) {
         return `Hello!
 Sorry, we didn't find any preferences in your E-Mail.`;
     }

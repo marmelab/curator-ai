@@ -14,45 +14,41 @@ export function Features() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
-  
+  const handleEmailSubmission = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMessage('');
 
-const handleEmailSubmission = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setMessage('');
-
-  try {
+    try {
       await handleSubscription(email);
 
       const translations = {
-          txt: t('welcomeEmail.txt'),
-          welcome: t('welcomeEmail.welcome'),
-          welcome2: t('welcomeEmail.welcome2'),
-          intro: t('welcomeEmail.intro'),
-          instructionsHeader: t('welcomeEmail.instructionsHeader'),
-          instructionSubjects: t('welcomeEmail.instructionSubjects'),
-          instructionSites: t('welcomeEmail.instructionSites'),
-          instructionFrequency: t('welcomeEmail.instructionFrequency'),
-          reminder: t('welcomeEmail.reminder'),
-          closing: t('welcomeEmail.closing'),
-          signature: t('welcomeEmail.signature'),
+        txt: t('welcomeEmail.txt'),
+        welcome: t('welcomeEmail.welcome'),
+        welcome2: t('welcomeEmail.welcome2'),
+        intro: t('welcomeEmail.intro'),
+        instructionsHeader: t('welcomeEmail.instructionsHeader'),
+        instructionSubjects: t('welcomeEmail.instructionSubjects'),
+        instructionSites: t('welcomeEmail.instructionSites'),
+        instructionFrequency: t('welcomeEmail.instructionFrequency'),
+        reminder: t('welcomeEmail.reminder'),
+        closing: t('welcomeEmail.closing'),
+        signature: t('welcomeEmail.signature'),
       };
 
       await handleSendWelcomeEmail(email, translations);
       setMessage(t('feature.successEmail', { email }));
-  } catch (error: any) {
-    console.error("Error Type:", error.constructor.name);
-    console.error("Full Error Object:", error);
+    } catch (error: any) {
+      console.error('Error Type:', error.constructor.name);
+      console.error('Full Error Object:', error);
       if (error instanceof AppError) {
-          setMessage(t('feature.appError'));
+        setMessage(t('feature.appError'));
       } else {
-          setMessage(t('feature.genericError'));
+        setMessage(t('feature.genericError'));
       }
 
       console.error('Error during email submission:', error);
-  }
-};
-
-
+    }
+  };
 
   const features = [
     t('feature.check1'),
