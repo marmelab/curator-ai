@@ -1,4 +1,4 @@
-"use server"
+'use server';
 
 import { generateWelcomeEmail } from '@/services/welcomeEmailContent';
 import { Client } from 'postmark';

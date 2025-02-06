@@ -1,4 +1,4 @@
-"use server"
+'use server';
 
 import { createClient } from '@supabase/supabase-js';
 import { validateEmail } from '@/utils/validateEmail';

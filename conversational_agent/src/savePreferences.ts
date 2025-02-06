@@ -80,3 +80,73 @@ export const addThemes = async (
     }
     return true;
 };
+
+// Retrieve the sources for the subscribed email
+export const getSources = async (mail: string) => {
+    const { data: sourcesData, error: sourcesError } = await supabase
+        .from('subscribers')
+        .select('sources')
+        .eq('user_email', mail)
+        .single();
+
+    if (sourcesError) {
+        console.error(`Error retrieving sources: ${sourcesError.message}`);
+        return null;
+    }
+
+    return sourcesData;
+};
+
+// Retrieve the unwnated sources for the subscribed email
+export const getUnwantedSources = async (mail: string) => {
+    const { data: sourcesData, error: sourcesError } = await supabase
+        .from('subscribers')
+        .select('unwanted_sources')
+        .eq('user_email', mail)
+        .single();
+
+    if (sourcesError) {
+        console.error(
+            `Error retrieving unwanted sources: ${sourcesError.message}`
+        );
+        return null;
+    }
+
+    return sourcesData;
+};
+
+// Update the sources for the subscribed email
+export const addSources = async (
+    sources: string[],
+    unwantedSources: string[],
+    mail: string
+) => {
+    const oldSources = await getSources(mail);
+    const oldUnwantedSources = await getUnwantedSources(mail);
+    if (oldSources == null || oldUnwantedSources == null) {
+        console.error(oldSources, oldUnwantedSources);
+        return false;
+    }
+
+    const newSources = _.union(
+        _.difference(oldSources?.sources || [], unwantedSources),
+        sources
+    );
+    const newUnwantedSources = _.union(
+        _.difference(oldUnwantedSources?.unwanted_sources || [], sources),
+        unwantedSources
+    );
+    const { error: updateError } = await supabase
+        .from('subscribers')
+        .update({
+            sources: newSources,
+            unwanted_sources: newUnwantedSources,
+        })
+        .eq('user_email', mail);
+
+    if (updateError) {
+        console.error(`Error updating sources: ${updateError.message}`);
+        return false;
+    }
+    return true;
+};
