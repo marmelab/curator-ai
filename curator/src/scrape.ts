@@ -25,7 +25,7 @@ export const scrape = async ({
 };
 
 async function scrapeDate($: cheerio.CheerioAPI) {
-    // Extract the latest dazte of publication
+    // Extract the latest date of publication
     let latestDate: Date | null = null;
     let publicationDate: string | null = null;
 

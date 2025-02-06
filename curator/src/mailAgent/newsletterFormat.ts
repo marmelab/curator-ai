@@ -97,7 +97,7 @@ export async function curateAndGenerateNewsletter(): Promise<{
         links,
         interests: ['lego'],
         max: 5,
-        minimumDate: new Date('2025-02-01'),
+        minDate: new Date('2025-02-01'),
     })
         .then((curatedLinks: Summary[]) => {
             // Generate the formatted string when promise completed
