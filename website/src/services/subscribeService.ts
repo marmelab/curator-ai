@@ -3,6 +3,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { validateEmail } from '@/utils/validateEmail';
 import dotenv from 'dotenv';
+import { AppError } from '@/lib/error';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
@@ -18,7 +19,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
  */
 export async function handleSubscription(email: string): Promise<void> {
   if (!validateEmail(email)) {
-    throw new Error('Invalid email address.');
+    throw new AppError('Invalid email address.');
   }
 
   try {
@@ -30,13 +31,13 @@ export async function handleSubscription(email: string): Promise<void> {
       .single();
 
     if (selectError && selectError.code !== 'PGRST116') {
-      throw new Error(
+      throw new AppError(
         `Error verifying email ${selectError.code}: ${selectError.message}`,
       );
     }
 
     if (existingEmail) {
-      throw new Error('Email already registered.');
+      throw new AppError('Email already registered.');
     }
 
     // Insert the email into the "subscribers" table
@@ -45,7 +46,7 @@ export async function handleSubscription(email: string): Promise<void> {
       .insert([{ user_email: email }]);
 
     if (insertError) {
-      throw new Error(`Error inserting email: ${insertError.message}`);
+      throw new AppError(`Error inserting email: ${insertError.message}`);
     }
 
     console.log('Email successfully registered.');
