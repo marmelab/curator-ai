@@ -12,23 +12,24 @@ endif
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-init: ## Initialize the project
-	make install
-	make build
-	make migrate_supabase
-	
+init: install build migrate_supabase ## Initialize the project
 
 install: ## Install the dependencies
 	npm install
 
-webpage: ## Run the webpage localy
-	cd website && npm run start
+webpage: build_webpage run_webpage ## Build and run the webpage localy
+
+build_webpage: start_supabase ## Build the webpage
+	npm --workspace website run build
+
+run_webpage: ## Run the webpage localy
+	npm --workspace website run start
 	
 send_mail: ## Send newsletter mail
 	cp -n .env.sample .env
 	npx ts-node curator/src/mail_agent/newsletter_script.ts
 	
-build: ## Compile the project
+build: start_supabase ## Compile the project
 	npm run build
 	npm run format
 	make start_supabase
@@ -39,21 +40,20 @@ run: ## Summarize a list of articles
 dev: ## Run the CLI in development mode
 	npm --workspace website run dev
 
-conv_agent: ## Test the conversational agent with mail
+conv_agent: start_supabase ## Test the conversational agent with mail
 	npm --workspace conversational_agent run start
 
-conv_agent_test: ## Test the conversational agent
+conv_agent_test: start_supabase ## Test the conversational agent
 	npm --workspace conversational_agent run test
 
-clean: ## To clean the project
-	make stop_supabase
+clean: stop_supabase ## To clean the project
 	rm -rf node_modules
 
 # Start ngrok on a specific port
 start_ngrok:
 	npx ngrok config add-authtoken $(NGROK_AUTH_TOKEN)
-	@echo "Starting ngrok on port 3000"
-	npx ngrok http 3000
+	@echo "Starting ngrok on port 3001"
+	npx ngrok http 3001
 
 migrate_supabase:
 	npx supabase db reset

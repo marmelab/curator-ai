@@ -14,53 +14,38 @@ async function getStringFromFile(filePath: string): Promise<string> {
 }
 
 async function formatResponse(
-    aiResponse: { themes: string[]; sources: string[]; unwanted_sources: string[] } | null
+    
+    aiResponse: { themes: string[]; unwantedThemes: string[]; sources: string[]; unwantedSources: string[] } | null
+
 ) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const cleanThemes = purify.sanitize(
-        aiResponse?.themes.length == 1 ? 'theme' : 'themes'
-    );
-    const cleanSources = purify.sanitize(
-        aiResponse?.sources.length == 1 ? 'source' : 'sources'
-    );
-    const cleanUnwantedSources = purify.sanitize(
-        aiResponse?.unwanted_sources.length == 1 ? 'source' : 'sources'
-    );
 
-    if (!aiResponse?.themes?.length && !aiResponse?.sources?.length && !aiResponse?.unwanted_sources?.length) {
+    if (aiResponse == null) {
+        return `Sorry, we couldn't find you in our database.`;
+    }
+
+    if (!aiResponse?.themes?.length && !aiResponse?.unwantedThemes?.length && !aiResponse?.sources?.length && !aiResponse?.unwantedSources?.length) {
         return `Hello!
 Sorry, we didn't find any preferences in your E-Mail.`;
     }
 
-    let textThemes = '';
-    if (aiResponse?.themes?.length) {
-        textThemes += `The following ${cleanThemes} have been added to your next newsletters :
-- ${aiResponse?.themes.join('\n  - ')}`;
-    }
-
-    let textSources = '';
-    if (aiResponse?.sources?.length) {
-        textSources += `The following ${cleanSources} have been added to your next newsletters :
-- ${aiResponse?.sources.join('\n  - ')}`;
-    }
-
-    let textUnwantedSources = '';
-    if (aiResponse?.unwanted_sources?.length) {
-        textUnwantedSources += `\nYou will no longer be annoyed with the following ${cleanUnwantedSources} :
-- ${aiResponse?.unwanted_sources.join('\n  - ')}`;
-    }
     return `Hello!
-${textThemes}
-${textSources}
-${textUnwantedSources}`;
+${aiResponse?.themes?.length ? `The following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
+
+${aiResponse?.unwantedThemes?.length ? `You won't have the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} anymore:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
+
+${aiResponse?.sources?.length ? `The following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} have been added to your next newsletters:\n- ${aiResponse.sources.join('\n- ')}` : ''}
+
+${aiResponse?.unwantedSources?.length ? `You won't have the following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} anymore:\n- ${aiResponse.unwantedSources.join('\n- ')}` : ''}
+`;
 }
 
 (async () => {
     const userMessage = await getStringFromFile(__dirname + '/myMessage.txt');
 
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences(userMessage);
-    console.log(aiResponse);
+    const aiResponse = await getUserPreferences('test@mail.net', userMessage);
+
     console.log(await formatResponse(aiResponse));
 })();

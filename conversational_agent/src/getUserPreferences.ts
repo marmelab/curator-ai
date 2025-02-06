@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { zodResponseFormat } from 'openai/helpers/zod';
 import dotenv from 'dotenv';
 import { OpenAI } from 'openai';
+import { addThemes } from './savePreferences';
 
 dotenv.config({ path: './../.env' });
 
@@ -11,14 +12,15 @@ const openai = new OpenAI({
 
 const PreferenceExtraction = z.object({
     themes: z.array(z.string()),
+    unwantedThemes: z.array(z.string()),
     sources: z.array(z.string()),
-    unwanted_sources: z.array(z.string())
+    unwantedSources: z.array(z.string())
 });
 
 export async function getUserPreferences(
-
+    userMail: string,
     userMessage: string
-): Promise<{ themes: string[]; sources: string[]; unwanted_sources: string[] } | null> {
+): Promise<{ themes: string[]; unwantedThemes: string[]; sources: string[]; unwantedSources: string[] } | null> {
     const completion = await openai.beta.chat.completions.parse({
         model: 'gpt-4o-mini',
         messages: [
@@ -49,6 +51,16 @@ Ensure no duplicate entries in either "sources" or "unwanted_sources".
     });
 
     const preferencesCompletion = completion.choices[0].message.parsed;
+
+    if (
+        !(await addThemes(
+            preferencesCompletion?.themes || [],
+            preferencesCompletion?.unwantedThemes || [],
+            userMail
+        ))
+    ) {
+        return null;
+    }
 
     return preferencesCompletion;
 }

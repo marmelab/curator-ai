@@ -3,22 +3,22 @@ import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
 import { ServerClient } from 'postmark';
 import { getUserPreferences } from './getUserPreferences';
+import { MailBody } from './types';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
 
-export const sendMail = async (body: any) => {
+export const sendMail = async (body: MailBody) => {
     // Use the Postmark API key from environment variables
     const client = new ServerClient(process.env.POSTMARK_API_KEY || '');
-
     try {
         const formattedBody = await buildResponse(body);
         // Send an email
         const result = await client.sendEmail({
             From: process.env.DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
             To: body['From'],
-            ReplyTo: body["To"],  // Make sure replies go back to Postmark
             Subject: 'Re: ' + body['Subject'],
+            ReplyTo: body["To"],  
             HtmlBody: formatHtmlBody(formattedBody),
             TextBody: formatTextBody(formattedBody),
             MessageStream: 'outbound',
@@ -29,67 +29,46 @@ export const sendMail = async (body: any) => {
     }
 };
 
-const buildResponse = async (body: any) => {
+const buildResponse = async (body: MailBody) => {
     // Generate a response from AI based on the received email text
-    const aiResponse = await getUserPreferences(body['StrippedTextReply']);
+    const aiResponse = await getUserPreferences(body['From'], body['TextBody']);
 
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const cleanBodyFrom = purify.sanitize(body['From']);
-    const cleanBodyDate = purify.sanitize(body['Date']);
-    const cleanBodyTo = purify.sanitize(body['To']);
-    const cleanBodySubject = purify.sanitize(body['Subject']);
-    const cleanBodyTextBody = purify.sanitize(body['StrippedTextReply']);
-    const cleanThemes = purify.sanitize(
-        aiResponse?.themes.length == 1 ? 'theme' : 'themes'
-    );
-    const cleanSources = purify.sanitize(
-        aiResponse?.sources.length == 1 ? 'source' : 'sources'
-    );
-    const cleanUnwantedSources = purify.sanitize(
-        aiResponse?.unwanted_sources.length == 1 ? 'source' : 'sources'
-    );
 
     const emailMetadata = `
         
         -------- Previous Message --------
         
-        From: ${cleanBodyFrom}
+        From: ${purify.sanitize(body['From'])}
         
-        Sent: ${cleanBodyDate}
+        Sent: ${purify.sanitize(body['Date'])}
         
-        To: ${cleanBodyTo}
+        To: ${purify.sanitize(body['To'])}
         
-        Subject: ${cleanBodySubject}
+        Subject: ${purify.sanitize(body['Subject'])}
         
-        ${cleanBodyTextBody}
+        ${purify.sanitize(body['TextBody'])}
     
     `;
 
-    if (!aiResponse?.themes?.length && !aiResponse?.sources?.length && !aiResponse?.unwanted_sources?.length) {
+    if (aiResponse == null) {
+        return `Sorry, we couldn't find you in our database. ${emailMetadata}`;
+    }
+
+    if (!aiResponse?.themes?.length && !aiResponse?.unwantedThemes?.length) {
         return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;
     }
-    let textThemes = '';
-    if (aiResponse?.themes?.length) {
-        textThemes += `The following ${cleanThemes} have been added to your next newsletters :
-- ${aiResponse?.themes.join('\n  - ')}`;
-    }
 
-    let textSources = '';
-    if (aiResponse?.sources?.length) {
-        textSources += `The following ${cleanSources} have been added to your next newsletters :
-- ${aiResponse?.sources.join('\n  - ')}`;
-    }
-
-    let textUnwantedSources = '';
-    if (aiResponse?.unwanted_sources?.length) {
-        textUnwantedSources += `\nYou will no longer be annoyed with the following ${cleanUnwantedSources} :
-- ${aiResponse?.unwanted_sources.join('\n  - ')}`;
-    }
     return `Hello!
-${textThemes}
-${textSources}
-${textUnwantedSources}
+${aiResponse?.themes?.length ? `The following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
+
+${aiResponse?.unwantedThemes?.length ? `You won't have the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} anymore:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
+
+${aiResponse?.sources?.length ? `The following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} have been added to your next newsletters:\n- ${aiResponse.sources.join('\n- ')}` : ''}
+
+${aiResponse?.unwantedSources?.length ? `You won't have the following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} anymore:\n- ${aiResponse.unwantedSources.join('\n- ')}` : ''}
+
 ${emailMetadata}`;
 };
 
@@ -101,10 +80,9 @@ ${emailMetadata}`;
 function formatTextBody(content: string) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const cleanContent = purify.sanitize(content);
     return `Curator AI
 
-    ${cleanContent}
+    ${purify.sanitize(content)}
     
     See you soon for your next newsletter!`;
 }
@@ -117,13 +95,12 @@ function formatTextBody(content: string) {
 function formatHtmlBody(content: string) {
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
-    const cleanContent = purify.sanitize(content).replace(/\n/g, '<br/>');
     return `
   <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; padding: 20px; border-radius: 10px; max-width: 800px; margin: 0 auto;">
   <h1 style="color: #164e63; text-align: center; font-size: 32px;">Curator AI</h1>
   <p style="font-size: 18px; text-align: center;">Incoming message :</p>
   <div style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  ${cleanContent}
+  ${purify.sanitize(content).replace(/\n/g, '<br/>')}
   </div>
   <p style="font-size: 18px; text-align: center;">See you soon for your next newsletter!</p>
 `;

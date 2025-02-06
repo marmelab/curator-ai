@@ -12,15 +12,7 @@ An AI-powered news curator. It reads a list of articles, selects the best ones d
 
 ## Initialize the project
 
-After cloning the repository, run the following command :
-
-```sh
-make init
-```
-
-It will install every dependencies.
-
-Then you can copy the `.env.sample` file as `.env`, and fill it with your info:
+After cloning the repository, you can copy the `.env.sample` file as `.env`, and fill it with your info:
 
 - `OPENAI_API_KEY`: your Open API key.
 - `SUPABASE_URL`: the url of your Supabase DB.
@@ -28,6 +20,14 @@ Then you can copy the `.env.sample` file as `.env`, and fill it with your info:
 - `POSTMARK_API_KEY`: your Postmark API key.
 - `DEFAULT_POSTMARK_MAIL`: the default email you are using to communicate with the service.
 - `NGROK_AUTH_TOKEN`: your Ngrok auth token.
+
+Then run the following command :
+
+```sh
+make init
+```
+
+It will install every dependencies, build the project and migrate the db.
 
 ## Start the webpage
 
@@ -43,21 +43,17 @@ To start Next in dev mode:
 make dev
 ```
 
-To start the supabase database (in order to test the subscription feature)
-
-```sh
-npx supabase start
-```
-
-Warning : the supabase containers use Docker Desktop. The image is quite consequent (~5Gb needed)
+This will reload automatically the webpage if you dev on the front. If you dev on the server side, you must restart it.
 
 ## Test the interest scrapper (without the mail)
+
+If you want to test the service and how the request sent by email works, without sending actual email, you can use that. Otherwise, you can go to the next part.
 
 ```sh
 make conv_agent_test
 ```
 
-This will return your preferences in a JSON format. If you want to see and change the request, go to the `./conversational_agent/src/test/myMessage.txt`.
+This will return the service answer. If you want to see and change the request, go to the `./conversational_agent/src/test/myMessage.txt`.
 
 ## Send an email an get your extracted preferences !
 
@@ -66,6 +62,7 @@ make conv_agent
 ```
 
 This will start the server at `http://localhost:3000`.
+This server is local, but we need to make it online.
 Now, in an other terminal :
 
 ```sh
