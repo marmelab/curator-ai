@@ -15,7 +15,7 @@ enum ColumnName {
     THEMES = 'themes',
     UNWANTED_THEMES = 'unwanted_themes',
     SOURCES = 'sources',
-    UNWANTED_SOURCES = 'unwanted_sources'
+    UNWANTED_SOURCES = 'unwanted_sources',
 }
 
 // Retrieve the data for the subscribed email
@@ -28,9 +28,9 @@ export const getColumn = async (mail: string, columnName: ColumnName) => {
 
     if (error) {
         console.error(`Error retrieving ${columnName}: ${error.message}`);
-        return [];
     }
-    return data;
+
+    return (data as Record<ColumnName, string[]>)[columnName] || [];
 };
 
 // Update the themes for the subscribed email
@@ -44,28 +44,25 @@ export const addPreferences = async (
     const oldThemes = await getColumn(mail, ColumnName.THEMES);
     const oldUnwantedThemes = await getColumn(mail, ColumnName.UNWANTED_THEMES);
     const oldSources = await getColumn(mail, ColumnName.SOURCES);
-    const oldUnwantedSources = await getColumn(mail, ColumnName.UNWANTED_SOURCES);
-    if (oldThemes == null || oldUnwantedThemes == null || oldSources == null || oldUnwantedSources == null) {
-        console.error(oldThemes, oldUnwantedThemes);
-        return false;
-    }
+    const oldUnwantedSources = await getColumn(
+        mail,
+        ColumnName.UNWANTED_SOURCES
+    );
 
-    const newThemes = _.union(
-        _.difference(oldThemes?.themes || [], unwantedThemes),
-        themes
-    );
-    const newUnwantedThemes = _.union(
-        _.difference(oldUnwantedThemes?.unwanted_themes || [], themes),
-        unwantedThemes
-    );
-    const newSources = _.union(
-        _.difference(oldSources?.sources || [], unwantedSources),
-        sources
-    );
-    const newUnwantedSources = _.union(
-        _.difference(oldUnwantedSources?.unwanted_sources || [], sources),
-        unwantedSources
-    );
+    const newThemes =
+        _.union(_.difference(oldThemes || [], unwantedThemes), themes) || [];
+    const newUnwantedThemes =
+        _.union(
+            _.difference(oldUnwantedThemes || [], themes),
+            unwantedThemes
+        ) || [];
+    const newSources =
+        _.union(_.difference(oldSources || [], unwantedSources), sources) || [];
+    const newUnwantedSources =
+        _.union(
+            _.difference(oldUnwantedSources || [], sources),
+            unwantedSources
+        ) || [];
 
     const { error: updateError } = await supabase
         .from('subscribers')
