@@ -24,16 +24,8 @@ async function formatResponse(
     const window = new JSDOM('').window;
     const purify = DOMPurify(window);
 
-    if (aiResponse == null) {
-        return `Sorry, we couldn't find you in our database.`;
-    }
-
-    if (
-        !aiResponse?.themes?.length &&
-        !aiResponse?.unwantedThemes?.length &&
-        !aiResponse?.sources?.length &&
-        !aiResponse?.unwantedSources?.length
-    ) {
+    const findPreferencesInTheMail = aiResponse?.themes?.length && aiResponse?.unwantedThemes?.length && aiResponse?.sources?.length && aiResponse?.unwantedSources?.length;
+    if (!findPreferencesInTheMail) {
         return `Hello!
 Sorry, we didn't find any preferences in your E-Mail.`;
     }

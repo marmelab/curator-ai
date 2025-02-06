@@ -28,12 +28,11 @@ run_webpage: ## Run the webpage localy
 	
 send_mail: ## Send newsletter mail
 	cp -n .env.sample .env
-	npx ts-node curator/src/mail_agent/newsletter_script.ts
+	npx ts-node curator/src/mail_agent/newsletterScript.ts
 	
 build: start_supabase ## Compile the project
 	npm run build
 	npm run format
-	make start_supabase
 
 run: ## Summarize a list of articles
 	npm --workspace curator run start

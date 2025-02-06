@@ -52,10 +52,6 @@ const buildResponse = async (body: MailBody) => {
     
     `;
 
-    if (aiResponse == null) {
-        return `Sorry, we couldn't find you in our database. ${emailMetadata}`;
-    }
-
     if (!aiResponse?.themes?.length && !aiResponse?.unwantedThemes?.length) {
         return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;
     }

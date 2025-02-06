@@ -58,6 +58,6 @@ export async function handleSubscription(
     return { message: `Email successfully registered.`, hasError: false };
   } catch (error) {
     console.error('Unexpected error:', error);
-    return { message: `Unexpected error occure`, hasError: true };
+    return { message: `Unexpected error occured`, hasError: true };
   }
 }
