@@ -11,12 +11,16 @@ const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-enum ColumnName {
-    THEMES = 'themes',
-    UNWANTED_THEMES = 'unwanted_themes',
-    SOURCES = 'sources',
-    UNWANTED_SOURCES = 'unwanted_sources',
-}
+const COLUMN_NAME = {
+    THEMES: 'themes',
+    UNWANTED_THEMES: 'unwanted_themes',
+    SOURCES: 'sources',
+    UNWANTED_SOURCES: 'unwanted_sources',
+} as const;
+  
+type ObjectValues<T> = T[keyof T];
+
+type ColumnName = ObjectValues<typeof COLUMN_NAME>;
 
 // Retrieve the data for the subscribed email
 export const getColumn = async (mail: string, columnName: ColumnName) => {
@@ -41,12 +45,12 @@ export const addPreferences = async (
     unwantedSources: string[],
     mail: string
 ) => {
-    const oldThemes = await getColumn(mail, ColumnName.THEMES);
-    const oldUnwantedThemes = await getColumn(mail, ColumnName.UNWANTED_THEMES);
-    const oldSources = await getColumn(mail, ColumnName.SOURCES);
+    const oldThemes = await getColumn(mail, COLUMN_NAME.THEMES);
+    const oldUnwantedThemes = await getColumn(mail, COLUMN_NAME.UNWANTED_THEMES);
+    const oldSources = await getColumn(mail, COLUMN_NAME.SOURCES);
     const oldUnwantedSources = await getColumn(
         mail,
-        ColumnName.UNWANTED_SOURCES
+        COLUMN_NAME.UNWANTED_SOURCES
     );
 
     const newThemes =
