@@ -18,7 +18,7 @@ export const sendMail = async (body: MailBody) => {
             From: process.env.DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
             To: body['From'],
             ReplyTo: body["To"],  // Make sure replies go back to Postmark
-            Subject: 'Re: ' + body['Subject'],
+            Subject: 'Re: ' + body['Subject'], 
             HtmlBody: formatHtmlBody(formattedBody),
             TextBody: formatTextBody(formattedBody),
             MessageStream: 'outbound',
@@ -59,11 +59,11 @@ const buildResponse = async (body: MailBody) => {
     return `Hello!
 ${aiResponse?.themes?.length ? `The following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
 
-${aiResponse?.unwantedThemes?.length ? `You will no longer be annoyed with the following ${purify.sanitize(aiResponse?.unwantedThemes.length == 1 ? 'theme' : 'themes')}:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
+${aiResponse?.unwantedThemes?.length ? `You won't have the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} anymore:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
 
 ${aiResponse?.sources?.length ? `The following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} have been added to your next newsletters:\n- ${aiResponse.sources.join('\n- ')}` : ''}
 
-${aiResponse?.unwantedSources?.length ? `You will no longer be annoyed with the following ${purify.sanitize(aiResponse?.unwantedSources.length == 1 ? 'source' : 'sources')}:\n- ${aiResponse.unwantedSources.join('\n- ')}` : ''}
+${aiResponse?.unwantedSources?.length ? `You won't have the following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} anymore:\n- ${aiResponse.unwantedSources.join('\n- ')}` : ''}
 
 ${emailMetadata}`;
 };

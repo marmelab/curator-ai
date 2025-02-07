@@ -37,11 +37,11 @@ Sorry, we didn't find any preferences in your E-Mail.`;
     return `Hello!
 ${aiResponse?.themes?.length ? `The following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
 
-${aiResponse?.unwantedThemes?.length ? `You will no longer be annoyed with the following ${purify.sanitize(aiResponse?.unwantedThemes.length == 1 ? 'theme' : 'themes')}:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
+${aiResponse?.unwantedThemes?.length ? `You won't have the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} anymore:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
 
 ${aiResponse?.sources?.length ? `The following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} have been added to your next newsletters:\n- ${aiResponse.sources.join('\n- ')}` : ''}
 
-${aiResponse?.unwantedSources?.length ? `You will no longer be annoyed with the following ${purify.sanitize(aiResponse?.unwantedSources.length == 1 ? 'source' : 'sources')}:\n- ${aiResponse.unwantedSources.join('\n- ')}` : ''}
+${aiResponse?.unwantedSources?.length ? `You won't have the following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} anymore:\n- ${aiResponse.unwantedSources.join('\n- ')}` : ''}
 `;
 }
 
