@@ -2,10 +2,11 @@ Helllow !
 
 I would like my newsletter to be every 2 days, I have an interest in data engineering and LLMs. 
 
+I find the lego website very interesting.
+Go see marmelab.com.
+Use https://research.google/pubs/.
 Hi! How are you today ? I’ve bought an duc ! This is very funny XD. Do you think that alien lives on the moon ?
-Anyway, give me news about firebase and REACT please. Teach me javascript. 
-Wait no, in fact forget it, I don't want typescript
-
-I'm not interested into celebrities.
+Anyway, give me news about firebase and REACT please. Teach me javascript. Wait no, in fact forget it, I prefer typescript.
+I don't like https://ai.meta.com/blog/ and twitter.
 
 xoxo

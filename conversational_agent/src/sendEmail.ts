@@ -17,8 +17,8 @@ export const sendMail = async (body: MailBody) => {
         const result = await client.sendEmail({
             From: process.env.DEFAULT_POSTMARK_MAIL || '', // Replace with a verified email
             To: body['From'],
-            Subject: 'Re: ' + body['Subject'],
-            ReplyTo: body["To"],  
+            ReplyTo: body["To"],  // Make sure replies go back to Postmark
+            Subject: 'Re: ' + body['Subject'], 
             HtmlBody: formatHtmlBody(formattedBody),
             TextBody: formatTextBody(formattedBody),
             MessageStream: 'outbound',
@@ -52,18 +52,18 @@ const buildResponse = async (body: MailBody) => {
     
     `;
 
-    if (aiResponse == null) {
-        return `Sorry, we couldn't find you in our database. ${emailMetadata}`;
-    }
-
-    if (!aiResponse?.themes?.length && !aiResponse?.unwantedThemes?.length) {
+    if (!aiResponse?.themes?.length && !aiResponse?.unwantedThemes?.length && !aiResponse?.sources?.length && !aiResponse?.unwantedSources?.length) {
         return `Sorry, we didn't find any preferences in your E-Mail. ${emailMetadata}`;
     }
 
     return `Hello!
 ${aiResponse?.themes?.length ? `The following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} have been added to your next newsletters:\n- ${aiResponse.themes.join('\n- ')}` : ''}
 
-${aiResponse?.unwantedThemes?.length ? `You will no longer be annoyed with the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')}:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
+${aiResponse?.unwantedThemes?.length ? `You won't have the following ${purify.sanitize(aiResponse?.themes.length == 1 ? 'theme' : 'themes')} anymore:\n- ${aiResponse.unwantedThemes.join('\n- ')}` : ''}
+
+${aiResponse?.sources?.length ? `The following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} have been added to your next newsletters:\n- ${aiResponse.sources.join('\n- ')}` : ''}
+
+${aiResponse?.unwantedSources?.length ? `You won't have the following ${purify.sanitize(aiResponse?.sources.length == 1 ? 'source' : 'sources')} anymore:\n- ${aiResponse.unwantedSources.join('\n- ')}` : ''}
 
 ${emailMetadata}`;
 };

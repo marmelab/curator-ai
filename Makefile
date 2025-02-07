@@ -20,6 +20,7 @@ install: ## Install the dependencies
 webpage: build_webpage run_webpage ## Build and run the webpage localy
 
 build_webpage: start_supabase ## Build the webpage
+	rm -rf website/.next
 	npm --workspace website run build
 
 run_webpage: ## Run the webpage localy
@@ -27,7 +28,7 @@ run_webpage: ## Run the webpage localy
 	
 send_mail: ## Send newsletter mail
 	cp -n .env.sample .env
-	npx ts-node curator/src/mail_agent/newsletter_script.ts
+	npx ts-node curator/src/mail_agent/newsletterScript.ts
 	
 build: start_supabase ## Compile the project
 	npm run build

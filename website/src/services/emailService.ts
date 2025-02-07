@@ -1,4 +1,4 @@
-"use server"
+'use server';
 
 import { generateWelcomeEmail } from '@/services/welcomeEmailContent';
 import { Client } from 'postmark';
@@ -14,7 +14,7 @@ dotenv.config({ path: './../.env' });
 export async function handleSendWelcomeEmail(
   email: string,
   translations: { [key: string]: string },
-): Promise<void> {
+): Promise<{ message: string; hasError: boolean }> {
   const recipientEmail = email;
   const subject = 'Welcome to CURATOR AI! 🚀';
   const htmlBody = generateWelcomeEmail(translations);
@@ -24,7 +24,10 @@ export async function handleSendWelcomeEmail(
   const defaultSenderEmail = process.env.DEFAULT_POSTMARK_MAIL!;
   const defaultInboundEmail = process.env.INBOUND_POSTMARK_MAIL!;
   if (!postmarkApiToken || !defaultSenderEmail) {
-    throw new Error('Missing Postmark API token or default sender email');
+    return {
+      message: `Missing Postmark API token or default sender email`,
+      hasError: true,
+    };
   }
   const client = new Client(postmarkApiToken);
   const emailData = {
@@ -40,11 +43,11 @@ export async function handleSendWelcomeEmail(
   try {
     const response = await client.sendEmail(emailData);
     if (response && response.ErrorCode) {
-      throw new Error(`Postmark Error: ${response.Message}`);
+      console.log(`Postmark Error: ${response.Message}`);
+      return { message: `Postmark Error`, hasError: true };
     }
-    console.log('Email sent successfully!');
+    return { message: `Email sent successfully!`, hasError: false };
   } catch (error) {
-    console.error('Error in sending email:', error);
-    throw new Error('Error sending email');
+    return { message: `Error sending email`, hasError: true };
   }
 }
