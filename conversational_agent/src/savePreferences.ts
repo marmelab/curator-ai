@@ -37,6 +37,20 @@ export const getColumn = async (mail: string, columnName: ColumnName) => {
     return (data as Record<ColumnName, string[]>)[columnName] || [];
 };
 
+// Retrieve the data for the subscribed email
+export const getPreferencesColumns = async (mail: string) => {
+    const { data: data, error: error } = await supabase
+        .from('subscribers')
+        .select('themes, unwanted_themes, sources, unwanted_sources')
+        .eq('user_email', mail)
+        .single();
+
+    if (error) {
+        console.error(`Error retrieving columns: ${error.message}`);
+    }
+    return data;
+};
+
 // Update the themes for the subscribed email
 export const addPreferences = async (
     themes: string[],
@@ -45,26 +59,20 @@ export const addPreferences = async (
     unwantedSources: string[],
     mail: string
 ) => {
-    const oldThemes = await getColumn(mail, COLUMN_NAME.THEMES);
-    const oldUnwantedThemes = await getColumn(mail, COLUMN_NAME.UNWANTED_THEMES);
-    const oldSources = await getColumn(mail, COLUMN_NAME.SOURCES);
-    const oldUnwantedSources = await getColumn(
-        mail,
-        COLUMN_NAME.UNWANTED_SOURCES
-    );
+    const oldPreferences = await getPreferencesColumns(mail);
 
     const newThemes =
-        _.union(_.difference(oldThemes || [], unwantedThemes), themes) || [];
+        _.union(_.difference(oldPreferences?.themes || [], unwantedThemes), themes) || [];
     const newUnwantedThemes =
         _.union(
-            _.difference(oldUnwantedThemes || [], themes),
+            _.difference(oldPreferences?.unwanted_themes || [], themes),
             unwantedThemes
         ) || [];
     const newSources =
-        _.union(_.difference(oldSources || [], unwantedSources), sources) || [];
+        _.union(_.difference(oldPreferences?.sources || [], unwantedSources), sources) || [];
     const newUnwantedSources =
         _.union(
-            _.difference(oldUnwantedSources || [], sources),
+            _.difference(oldPreferences?.unwanted_sources || [], sources),
             unwantedSources
         ) || [];
 
