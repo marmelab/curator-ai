@@ -11,25 +11,19 @@ import { handleSendWelcomeEmail } from '@/services/emailService';
 export function Features() {
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
-  const [subscriptionMessage, setSubscriptionMessage] = useState('');
-  const [subscriptionError, setSubscriptionError] = useState(false);
-  const [emailMessage, setEmailMessage] = useState('');
-  const [emailError, setEmailError] = useState(false);
+  const [error, setError] = useState(false);
   const [message, setMessage] = useState('');
 
   const handleEmailSubmission = async (e: React.FormEvent) => {
     e.preventDefault();
     // Default messages below the subscription field
-    setSubscriptionMessage('');
-    setSubscriptionError(false);
-    setEmailMessage('');
-    setEmailError(false);
+    setError(false);
     setMessage('');
 
     try {
       const subscriptionReturn = await handleSubscription(email);
-      setSubscriptionMessage(subscriptionReturn.message);
-      setSubscriptionError(subscriptionReturn.hasError);
+      setMessage(subscriptionReturn.message);
+      setError(subscriptionReturn.hasError);
       if (subscriptionReturn.hasError) {
         return;
       }
@@ -52,8 +46,8 @@ export function Features() {
         email,
         translations,
       );
-      setEmailMessage(emailSendingReturn.message);
-      setEmailError(emailSendingReturn.hasError);
+      setMessage(emailSendingReturn.message);
+      setError(emailSendingReturn.hasError);
       if (emailSendingReturn.hasError) {
         return;
       }
@@ -119,23 +113,14 @@ export function Features() {
               </div>
             </form>
 
-            {subscriptionMessage && (
+            {message && (
               <p
-                className={`mt-4 ${subscriptionError ? 'text-red-500' : 'text-green-500'}`}
+                className={`mt-4 ${error ? 'text-red-500' : 'text-green-500'}`}
               >
-                {subscriptionMessage}
+                {message}
               </p>
             )}
 
-            {emailMessage && (
-              <p
-                className={`mt-4 ${emailError ? 'text-red-500' : 'text-green-500'}`}
-              >
-                {emailMessage}
-              </p>
-            )}
-
-            {message}
           </div>
         </div>
         <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">

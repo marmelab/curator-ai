@@ -3,7 +3,6 @@
 import { generateWelcomeEmail } from '@/services/welcomeEmailContent';
 import { Client } from 'postmark';
 import dotenv from 'dotenv';
-import { AppError } from '@/lib/error';
 
 // Load environment variables from the .env file
 dotenv.config({ path: './../.env' });
